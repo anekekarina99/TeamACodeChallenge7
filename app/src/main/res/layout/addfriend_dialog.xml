@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_dialog"
+    android:background="@drawable/bg_white"
     android:orientation="vertical">
 
     <ImageView
@@ -14,7 +13,7 @@
         android:layout_marginEnd="8dp"
         android:layout_gravity="end"
         android:layout_marginRight="8dp"
-        android:background="@drawable/ic_close_but"
+        android:background="@drawable/ic_close"
         android:contentDescription="@string/string_close" />
 
     <TextView
@@ -60,12 +59,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="35dp"
-        android:background="@drawable/butt_orange"
+        android:background="@drawable/bg_but_gray"
         android:text="@string/save"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/colorWhiteFont"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:backgroundTint="@color/orange" />
+         />
 
 </LinearLayout>
