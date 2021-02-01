@@ -9,6 +9,7 @@ object SharedPref {
     private const val KEY_EMAIL = "KEY_EMAIL"
     private const val KEY_TOKEN = "KEY_TOKEN"
     private const val KEY_USERNAME = "KEY_USERNAME"
+    private const val KEY_URL_PROFILE = "KEY_URL_PROFILE"
 
     private val pref = App.context.get()?.getSharedPreferences("CodeChallenge7", Context.MODE_PRIVATE)
     var id: String?
@@ -45,6 +46,15 @@ object SharedPref {
             value?.let {
                 pref?.edit()
                     ?.putString(KEY_USERNAME, it)
+                    ?.apply()
+            }
+        }
+    var url_profile: String?
+        get() = pref?.getString(KEY_URL_PROFILE, "")
+        set(value) {
+            value?.let {
+                pref?.edit()
+                    ?.putString(KEY_URL_PROFILE, it)
                     ?.apply()
             }
         }

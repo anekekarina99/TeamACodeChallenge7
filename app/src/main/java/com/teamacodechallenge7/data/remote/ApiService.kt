@@ -1,5 +1,7 @@
 package com.teamacodechallenge7.data.remote
 
+import com.teamacodechallenge7.data.model.GetBattle
+import com.teamacodechallenge7.data.model.GetUsers
 import com.teamacodechallenge7.data.model.LoginMsg
 import com.teamacodechallenge7.data.model.LoginRequest
 import io.reactivex.Single
@@ -20,4 +22,11 @@ interface ApiService {
 //
 //    @PUT("/api/v1/users")
 //    fun me(@Header("Authorization") authorization: String): Single<MeMsg>
+
+    @GET("/api/v1/battle")
+    fun getBattle(@Header("Authorization") authorization: String): Single<GetBattle>
+
+    @GET("/api/v1/users")
+    fun getUsers(@Header("Authorization") authorization: String): Single<GetUsers>
+
 }
