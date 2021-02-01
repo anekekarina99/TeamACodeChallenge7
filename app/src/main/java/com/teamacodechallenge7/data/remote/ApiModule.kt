@@ -1,4 +1,4 @@
-package com.blank.ch6_retrofit.data.remote
+package com.teamacodechallenge7.data.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
