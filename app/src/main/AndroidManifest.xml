@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
+        <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.mainMenu.MainMenuAct" />
         <activity android:name=".ui.loginPage.LoginAct">
             <intent-filter>

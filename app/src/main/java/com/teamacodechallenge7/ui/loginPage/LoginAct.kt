@@ -21,6 +21,7 @@ class LoginAct : AppCompatActivity() {
         val factory = LoginFactory(ApiModule.service)
         this.viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
         super.onCreate(savedInstanceState)
+
         binding.viewModel = viewModel
         binding.btSignIn.setOnClickListener {
             viewModel.login()

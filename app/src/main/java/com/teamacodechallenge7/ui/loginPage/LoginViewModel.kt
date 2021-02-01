@@ -52,6 +52,7 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                         resultLogin.value = true
 
                     }, { error ->
+
                         if (error.toString() == "retrofit2.adapter.rxjava2.HttpException: HTTP 401 Unauthorized") {
                             emailResult.value = "Email tidak ada!"
                             resultLogin.value = false
