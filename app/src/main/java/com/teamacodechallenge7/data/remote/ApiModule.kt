@@ -10,6 +10,7 @@ object ApiModule {
     private const val BASE_URL = "https://binar-gdd-cc8.herokuapp.com"
 
     val service: ApiService by lazy {
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

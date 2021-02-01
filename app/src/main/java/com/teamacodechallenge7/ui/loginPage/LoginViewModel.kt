@@ -44,20 +44,22 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        if (!it.success) {
-                            if (it.errors =="Email doesn't exist!") {
-                                emailResult.value = "Email tidak ada!"
-                                resultLogin.value = false
-                            } else {
-                                passwordResult.value = "Password salah!"
-                                resultLogin.value = false
-                            }
+                        SharedPref.id = it.data.id
+                        SharedPref.email = it.data.email
+                        SharedPref.username = it.data.username
+                        SharedPref.token = it.data.token
+                        SharedPref.isLogin = true
+                        resultLogin.value = true
 
+                    }, { error ->
+                        if (error.toString() == "retrofit2.adapter.rxjava2.HttpException: HTTP 401 Unauthorized") {
+                            emailResult.value = "Email tidak ada!"
+                            resultLogin.value = false
                         } else {
-                            resultLogin.value = true
+                            passwordResult.value = "Password salah!"
+                            resultLogin.value = false
                         }
-                    }, {
-                        it.printStackTrace()
+
                     })
 
             }

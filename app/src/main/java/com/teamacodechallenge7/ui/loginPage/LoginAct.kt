@@ -17,10 +17,9 @@ import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 class LoginAct : AppCompatActivity() {
     private lateinit var viewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+        val binding =  DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         val factory = LoginFactory(ApiModule.service)
         this.viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
-        val binding =
-            DataBindingUtil.setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.btSignIn.setOnClickListener {

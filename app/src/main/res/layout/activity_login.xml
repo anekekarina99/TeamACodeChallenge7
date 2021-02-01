@@ -141,6 +141,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/bg_but_orange"
                         android:text="Signup"
+                        android:fontFamily="@font/comic"
                         android:textAllCaps="false"
                         android:textColor="@color/ColorBlackFont"
                         android:textSize="18sp"
