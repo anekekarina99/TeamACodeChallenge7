@@ -33,7 +33,7 @@ class ProfileTemanViewModel() : ViewModel() {
     fun addTeman(name: String, email: String) {
 //        mDB = context.get()?.let { TemanDatabase.getInstance(it) }
         val id = SharedPref.id
-        val objectTeman = id?.let { Teman(null, it, name, email) }
+      /*  val objectTeman = id?.let { Teman(null, it, name, email) }*/
         GlobalScope.launch(Dispatchers.IO) {
 //            val result = objectTeman?.let { mDB?.temanDao()?.insertTeman(it) }
             launch(Dispatchers.Main) {
