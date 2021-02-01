@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bg_white"
     tools:context=".ui.profileteman.ProfileTeman">
 
     <ImageView
@@ -18,7 +18,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:contentDescription="@string/home"
-        android:src="@drawable/ic_home" />
+        android:src="@drawable/ic_back_blue" />
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -27,7 +27,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:contentDescription="@string/logo_font"
-        android:src="@drawable/ic_logo_image" />
+        android:src="@drawable/ic_logo_dark" />
 
     <LinearLayout
         android:id="@+id/ll1"
@@ -93,7 +93,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
-        android:background="@color/gray" />
+        android:background="@color/ColorBgGray" />
 
     <TextView
         android:id="@+id/tvDaftar"
@@ -122,10 +122,10 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
-        android:background="@color/orange"
+        android:background="@drawable/bg_but_gray"
         android:fontFamily="@font/comic"
         android:text="@string/tambah_teman"
-        android:textColor="@color/white"
+        android:textColor="@color/colorWhiteFont"
         android:textStyle="bold" />
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bg_white"
     tools:context=".ui.landingPage.LandingPageActivity">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -44,9 +44,9 @@
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/butt_orange"
+        android:background="@drawable/bg_but_gray"
         android:text="@string/next"
-        android:textColor="@color/white"
+        android:textColor="@color/colorBgWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/dots_indicator"
