@@ -16,4 +16,5 @@
     <color name="ColorStrokeOrange">#D6AB5C</color>
     <color name="ColorBgButGray">#4B5967</color>
     <color name="ColorBgButOrange">#EDC575</color>
+    <color name="transparent">#00000000</color>
 </resources>

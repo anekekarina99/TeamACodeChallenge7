@@ -2,8 +2,10 @@ package com.teamacodechallenge7.ui.profileteman
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -13,8 +15,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
+import com.teamacodechallenge7.TemanDatabase
+import com.teamacodechallenge7.data.local.SharedPref
 
 class ProfileTeman : AppCompatActivity() {
+    private val tag : String = "ProfileTeman"
     private lateinit var profileTemanViewModel: ProfileTemanViewModel
     private var usernamePlayer = mutableListOf<String>()
     private var usernameEmail = mutableListOf<String>()
@@ -23,7 +28,11 @@ class ProfileTeman : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_teman)
-        val factory = ProfileTemanViewModel.Factory()
+
+        val pref = SharedPref
+        val mDB: TemanDatabase = TemanDatabase.getInstance(this)!!
+
+        val factory = ProfileTemanViewModel.Factory(mDB, pref)
         profileTemanViewModel = ViewModelProvider(this, factory)[ProfileTemanViewModel::class.java]
 
         recyclerView = findViewById(R.id.recyclerView)
@@ -40,9 +49,11 @@ class ProfileTeman : AppCompatActivity() {
             val dialogD1 = dialogBuilder.create()
             dialogD1.setCancelable(false)
             val btSaveFriend = view.findViewById<Button>(R.id.btSaveFriend)
+            val btDeleteFriend = view.findViewById<Button>(R.id.btDeleteFriend)
             val etNama = view.findViewById<EditText>(R.id.etNama)
             val etEmail = view.findViewById<EditText>(R.id.etEmail)
-            val btClose = view.findViewById<EditText>(R.id.btClose)
+            val btClose = view.findViewById<ImageView>(R.id.btClose)
+            btDeleteFriend.visibility = View.GONE
             btSaveFriend.setOnClickListener {
                 val namaTeman = etNama.text.toString()
                 val emailTeman = etEmail.text.toString().trim()
@@ -75,7 +86,14 @@ class ProfileTeman : AppCompatActivity() {
 
 
         profileTemanViewModel.resultName.observe(this) {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+            usernamePlayer.add(it)
+        }
+        profileTemanViewModel.resultEmail.observe(this) {
+            usernamePlayer.add(it)
+        }
+        profileTemanViewModel.resultAddTeman.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            fetchData()
         }
     }
 
@@ -85,6 +103,7 @@ class ProfileTeman : AppCompatActivity() {
     }
 
     fun fetchData() {
+        Log.e(tag,"fetchData")
         profileTemanViewModel.listTeman(recyclerView, this@ProfileTeman)
     }
 
