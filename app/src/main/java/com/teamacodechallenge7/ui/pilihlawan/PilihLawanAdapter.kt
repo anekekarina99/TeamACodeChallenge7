@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
-import com.teamacodechallenge7.Teman
+import com.teamacodechallenge7.data.database.Teman
 
 
 class PilihLawanAdapter(

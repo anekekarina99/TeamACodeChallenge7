@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
-import com.teamacodechallenge7.TemanDatabase
+import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
 
 class ProfileTeman : AppCompatActivity() {
