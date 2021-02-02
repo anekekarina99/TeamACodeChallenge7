@@ -4,7 +4,6 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException
 
-
 fun errorHandling(throwable: Throwable?): String {
     var msg = ""
     if (throwable is HttpException) {
