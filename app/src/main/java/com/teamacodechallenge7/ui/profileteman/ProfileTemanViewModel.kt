@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.teamacodechallenge7.Teman
-import com.teamacodechallenge7.TemanDatabase
+import com.teamacodechallenge7.data.database.Teman
+import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

@@ -3,12 +3,9 @@ package com.teamacodechallenge7.ui.loginPage
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.R
-import com.teamacodechallenge7.data.model.LoginRequest
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.data.repository.LoginFactory
 import com.teamacodechallenge7.databinding.ActivityLoginBinding
@@ -34,17 +31,18 @@ class LoginAct : AppCompatActivity() {
         }
         viewModel.resultLogin().observe(this, {
             if (it) {
-                startActivity(Intent(this, ProfileTeman::class.java))
+                startActivity(Intent(this, MainMenuAct::class.java))
                 finish()
             } else {
+                viewModel.buttonResult().observe(this,{but->
+                    binding.btSignIn.text=but
+                })
                 viewModel.emailResult().observe(this, { emailErr ->
                     binding.etEmail.error = emailErr
                 })
-                viewModel.passwordResult().observe(this, Observer { passErr ->
+                viewModel.passwordResult().observe(this, { passErr ->
                     binding.etPassword.error = passErr
                 })
-                binding.btSignIn.isEnabled = true
-                binding.btSignIn.text = ("Signin")
             }
         })
     }
