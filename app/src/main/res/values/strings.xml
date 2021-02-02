@@ -46,5 +46,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ivLogoApps">logo apps</string>
+    <string name="skor">Hasil Permainan</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="play_mode">Play mode</string>
+    <string name="result">result</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.data.database
+package com.teamacodechallenge7
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ data class Teman(
     @PrimaryKey(autoGenerate = true)
     var id: Int?,
     @ColumnInfo(name = "idplayer")
-    var idplayer: Int,
+    var idplayer: String,
     @ColumnInfo(name = "nama")
     var nama: String,
     @ColumnInfo(name = "email")

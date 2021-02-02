@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_white"
+    android:background="@drawable/background_dialog"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/btClose"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_gravity="end"
         android:layout_marginRight="8dp"
         android:background="@drawable/ic_close"
         android:contentDescription="@string/string_close" />
 
     <TextView
-        android:id="@+id/winner"
         android:layout_width="200dp"
-        android:layout_height="54dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
         android:fontFamily="@font/font_comic"
         android:lineSpacingExtra="-8dp"
-        android:text="@string/siapa_nama_temanmu_dan_emailnya"
-        android:textAlignment="center"
+        android:text="Name Friend"
         android:textColor="@color/black"
-        android:textSize="20sp" />
+        android:textSize="16sp"
+        android:layout_marginLeft="32dp" />
 
     <EditText
         android:id="@+id/etNama"
@@ -36,8 +36,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:background="@drawable/bg_edit_text_gray"
+        app:background="@color/transparent"
         android:autofillHints=""
         android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/font_comic"
+        android:lineSpacingExtra="-8dp"
+        android:text="Email"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="32dp" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -47,6 +63,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:padding="15dp"
+        android:textSize="20sp"
+        android:background="@drawable/bg_edit_text_gray"
+        app:background="@color/transparent"
         android:autofillHints=""
         android:inputType="textEmailAddress" />
 
@@ -56,15 +76,32 @@
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="35dp"
-        android:background="@drawable/bg_but_gray"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/butt_orange"
         android:text="@string/save"
         android:textAllCaps="false"
-        android:textColor="@color/colorWhiteFont"
+        android:textColor="@color/colorBgWhite"
         android:textSize="18sp"
         android:textStyle="normal"
-         />
+        app:backgroundTint="@color/ColorBgButGray" />
+
+    <Button
+        android:id="@+id/btDeleteFriend"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/butt_orange"
+        android:text="@string/delete"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:backgroundTint="@color/ColorBgButOrange" />
 
 </LinearLayout>

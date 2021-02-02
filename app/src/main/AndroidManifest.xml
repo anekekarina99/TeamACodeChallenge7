@@ -12,6 +12,11 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
+        <activity android:name=".ui.profileplayer.EditProfilePlayer"/>
+        <activity android:name=".ui.profileteman.ProfileTeman" />
+        <activity android:name=".ui.pilihlawan.PilihLawan" />
+        <activity android:name=".ui.profileplayer.ProfilePlayer" />
+        <activity android:name=".ui.skor.Skor" />
         <activity android:name=".ui.about.AboutActivity" />
         <activity android:name=".ui.mainMenu.MainMenuAct" />
         <activity
