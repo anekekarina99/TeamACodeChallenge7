@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
-        <activity android:name=".ui.profileplayer.EditProfilePlayer"/>
+        <activity android:name=".ui.signUp.SignUpActivity"></activity>
+        <activity android:name=".ui.profileplayer.EditProfilePlayer" />
         <activity android:name=".ui.profileteman.ProfileTeman" />
         <activity android:name=".ui.pilihlawan.PilihLawan" />
         <activity android:name=".ui.profileplayer.ProfilePlayer" />
@@ -26,10 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".ui.splashScreen.SplashScreenActivity" />
-        <activity android:name=".ui.profileteman.ProfileTeman" />
-
-        <activity android:name=".ui.landingPage.LandingPageActivity" />-->
     </application>
 
 </manifest>
