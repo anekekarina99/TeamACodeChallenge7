@@ -1,9 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.mainMenu.MainMenuAct">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.teamacodechallenge7.ui.mainMenu.MainMenuViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_blue"
+        tools:context=".ui.loginPage.LoginAct">
+
+        <ImageView
+            android:id="@+id/ivLogoApps"
+            android:layout_width="137dp"
+            android:layout_height="137dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_logo_white"
+            android:contentDescription="@string/ivLogoApps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_box_white_2round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogoApps"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:id="@+id/IvOuterPhoto"
+                android:layout_width="94dp"
+                android:layout_height="94dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_outer_profile"
+                android:contentDescription="@string/ivFotoUser"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="29dp"
+                android:contentDescription="@string/ivFotoUser"
+                android:src="@drawable/ic_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/IvPhotoUserProfile"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="29dp"
+                android:contentDescription="@string/ivFotoUser"
+                android:src="@drawable/ic_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNamaPanjangProfile"
+                android:layout_width="295dp"
+                android:layout_height="28dp"
+                android:fontFamily="@font/comic"
+                android:gravity="center"
+                android:text="@string/tvUsername"
+                android:textColor="@color/ColorBlackFont"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IvOuterPhoto" />
+
+            <TextView
+                android:id="@+id/tvEmailMainMenuProfile"
+                android:layout_width="296dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/comic"
+                android:gravity="center"
+                android:text="@string/tvEmail"
+                android:textColor="@color/ColorBlackFont"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvNamaPanjangProfile"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/tvNamaPanjangProfile"
+                app:layout_constraintTop_toBottomOf="@id/tvNamaPanjangProfile" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEmailMainMenuProfile">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnStart"
+                        android:layout_width="265dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_but_orange"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvStart"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ColorBlackFont"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btnMyProfile"
+                        android:layout_width="265dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_but_orange"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvMyProfile"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ColorBlackFont"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btnMyFriends"
+                        android:layout_width="265dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_but_orange"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvMyFriends"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ColorBlackFont"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btnMyScores"
+                        android:layout_width="265dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_but_orange"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvMyScores"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ColorBlackFont"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btnAbout"
+                        android:layout_width="265dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_but_orange"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvAbout"
+                        android:textAllCaps="false"
+                        android:textColor="@color/ColorBlackFont"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/btnLogout"
+                        android:layout_width="265dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_but_gray"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvSignOut"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhiteFont"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/tvSeeInstruction"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="32dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/comic"
+                        android:text="@string/tvSeeInstruction"
+                        android:layout_gravity="center"
+                        android:textColor="@color/ColorBlackFont"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </ScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

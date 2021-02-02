@@ -21,10 +21,13 @@ class LoginAct : AppCompatActivity() {
         val factory = LoginFactory(ApiModule.service)
         this.viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
         super.onCreate(savedInstanceState)
-
         binding.viewModel = viewModel
         binding.btSignIn.setOnClickListener {
             viewModel.login()
+        }
+        binding.btSignUp.setOnClickListener {
+          /*  startActivity(Intent(this,MainMenuAct::class.java))*/
+            finish()
         }
         viewModel.resultLogin().observe(this,{ it ->
             if(it){
