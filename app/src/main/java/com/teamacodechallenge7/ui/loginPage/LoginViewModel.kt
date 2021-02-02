@@ -1,5 +1,6 @@
 package com.teamacodechallenge7.ui.loginPage
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +11,11 @@ import com.teamacodechallenge7.data.model.LoginRequest
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.HttpException
+import retrofit2.Response
+import java.lang.Exception
 
 class LoginViewModel(private val service: ApiService) : ViewModel() {
     private lateinit var disposable: Disposable
@@ -52,21 +58,32 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                         resultLogin.value = true
 
                     }, { error ->
-                        if (error.toString() == "retrofit2.adapter.rxjava2.HttpException: HTTP 401 Unauthorized") {
-                            emailResult.value = "Email tidak ada!"
-                            resultLogin.value = false
-                        } else {
-                            passwordResult.value = "Password salah!"
-                            resultLogin.value = false
+                        if (error is HttpException) {
+                            val msg = error.response()?.errorBody()?.let { it ->
+                                getErrorMessage(it)
+
+                            }
+                            Log.e("Opo error e?",msg.toString())
+                            if (msg == "Wrong password!") {
+                                passwordResult.value = "Password salah!"
+                                resultLogin.value = false
+                            } else if (msg == "Email doesn't exist!") {
+                                emailResult.value = "Email tidak ada!"
+                                resultLogin.value = false
+                            }
                         }
 
                     })
-
             }
         }
-
-
     }
 
-
+    fun getErrorMessage(response: ResponseBody): String? {
+        return try {
+            val jsonObject = JSONObject(response.string())
+            jsonObject.getString("errors")
+        } catch (e: Exception) {
+            e.message
+        }
+    }
 }
