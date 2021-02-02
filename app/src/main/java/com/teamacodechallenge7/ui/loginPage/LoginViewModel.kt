@@ -8,14 +8,10 @@ import androidx.lifecycle.ViewModel
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiService
 import com.teamacodechallenge7.data.model.LoginRequest
+import com.teamacodechallenge7.utils.errorHandling
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.HttpException
-
-import java.lang.Exception
 
 class LoginViewModel(private val service: ApiService) : ViewModel() {
     private lateinit var disposable: Disposable
@@ -61,31 +57,19 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                     SharedPref.isLogin = true
                     resultLogin.value = true
 
-                }, { error ->
-                    if (error is HttpException) {
-                        val msg = error.response()?.errorBody()?.let { it ->
-                            getErrorMessage(it)
-                        }
-                        Log.e("Opo error e?", msg.toString())
-                        if (msg == "Wrong password!") {
-                            passwordResult.value = "Password salah!"
-                            resultLogin.value = false
-                            buttonResult.value = "Signin"
-                        } else if (msg == "Email doesn't exist!") {
-                            emailResult.value = "Email tidak ada!"
-                            resultLogin.value = false
-                            buttonResult.value = "Signin"
-                        }
+                }, {
+                    val msg: String = errorHandling(it)
+                    Log.e("Opo error e?", msg)
+                    if (msg == "Wrong password!") {
+                        passwordResult.value = "Password salah!"
+                        resultLogin.value = false
+                        buttonResult.value = "Signin"
+                    } else if (msg == "Email doesn't exist!") {
+                        emailResult.value = "Email tidak ada!"
+                        resultLogin.value = false
+                        buttonResult.value = "Signin"
                     }
                 })
-        }
-    }
-    private fun getErrorMessage(response: ResponseBody): String? {
-        return try {
-            val jsonObject = JSONObject(response.string())
-            jsonObject.getString("errors")
-        } catch (e: Exception) {
-            e.message
         }
     }
 }
