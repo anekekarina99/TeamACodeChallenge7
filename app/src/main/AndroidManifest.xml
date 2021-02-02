@@ -18,16 +18,17 @@
         <activity android:name=".ui.profileplayer.ProfilePlayer" />
         <activity android:name=".ui.skor.Skor" />
         <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.mainMenu.MainMenuAct" />
-        <activity
-            android:name=".ui.loginPage.LoginAct"
-            android:screenOrientation="portrait">
+        <activity android:name=".ui.mainMenu.MainMenuAct" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.loginPage.LoginAct"
+            android:screenOrientation="portrait"/>
+
         <!--<activity android:name=".ui.splashScreen.SplashScreenActivity" />
         <activity android:name=".ui.profileteman.ProfileTeman" />
 

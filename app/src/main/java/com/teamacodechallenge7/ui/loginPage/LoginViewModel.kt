@@ -59,14 +59,8 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                             passwordResult.value = "Password salah!"
                             resultLogin.value = false
                         }
-
                     })
-
             }
         }
-
-
     }
-
-
 }
