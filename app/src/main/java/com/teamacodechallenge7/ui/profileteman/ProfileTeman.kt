@@ -1,5 +1,6 @@
 package com.teamacodechallenge7.ui.profileteman
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,8 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
-import com.teamacodechallenge7.TemanDatabase
+import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
+import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
 class ProfileTeman : AppCompatActivity() {
     private val tag : String = "ProfileTeman"
@@ -36,7 +38,7 @@ class ProfileTeman : AppCompatActivity() {
         profileTemanViewModel = ViewModelProvider(this, factory)[ProfileTemanViewModel::class.java]
 
         recyclerView = findViewById(R.id.recyclerView)
-        val ib_home = findViewById<ImageView>(R.id.ib_home)
+        val ivBack = findViewById<ImageView>(R.id.ivBack)
         val btadd = findViewById<Button>(R.id.btadd)
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
@@ -80,8 +82,9 @@ class ProfileTeman : AppCompatActivity() {
             }
             dialogD1.show()
         }
-        ib_home.setOnClickListener {
-//            startActivity(Intent(this, MainMenuActivity::class.java))
+        ivBack.setOnClickListener {
+            startActivity(Intent(this, MainMenuAct::class.java))
+            finish()
         }
 
 
