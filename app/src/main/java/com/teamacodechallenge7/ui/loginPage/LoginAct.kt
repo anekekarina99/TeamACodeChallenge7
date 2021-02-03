@@ -22,6 +22,8 @@ class LoginAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.btSignIn.setOnClickListener {
+            binding.btSignIn.text=("Loading...")
+            binding.btSignIn.isEnabled=false
             viewModel.login()
         }
         binding.btSignUp.setOnClickListener {
@@ -29,19 +31,24 @@ class LoginAct : AppCompatActivity() {
             finish()
         }
         viewModel.resultLogin().observe(this, {
-            if (it) {
+            if (!it) {
                 startActivity(Intent(this, MainMenuAct::class.java))
                 finish()
+                binding.btSignIn.isEnabled=it
             } else {
                 viewModel.buttonResult().observe(this,{but->
                     binding.btSignIn.text=but
+                    viewModel.emailResult().observe(this, { emailErr ->
+                        binding.etEmail.error = emailErr
+                        binding.btSignIn.isEnabled=it
+                    })
+                    viewModel.passwordResult().observe(this, { passErr ->
+                        binding.etPassword.error = passErr
+                        binding.btSignIn.isEnabled=it
+                    })
                 })
-                viewModel.emailResult().observe(this, { emailErr ->
-                    binding.etEmail.error = emailErr
-                })
-                viewModel.passwordResult().observe(this, { passErr ->
-                    binding.etPassword.error = passErr
-                })
+
+
             }
         })
     }

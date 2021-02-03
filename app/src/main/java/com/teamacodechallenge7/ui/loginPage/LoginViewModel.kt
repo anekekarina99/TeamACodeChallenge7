@@ -32,12 +32,12 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                     when (index) {
                         0 -> {
                             emailResult.value = "Email tidak boleh kosong!"
-                            resultLogin.value = false
+                            resultLogin.value = true
                             buttonResult.value = "Signin"
                         }
                         1 -> {
                             passwordResult.value = "Password tidak boleh kosong!"
-                            resultLogin.value = false
+                            resultLogin.value = true
                             buttonResult.value = "Signin"
                         }
                     }
@@ -45,12 +45,12 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                 index == 0 -> {
                     if (!Patterns.EMAIL_ADDRESS.matcher(username).matches()) {
                         emailResult.value = "Email tidak valid!"
-                        resultLogin.value = false
+                        resultLogin.value = true
                         buttonResult.value = "Signin"
                     }
                 }
                 else -> {
-                    buttonResult.value = "Loading..."
+                    buttonResult.value= ("Loading...")
                     val loginRequest = LoginRequest(username, password)
                     disposable = service.loginAction(loginRequest)
                         .subscribeOn(Schedulers.io())
@@ -62,19 +62,19 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                             SharedPref.token = it.data.token
                             SharedPref.password = password
                             SharedPref.isLogin = true
-                            resultLogin.value = true
+                            resultLogin.value = false
                         }, {
                             val msg = it.getServiceErrorMsg()
                             Log.e("Opo error e?", msg)
                             when {
                                 msg.contains("Wrong password!") -> {
                                     passwordResult.value = "Password salah!"
-                                    resultLogin.value = false
+                                    resultLogin.value = true
                                     buttonResult.value = "Signin"
                                 }
                                 msg.contains("Email doesn't exist!") -> {
                                     emailResult.value = "Email tidak ada!"
-                                    resultLogin.value = false
+                                    resultLogin.value = true
                                     buttonResult.value = "Signin"
                                 }
                             }
