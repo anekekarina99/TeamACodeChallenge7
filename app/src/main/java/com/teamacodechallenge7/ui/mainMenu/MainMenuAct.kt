@@ -44,7 +44,7 @@ class MainMenuAct : AppCompatActivity() {
             binding.tvEmailMainMenuProfile.text=it.toString()
         })
         binding.btnStart.setOnClickListener {
-          /*  startActivity(Intent(this, MainMenuAct::class.java))*/
+             startActivity(Intent(this, ChooseGamePlayAct::class.java))
             finish()
         }
         binding.btnMyProfile.setOnClickListener {
