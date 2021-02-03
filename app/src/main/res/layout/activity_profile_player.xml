@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/lParent"
     tools:context=".ui.profileplayer.ProfilePlayer">
 
     <ImageView
@@ -45,7 +46,7 @@
 
             <TextView
                 android:id="@+id/tvName"
-                android:text="Nama"
+                android:text="@string/loading"
                 android:textSize="16sp"
                 android:textColor="@color/colorBgWhite"
                 android:layout_marginTop="30dp"
@@ -55,7 +56,7 @@
 
             <TextView
                 android:id="@+id/tvEmail"
-                android:text="email@mail.com"
+                android:text="@string/loading"
                 android:textSize="12sp"
                 android:textColor="@color/colorBgWhite"
                 android:layout_width="wrap_content"
@@ -77,7 +78,7 @@
         android:background="@drawable/bg_shape_back_blue"
         app:backgroundTint="@color/ColorBgButGray"
         android:fontFamily="@font/comic"
-        android:text="@string/edit_profile"
+        android:text="@string/loading"
         android:textSize="18sp"
         android:textColor="@color/colorBgWhite"
         android:textStyle="bold" />

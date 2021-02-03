@@ -2,13 +2,16 @@ package com.teamacodechallenge7.ui.skor
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.model.GetBattle
 import com.teamacodechallenge7.data.remote.ApiService
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -20,27 +23,24 @@ class SkorViewModel(
 
     val tag = "Skor"
     private var disposable: Disposable? = null
-    val token = pref.token!!
-    val resultMe = MutableLiveData<GetBattle>()
-//    lateinit var resultMe : List<GetBattle>
+//    val token = pref.token
+    val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8"
 
     fun listSkor(recyclerView: RecyclerView, context: Context) {
-        disposable = service.getBattle(token)
+        recyclerView.layoutManager = LinearLayoutManager(
+            context, LinearLayoutManager.VERTICAL, false
+        )
+        disposable = service.getBattle(pref.token.toString())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                resultMe.value = it
+//                resultMe = it
+                val adapter = SkorAdapter(it, context)
+                adapter.notifyDataSetChanged()
+                recyclerView.adapter = adapter
             }, {
                 it.printStackTrace()
             })
-        Log.e(tag, resultMe.toString())
-//        Toast.makeText(context, it.toString(),Toast.LENGTH_SHORT).show()
-//        recyclerView.layoutManager = LinearLayoutManager(
-//            context, LinearLayoutManager.VERTICAL, false
-//        )
-//        val adapter = SkorAdapter(resultMe, context)
-//        adapter.notifyDataSetChanged()
-//        recyclerView.adapter = adapter
     }
 
     override fun onCleared() {

@@ -63,5 +63,6 @@
     <string name="tvAbout">About</string>
     <string name="tvSignOut">Signout</string>
     <string name="tvSeeInstruction">See the instruction?</string>
+    <string name="loading">Loading...</string>
 
 </resources>
