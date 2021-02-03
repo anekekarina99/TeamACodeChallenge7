@@ -80,9 +80,7 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                             }
                         })
                 }
-
             }
         }
-
     }
 }
