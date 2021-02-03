@@ -8,7 +8,7 @@
     tools:context=".ui.profileteman.ProfileTeman">
 
     <ImageView
-        android:id="@+id/ib_home"
+        android:id="@+id/ivBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="15dp"
@@ -22,7 +22,7 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_below="@+id/ib_home"
+        android:layout_below="@+id/ivBack"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -46,25 +46,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvDaftar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/comic"
-        android:text="@string/daftar_teman"
-        android:textColor="@color/colorBgWhite"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvDaftar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/comic"
+                android:text="@string/daftar_teman"
+                android:textColor="@color/colorBgWhite"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvDaftar"
-        android:layout_margin="20dp"
-        tools:listitem="@layout/item_teman"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDaftar"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                tools:listitem="@layout/item_teman"/>
 
 
         </RelativeLayout>
