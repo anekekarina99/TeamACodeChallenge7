@@ -18,13 +18,29 @@
         android:background="@drawable/ic_close"
         android:contentDescription="@string/string_close" />
 
-    <ImageView
-        android:id="@+id/ivProfile"
-        android:src="@drawable/ic_people"
+    <RelativeLayout
+        android:id="@+id/rlProfile"
+        android:layout_width="200dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivProfile"
+            android:src="@drawable/ic_people"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"/>
+
+        <ImageView
+            android:src="@drawable/ic_but_plus"
+            android:layout_alignBottom="@+id/ivProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignRight="@+id/ivProfile" />
+
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -48,19 +64,17 @@
                 android:textSize="16sp"
                 android:layout_marginLeft="32dp" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUsername"
-                android:hint="@string/username"
+                android:hint="@string/email_temanmu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                android:background="@drawable/bg_et_signinup"
                 android:padding="15dp"
                 android:textSize="20sp"
-                android:background="@drawable/bg_edit_text_gray"
-                app:background="@color/transparent"
-                android:autofillHints=""
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"  />
 
             <TextView
                 android:layout_width="200dp"
@@ -74,19 +88,16 @@
                 android:textSize="16sp"
                 android:layout_marginLeft="32dp" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
-                android:hint="@string/email"
+                android:hint="@string/email_temanmu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
+                android:background="@drawable/bg_et_signinup"
                 android:padding="15dp"
                 android:textSize="20sp"
-                android:background="@drawable/bg_edit_text_gray"
-                app:background="@color/transparent"
-                android:autofillHints=""
                 android:inputType="textEmailAddress" />
 
             <TextView
@@ -101,20 +112,17 @@
                 android:textSize="16sp"
                 android:layout_marginLeft="32dp" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
-                android:hint="@string/password"
+                android:hint="@string/email_temanmu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
+                android:background="@drawable/bg_et_signinup"
                 android:padding="15dp"
                 android:textSize="20sp"
-                android:background="@drawable/bg_edit_text_gray"
-                app:background="@color/transparent"
-                android:autofillHints=""
-                android:inputType="textPassword" />
+                android:inputType="textPassword"/>
 
             <Button
                 android:id="@+id/btSave"
@@ -124,7 +132,8 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginRight="32dp"
-                android:background="@drawable/butt_orange"
+                android:background="@drawable/bg_but_gray"
+                android:fontFamily="@font/comic"
                 android:text="@string/save"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBgWhite"
