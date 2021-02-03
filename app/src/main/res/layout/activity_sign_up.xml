@@ -12,10 +12,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="18dp"
+        android:contentDescription="TODO"
         android:src="@drawable/ic_back_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
         <EditText
             android:id="@+id/et_password"
             android:layout_width="250dp"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
         <EditText
             android:id="@+id/et_rePassword"
             android:layout_width="250dp"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp" />
 
         <Button
             android:id="@+id/btn_sign_up"
@@ -91,6 +91,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
             android:background="@drawable/butt_orange"
+            android:fontFamily="@font/comic_san"
             android:text="Sign Up"
             android:textColor="@color/black" />
 
