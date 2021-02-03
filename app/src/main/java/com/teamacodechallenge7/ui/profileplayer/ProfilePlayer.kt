@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
+import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
 class ProfilePlayer : AppCompatActivity() {
     private val tag : String = "ProfilePlayer"
@@ -30,12 +31,13 @@ class ProfilePlayer : AppCompatActivity() {
         fetchData()
 
         ivBack.setOnClickListener {
-//            val intent = Intent(this, EditProfilePlayer::class.java)
-//            startActivity(intent)
+            startActivity(Intent(this, MainMenuAct::class.java))
+            finish()
         }
         btEdit.setOnClickListener {
             val intent = Intent(this, EditProfilePlayer::class.java)
             startActivity(intent)
+            finish()
         }
         profilePlayerViewModel.resultName.observe(this) {
             tvName.text = it

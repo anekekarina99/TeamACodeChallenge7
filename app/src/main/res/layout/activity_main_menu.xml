@@ -54,6 +54,7 @@
                 android:layout_width="84dp"
                 android:layout_height="84dp"
                 android:layout_marginTop="29dp"
+                app:imageUrl="@{viewModel.imageUrl}"
                 android:contentDescription="@string/ivFotoUser"
                 android:src="@drawable/ic_user"
                 app:layout_constraintEnd_toEndOf="parent"

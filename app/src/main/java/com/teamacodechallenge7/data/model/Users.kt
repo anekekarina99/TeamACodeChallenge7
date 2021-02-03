@@ -3,7 +3,7 @@ package com.teamacodechallenge7.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GetUsers(
+data class Users(
     @SerializedName("data")
     val `data`: Data,
     @SerializedName("success")

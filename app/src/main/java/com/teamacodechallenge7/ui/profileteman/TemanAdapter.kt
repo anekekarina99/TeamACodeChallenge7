@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
-import com.teamacodechallenge7.Teman
-import com.teamacodechallenge7.TemanDatabase
+import com.teamacodechallenge7.data.database.Teman
+import com.teamacodechallenge7.data.database.TemanDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -63,9 +63,9 @@ class TemanAdapter(
         }
     }
 
-    fun editTeman(list: List<Teman>, position: Int) {
+    private fun editTeman(list: List<Teman>, position: Int) {
         GlobalScope.launch(Dispatchers.IO) {
-            val result = mDB?.temanDao()?.updateTeman(list[position])
+            val result = mDB.temanDao()?.updateTeman(list[position])
             launch(Dispatchers.Main) {
                 if (result != 0) {
                     notifyDataSetChanged()
