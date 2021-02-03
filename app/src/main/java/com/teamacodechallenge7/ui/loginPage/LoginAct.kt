@@ -10,7 +10,6 @@ import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.data.repository.LoginFactory
 import com.teamacodechallenge7.databinding.ActivityLoginBinding
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
-import com.teamacodechallenge7.ui.profileteman.ProfileTeman
 import com.teamacodechallenge7.ui.signUp.SignUpActivity
 
 class LoginAct : AppCompatActivity() {
