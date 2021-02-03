@@ -50,5 +50,18 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="play_mode">Play mode</string>
     <string name="result">result</string>
+    <string name="tvEmail">Email</string>
+    <string name="tvPassword">Password</string>
+    <string name="tvSignin">Signin</string>
+    <string name="tvSignup">Signup</string>
+    <string name="ivFotoUser">FotoUser</string>
+    <string name="tvUsername">username</string>
+    <string name="tvStart">Start</string>
+    <string name="tvMyProfile">My profile</string>
+    <string name="tvMyFriends">My friends</string>
+    <string name="tvMyScores">My scores</string>
+    <string name="tvAbout">About</string>
+    <string name="tvSignOut">Signout</string>
+    <string name="tvSeeInstruction">See the instruction?</string>
 
 </resources>

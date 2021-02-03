@@ -1,4 +1,4 @@
-package com.teamacodechallenge7
+package com.teamacodechallenge7.data.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
