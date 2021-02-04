@@ -14,10 +14,9 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
-        <activity android:name=".ui.splashScreen.SplashScreenActivity">
-
-        </activity>
-        <activity android:name=".ui.signUp.NotifSignUpActivity" >
+        <activity android:name=".ui.about.InstructionActivity"></activity>
+        <activity android:name=".ui.splashScreen.SplashScreenActivity"></activity>
+        <activity android:name=".ui.signUp.NotifSignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,7 +52,6 @@
         <activity
             android:name=".ui.mainMenu.ChooseGamePlayAct"
             android:screenOrientation="portrait" />
-
     </application>
 
 </manifest>
