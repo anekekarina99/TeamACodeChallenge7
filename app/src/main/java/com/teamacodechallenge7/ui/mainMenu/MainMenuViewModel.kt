@@ -1,11 +1,10 @@
 package com.teamacodechallenge7.ui.mainMenu
 
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bumptech.glide.Glide
-import com.teamacodechallenge7.data.model.GetUsers
+import com.teamacodechallenge7.data.model.Users
 import com.teamacodechallenge7.data.remote.ApiService
 import de.hdodenhof.circleimageview.CircleImageView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 class MainMenuViewModel(private val service: ApiService) : ViewModel() {
     private lateinit var disposable: Disposable
     private val imageUrl = MutableLiveData<String>()
-    private val result = MutableLiveData<GetUsers>()
+    private val result = MutableLiveData<Users>()
     fun getImageUrl():String{
         return "http://cdn.meme.am/instances/60677654.jpg"
     }
