@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase
 @Database(entities = [Teman::class], version = 1)
 abstract class TemanDatabase :RoomDatabase() {
     abstract fun temanDao() : TemanDao
-
     companion object{
         private var INSTANCE : TemanDatabase? =null
 
