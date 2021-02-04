@@ -50,7 +50,6 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                     }
                 }
                 else -> {
-                    buttonResult.value= ("Loading...")
                     val loginRequest = LoginRequest(username, password)
                     disposable = service.loginAction(loginRequest)
                         .subscribeOn(Schedulers.io())

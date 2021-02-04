@@ -30,21 +30,20 @@ class LoginAct : AppCompatActivity() {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
         }
-        viewModel.resultLogin().observe(this, {
-            if (!it) {
+        viewModel.resultLogin().observe(this, {bool->
+            if (!bool) {
                 startActivity(Intent(this, MainMenuAct::class.java))
                 finish()
-                binding.btSignIn.isEnabled=it
+                binding.btSignIn.isEnabled=bool
             } else {
+                binding.btSignIn.isEnabled=bool
                 viewModel.buttonResult().observe(this,{but->
                     binding.btSignIn.text=but
                     viewModel.emailResult().observe(this, { emailErr ->
                         binding.etEmail.error = emailErr
-                        binding.btSignIn.isEnabled=it
                     })
                     viewModel.passwordResult().observe(this, { passErr ->
                         binding.etPassword.error = passErr
-                        binding.btSignIn.isEnabled=it
                     })
                 })
 
