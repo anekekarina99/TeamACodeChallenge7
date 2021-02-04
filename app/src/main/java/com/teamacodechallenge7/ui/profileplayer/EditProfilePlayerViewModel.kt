@@ -10,9 +10,9 @@ import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.model.Users
 import com.teamacodechallenge7.data.remote.ApiService
 import com.teamacodechallenge7.utils.App.Companion.context
-import com.teamacodechallenge7.utils.errorHandling
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import com.teamacodechallenge7.utils.getServiceErrorMsg
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType.Companion.toMediaType
@@ -77,7 +77,7 @@ class EditProfilePlayerViewModel(
                         Log.e(tag, "datasaved")
                         resultMessage.value = "data diperbaharui"
                     }, {
-                        val msg: String = errorHandling(it)
+                        val msg: String = it.getServiceErrorMsg()
                         Log.e(tag, msg)
                         if (msg.equals("Token is expired")|| msg.equals("Invalid Token") ) {
                             resultMessage.value = msg
