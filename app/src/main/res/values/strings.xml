@@ -63,5 +63,7 @@
     <string name="tvAbout">About</string>
     <string name="tvSignOut">Signout</string>
     <string name="tvSeeInstruction">See the instruction?</string>
+    <string name="tvPickMode">Pick Mode Game Play?</string>
+    <string name="btChooseMode">Pick Mode Game Play</string>
 
 </resources>

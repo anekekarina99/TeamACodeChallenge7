@@ -4,15 +4,17 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.HttpException
 
-fun errorHandling(throwable: Throwable?): String {
-    var msg = ""
-    if (throwable is HttpException) {
-        msg = throwable.response()?.errorBody().let {
-            it?.let { it1 -> getErrorMessage(it1) }
-        }.toString()
-
+fun Throwable.getServiceErrorMsg(): String {
+    var messages=""
+    when (this) {
+        is HttpException -> {
+            messages = this.response()?.errorBody().let {
+                it?.let { it1 -> getErrorMessage(it1) }
+            }.toString()
+        }
+        else -> message.toString()
     }
-    return msg
+    return messages
 }
 
 private fun getErrorMessage(response: ResponseBody): String? {
@@ -23,4 +25,3 @@ private fun getErrorMessage(response: ResponseBody): String? {
         e.message
     }
 }
-
