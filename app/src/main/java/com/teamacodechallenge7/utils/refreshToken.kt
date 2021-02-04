@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 
 private lateinit var disposable: Disposable
 fun refreshToken() {
-    val tag = "ProfilePlayer"
+    val tag = "Handling"
     val mainHandler = Handler(Looper.getMainLooper())
     mainHandler.post(object : Runnable {
         override fun run() {
