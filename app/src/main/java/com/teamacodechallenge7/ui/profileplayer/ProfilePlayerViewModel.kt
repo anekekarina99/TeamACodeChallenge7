@@ -9,7 +9,6 @@ import com.teamacodechallenge7.data.model.LoginRequest
 import com.teamacodechallenge7.data.model.Users
 import com.teamacodechallenge7.utils.getServiceErrorMsg
 import com.teamacodechallenge7.data.remote.ApiModule.service
-import com.teamacodechallenge7.utils.errorHandling
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
