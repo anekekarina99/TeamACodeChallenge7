@@ -77,7 +77,7 @@ class EditProfilePlayerViewModel(
                         Log.e(tag, "datasaved")
                         resultMessage.value = "data diperbaharui"
                     }, {
-                        val msg: String = errorHandling(it)
+                        val msg: String = it.getServiceErrorMsg()
                         Log.e(tag, msg)
                         if (msg.equals("Token is expired")|| msg.equals("Invalid Token") ) {
                             resultMessage.value = msg
