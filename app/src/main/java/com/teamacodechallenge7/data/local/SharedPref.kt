@@ -11,6 +11,7 @@ object SharedPref {
     private const val KEY_USERNAME = "KEY_USERNAME"
     private const val KEY_PASSWORD = "KEY_PASSWORD"
     private const val KEY_URL_PROFILE = "KEY_URL_PROFILE"
+    private const val DATETIME_LOGIN = "DATETIME_LOGIN"
 
     private val pref = App.context.get()?.getSharedPreferences("CodeChallenge7", Context.MODE_PRIVATE)
     var id: String?
@@ -65,6 +66,15 @@ object SharedPref {
             value?.let {
                 pref?.edit()
                     ?.putString(KEY_PASSWORD, it)
+                    ?.apply()
+            }
+        }
+    var datetime_login: String?
+        get() = pref?.getString(DATETIME_LOGIN, "")
+        set(value) {
+            value?.let {
+                pref?.edit()
+                    ?.putString(DATETIME_LOGIN, it)
                     ?.apply()
             }
         }
