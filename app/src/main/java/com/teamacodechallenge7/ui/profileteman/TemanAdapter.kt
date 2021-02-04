@@ -83,29 +83,13 @@ class TemanAdapter(
             launch(Dispatchers.Main) {
                 if (result != 0) {
                     Log.e(tag,"Delete Teman")
-//                    itemRange()
-//                    profileTemanViewModel?.refresh()
-//                    val profileTeman = ProfileTeman()
-//                    profileTeman.fetchData()
-//                    val pref = com.teamacodechallenge7.data.local.SharedPref()
-//                    val profileTemanViewModel = ProfileTemanViewModel(mDB, pref)
-//                    profileTemanViewModel.refresh()
-
-                    holder.itemView.visibility = View.GONE
-                    notifyItemRemoved(position)
-                    notifyItemRangeRemoved(position, listTeman.size)
-                    notifyDataSetChanged()
+                    (context as ProfileTeman).fetchData()
                     Toast.makeText(context, "Teman kamu berhasil dihapus", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Teman kamu gagal dihapus", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-    }
-
-    fun itemRange(){
-        val profileTeman = ProfileTeman()
-        profileTeman.fetchData()
     }
 
     override fun getItemCount(): Int {
