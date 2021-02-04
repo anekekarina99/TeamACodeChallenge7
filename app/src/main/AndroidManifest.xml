@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
-        <activity android:name=".ui.mainMenu.ChooseGamePlayAct"/>
-        <activity android:name=".ui.signUp.NotifSignUpActivity">
+        <activity android:name=".ui.splashScreen.SplashScreenActivity">
+
+        </activity>
+        <activity android:name=".ui.signUp.NotifSignUpActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,10 +27,16 @@
         <activity android:name=".ui.signUp.SignUpActivity" />
         <activity
             android:name=".ui.profileplayer.EditProfilePlayer"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.loginPage.LoginAct"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".ui.mainMenu.MainMenuAct"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.profileteman.ProfileTeman"
             android:screenOrientation="portrait" />
@@ -37,16 +45,15 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.profileplayer.ProfilePlayer"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.skor.Skor"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.mainMenu.MainMenuAct" />
         <activity
-            android:name=".ui.loginPage.LoginAct"
-            android:screenOrientation="portrait"/>
+            android:name=".ui.mainMenu.ChooseGamePlayAct"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
