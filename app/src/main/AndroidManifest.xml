@@ -14,8 +14,15 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
-        <activity android:name=".ui.signUp.SignUpActivity"></activity>
-        <activity android:name=".ui.profileplayer.EditProfilePlayer"
+        <activity android:name=".ui.signUp.NotifSignUpActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.signUp.SignUpActivity" />
+            <activity android:name=".ui.profileplayer.EditProfilePlayer"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -27,11 +34,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.profileplayer.ProfilePlayer"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.skor.Skor"
             android:screenOrientation="portrait">
@@ -47,5 +49,4 @@
 
         <activity android:name=".ui.landingPage.LandingPageActivity" />-->
     </application>
-
 </manifest>
