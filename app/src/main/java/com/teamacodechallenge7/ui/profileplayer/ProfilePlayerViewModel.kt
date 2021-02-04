@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.model.LoginRequest
 import com.teamacodechallenge7.data.model.Users
+import com.teamacodechallenge7.utils.getServiceErrorMsg
 import com.teamacodechallenge7.data.remote.ApiModule.service
-import com.teamacodechallenge7.utils.errorHandling
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -24,8 +24,8 @@ class ProfilePlayerViewModel(
     var resultMessage = MutableLiveData<String>()
     
     fun playerData() {
-        var token =
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8"
+        val token = pref.token.toString()
+//            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8"
 
         disposable = service.getUsers(token)
             .subscribeOn(Schedulers.io())

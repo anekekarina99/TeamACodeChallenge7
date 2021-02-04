@@ -3,11 +3,16 @@ package com.teamacodechallenge7.ui.profileplayer
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Rect
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
@@ -21,12 +26,13 @@ import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.File
-import java.nio.file.Path
 
 class EditProfilePlayer : AppCompatActivity() {
     private val tag: String = "EditProfilePlayer"
     private lateinit var editProfilePlayerViewModel: EditProfilePlayerViewModel
     private lateinit var ivProfile: ImageView
+    private lateinit var cropImageView: CropImageView
+    private lateinit var cvImage: CardView
     private lateinit var lParent: LinearLayout
     private val STORAGE_AND_CAMERA_REQUEST_CODE = 100
     private var storageAndCameraPermission = arrayOf(
@@ -44,6 +50,8 @@ class EditProfilePlayer : AppCompatActivity() {
         editProfilePlayerViewModel =
             ViewModelProvider(this, factory)[EditProfilePlayerViewModel::class.java]
 
+        cropImageView = findViewById(R.id.cropImageView)
+        cvImage = findViewById(R.id.cvImage)
         lParent = findViewById(R.id.lParent)
         val btSave = findViewById<Button>(R.id.btSave)
         val btClose = findViewById<ImageView>(R.id.btClose)
@@ -51,6 +59,8 @@ class EditProfilePlayer : AppCompatActivity() {
         val rlProfile = findViewById<RelativeLayout>(R.id.rlProfile)
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etEmail = findViewById<EditText>(R.id.etEmail)
+
+        cvImage.visibility = View.GONE
 
         fetchData()
 
@@ -74,6 +84,14 @@ class EditProfilePlayer : AppCompatActivity() {
         }
 
         rlProfile.setOnClickListener {
+            if (!checkStorageAndCameraPermission()) {
+                requestStorageAndCameraPermission()
+            } else {
+                pickImage()
+            }
+        }
+
+        cvImage.setOnClickListener {
             if (!checkStorageAndCameraPermission()) {
                 requestStorageAndCameraPermission()
             } else {
@@ -111,7 +129,7 @@ class EditProfilePlayer : AppCompatActivity() {
                 .centerCrop()
                 .circleCrop()
                 .placeholder(R.drawable.ic_people)
-                .into(ivProfile);
+                .into(ivProfile)
         }
         editProfilePlayerViewModel.resultPost.observe(this) {
             if (it) {
@@ -126,6 +144,8 @@ class EditProfilePlayer : AppCompatActivity() {
     private fun pickImage() {
         CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
+            .setAspectRatio(10,10)
+            .setScaleType(CropImageView.ScaleType.CENTER_CROP)
             .start(this)
     }
 
@@ -137,13 +157,8 @@ class EditProfilePlayer : AppCompatActivity() {
                 val resultUri: Uri = result.uri
                 filePath = resultUri.toFile()
                 Log.e(tag, resultUri.toString())
-                Glide
-                    .with(this)
-                    .load(resultUri)
-                    .centerCrop()
-                    .circleCrop()
-                    .placeholder(R.drawable.ic_people)
-                    .into(ivProfile);
+                cvImage.visibility = View.VISIBLE
+                cropImageView.setImageUriAsync(resultUri)
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error
                 Log.e(tag, "Image error")
