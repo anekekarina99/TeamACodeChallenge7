@@ -10,8 +10,6 @@ import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.data.repository.LoginFactory
 import com.teamacodechallenge7.databinding.ActivityLoginBinding
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
-import com.teamacodechallenge7.ui.profileplayer.ProfilePlayer
-import com.teamacodechallenge7.ui.profileteman.ProfileTeman
 import com.teamacodechallenge7.ui.signUp.SignUpActivity
 
 class LoginAct : AppCompatActivity() {
@@ -24,6 +22,8 @@ class LoginAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         binding.btSignIn.setOnClickListener {
+            binding.btSignIn.text=("Loading...")
+            binding.btSignIn.isEnabled=false
             viewModel.login()
         }
         binding.btSignUp.setOnClickListener {
@@ -31,20 +31,24 @@ class LoginAct : AppCompatActivity() {
             finish()
         }
         viewModel.resultLogin().observe(this, {
-            if (it) {
-                startActivity(Intent(this, ProfilePlayer::class.java))
-//                startActivity(Intent(this, MainMenuAct::class.java))
+            if (!it) {
+                startActivity(Intent(this, MainMenuAct::class.java))
                 finish()
+                binding.btSignIn.isEnabled=it
             } else {
                 viewModel.buttonResult().observe(this,{but->
                     binding.btSignIn.text=but
+                    viewModel.emailResult().observe(this, { emailErr ->
+                        binding.etEmail.error = emailErr
+                        binding.btSignIn.isEnabled=it
+                    })
+                    viewModel.passwordResult().observe(this, { passErr ->
+                        binding.etPassword.error = passErr
+                        binding.btSignIn.isEnabled=it
+                    })
                 })
-                viewModel.emailResult().observe(this, { emailErr ->
-                    binding.etEmail.error = emailErr
-                })
-                viewModel.passwordResult().observe(this, { passErr ->
-                    binding.etPassword.error = passErr
-                })
+
+
             }
         })
     }
