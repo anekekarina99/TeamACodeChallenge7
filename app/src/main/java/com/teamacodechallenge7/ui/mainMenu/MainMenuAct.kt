@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
+import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.data.repository.MainMenuFactory
 import com.teamacodechallenge7.databinding.ActivityMainMenuBinding
@@ -67,7 +68,7 @@ class MainMenuAct : AppCompatActivity() {
 
         }
         binding.btnLogout.setOnClickListener {
-
+            SharedPref.isLogin=false
         }
 
     }
