@@ -1,4 +1,4 @@
-package com.teamacodechallenge6.data.database
+package com.teamacodechallenge7.data.database
 
 import android.content.Context
 import androidx.room.Database
@@ -8,7 +8,6 @@ import androidx.room.RoomDatabase
 @Database(entities = [Teman::class], version = 1)
 abstract class TemanDatabase :RoomDatabase() {
     abstract fun temanDao() : TemanDao
-
     companion object{
         private var INSTANCE : TemanDatabase? =null
 
