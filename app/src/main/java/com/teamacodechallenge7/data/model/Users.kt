@@ -15,7 +15,7 @@ data class Users(
         @SerializedName("_id")
         val id: String,
         @SerializedName("photo")
-        val photo: String,
+        var photo: String,
         @SerializedName("username")
         val username: String
     )
