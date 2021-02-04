@@ -59,7 +59,7 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                             SharedPref.id = it.data.id
                             SharedPref.email = it.data.email
                             SharedPref.username = it.data.username
-                            SharedPref.token = it.data.token
+                            SharedPref.token = ("Bearer"+" "+it.data.token)
                             SharedPref.password = password
                             SharedPref.isLogin = true
                             refreshToken()
