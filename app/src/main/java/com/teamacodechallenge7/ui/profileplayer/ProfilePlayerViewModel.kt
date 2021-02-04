@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.model.LoginRequest
 import com.teamacodechallenge7.data.model.Users
+import com.teamacodechallenge7.utils.getServiceErrorMsg
 import com.teamacodechallenge7.data.remote.ApiModule.service
 import com.teamacodechallenge7.utils.errorHandling
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,7 +39,7 @@ class ProfilePlayerViewModel(
                     resultUser.value = it
                 },
                 {
-                    val msg: String = errorHandling(it)
+                    val msg: String = it.getServiceErrorMsg()
                     Log.e(tag, msg)
                     if (msg.equals("Token is expired")|| msg.equals("Invalid Token") ) {
                         resultMessage.value = msg
