@@ -24,6 +24,7 @@ fun refreshToken() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    SharedPref.token = ("Bearer"+" "+it.data.token)
                     Log.e(tag, it.data.token)
                 }) {
                     it.getServiceErrorMsg()
