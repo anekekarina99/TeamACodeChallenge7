@@ -30,7 +30,7 @@ class ProfileTemanViewModel(
     fun addTeman(name: String, email: String) {
         val objectTeman = idPlayer?.let { Teman(null, it, name, email) }
         GlobalScope.launch(Dispatchers.IO) {
-            val result = objectTeman?.let { mDB?.temanDao()?.insertTeman(it) }
+            val result = objectTeman?.let { mDB.temanDao().insertTeman(it) }
             launch(Dispatchers.Main) {
                 if (result != 0.toLong()) {
                     resultAddTeman.value = "Teman kamu $name berhasil ditambahakan"
@@ -43,7 +43,7 @@ class ProfileTemanViewModel(
 
     fun listTeman(recyclerView: RecyclerView, context: Context) {
         GlobalScope.launch(Dispatchers.IO) {
-            val listTeman = idPlayer?.let { mDB?.temanDao()?.getAllbyId(it) }
+            val listTeman = idPlayer?.let { mDB.temanDao().getAllbyId(it) }
             launch(Dispatchers.Main) {
                 listTeman?.let {
                     val adapter = TemanAdapter(listTeman, context)
@@ -53,10 +53,6 @@ class ProfileTemanViewModel(
             }
         }
     }
-//    fun refresh(){
-//        resultrefresh.value = "refresh"
-//    }
-
 
     fun destroyDB() {
         TemanDatabase.destroyInstance()
