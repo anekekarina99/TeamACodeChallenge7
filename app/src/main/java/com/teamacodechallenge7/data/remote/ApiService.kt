@@ -6,6 +6,7 @@ import com.teamacodechallenge7.data.model.GetBattle
 import com.teamacodechallenge7.data.model.Users
 import com.teamacodechallenge7.data.model.LoginMsg
 import com.teamacodechallenge7.data.model.LoginRequest
+import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -29,10 +30,12 @@ interface ApiService {
 //    fun me(@Header("Authorization") authorization: String): Single<MeMsg>
 
     @GET("/api/v1/battle")
-    fun getBattle(@Header("Authorization") authorization: String): Single<GetBattle>
+    fun getBattle(
+        @Header("Authorization") authorization: String): Observable<List<GetBattle>>
 
     @GET("/api/v1/users")
-    fun getUsers(@Header("Authorization") authorization: String): Single<Users>
+    fun getUsers(
+        @Header("Authorization") authorization: String): Single<Users>
 
     @Multipart
     @PUT("/api/v1/users")

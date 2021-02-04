@@ -1,5 +1,6 @@
 package com.teamacodechallenge7.ui.skor
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
+import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
 class Skor : AppCompatActivity() {
     private val tag : String = "Skor"
@@ -32,7 +34,7 @@ class Skor : AppCompatActivity() {
 
         Glide
             .with(this)
-            .load("https://ik.imagekit.io/latihan/IMG-1612021231262_M9wlef9rTI")
+            .load(pref.url_profile)
             .centerCrop()
             .circleCrop()
             .placeholder(R.drawable.ic_people)
@@ -40,10 +42,11 @@ class Skor : AppCompatActivity() {
 
         fetchData()
 
-        skorViewModel.resultMe.observe(this) {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-//            fetchData()
+        ivBack.setOnClickListener {
+            startActivity(Intent(this, MainMenuAct::class.java))
+            finish()
         }
+
     }
 
     override fun onResume() {

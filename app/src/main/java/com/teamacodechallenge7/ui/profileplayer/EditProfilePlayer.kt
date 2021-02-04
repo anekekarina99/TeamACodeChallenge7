@@ -13,19 +13,23 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
+import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.File
+import java.nio.file.Path
 
 class EditProfilePlayer : AppCompatActivity() {
-    private val tag : String = "EditProfilePlayer"
+    private val tag: String = "EditProfilePlayer"
     private lateinit var editProfilePlayerViewModel: EditProfilePlayerViewModel
-    private lateinit var ivProfile : ImageView
+    private lateinit var ivProfile: ImageView
+    private lateinit var lParent: LinearLayout
     private val STORAGE_AND_CAMERA_REQUEST_CODE = 100
-    private var  storageAndCameraPermission =  arrayOf(
+    private var storageAndCameraPermission = arrayOf(
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.CAMERA
     )
@@ -37,50 +41,84 @@ class EditProfilePlayer : AppCompatActivity() {
 
         val pref = SharedPref
         val factory = EditProfilePlayerViewModel.Factory(ApiModule.service, pref)
-        editProfilePlayerViewModel = ViewModelProvider(this, factory)[EditProfilePlayerViewModel::class.java]
+        editProfilePlayerViewModel =
+            ViewModelProvider(this, factory)[EditProfilePlayerViewModel::class.java]
 
+        lParent = findViewById(R.id.lParent)
         val btSave = findViewById<Button>(R.id.btSave)
         val btClose = findViewById<ImageView>(R.id.btClose)
         ivProfile = findViewById(R.id.ivProfile)
         val rlProfile = findViewById<RelativeLayout>(R.id.rlProfile)
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etEmail = findViewById<EditText>(R.id.etEmail)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
 
         fetchData()
 
         btClose.setOnClickListener {
             val intent = Intent(this, ProfilePlayer::class.java)
             startActivity(intent)
+            finish()
         }
         btSave.setOnClickListener {
-            filePath?.let { it1 -> editProfilePlayerViewModel.upload("Username123", "emailku123@gmail.com", it1) }
+            var newUsername = etUsername.text.toString()
+            var newEmail = etUsername.text.toString()
+            if (filePath == null) {
+                Toast.makeText(this, "Pilih gambar dulu", Toast.LENGTH_SHORT).show()
+            } else {
+                filePath?.let { it1 ->
+                    editProfilePlayerViewModel.upload(
+                        newUsername, newEmail, it1
+                    )
+                }
+            }
         }
 
         rlProfile.setOnClickListener {
             if (!checkStorageAndCameraPermission()) {
                 requestStorageAndCameraPermission()
-            } else{
+            } else {
                 pickImage()
             }
         }
-
-        editProfilePlayerViewModel.resultUsers.observe(this) {
+        editProfilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            etUsername.hint = it.data.username
-            etEmail.hint = it.data.email
+            if (it.equals("Token is expired") || it.equals("Invalid Token")) {
+                val snackbar = Snackbar.make(
+                    lParent,
+                    "Waktu bermain sudah selesai, main lagi? silahkan Login",
+                    Snackbar.LENGTH_INDEFINITE
+                )
+                snackbar.setAction("Login") {
+                    snackbar.dismiss()
+                    startActivity(Intent(this, LoginAct::class.java))
+                    finish()
+                }.show()
+            } else {
+                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+            }
+            Log.e(tag, it.toString())
+        }
+        editProfilePlayerViewModel.resultName.observe(this) {
+            etUsername.setText(it)
+        }
+        editProfilePlayerViewModel.resultEmail.observe(this) {
+            etEmail.setText(it)
+        }
+        editProfilePlayerViewModel.resultUrlProfile.observe(this) {
             Glide
                 .with(this)
-                .load(it.data.photo)
+                .load(it)
                 .centerCrop()
                 .circleCrop()
                 .placeholder(R.drawable.ic_people)
                 .into(ivProfile);
         }
         editProfilePlayerViewModel.resultPost.observe(this) {
-            Glide.with(this)
-                .load(it.data.photo)
-                .into(ivProfile)
+            if (it) {
+                val intent = Intent(this, ProfilePlayer::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
 
     }
@@ -98,15 +136,17 @@ class EditProfilePlayer : AppCompatActivity() {
             if (resultCode == RESULT_OK) {
                 val resultUri: Uri = result.uri
                 filePath = resultUri.toFile()
+                Log.e(tag, resultUri.toString())
                 Glide
                     .with(this)
-                    .load(filePath)
+                    .load(resultUri)
                     .centerCrop()
                     .circleCrop()
                     .placeholder(R.drawable.ic_people)
                     .into(ivProfile);
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error
+                Log.e(tag, "Image error")
             }
         }
     }
@@ -153,7 +193,7 @@ class EditProfilePlayer : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData(){
-//        editProfilePlayerViewModel.playerData()
+    fun fetchData() {
+        editProfilePlayerViewModel.playerData()
     }
 }
