@@ -2,10 +2,7 @@ package com.teamacodechallenge7.data.remote
 
 import com.blank.ch6_retrofit.data.model.SignUpMsg
 import com.blank.ch6_retrofit.data.model.SignUpRequest
-import com.teamacodechallenge7.data.model.GetBattle
-import com.teamacodechallenge7.data.model.Users
-import com.teamacodechallenge7.data.model.LoginMsg
-import com.teamacodechallenge7.data.model.LoginRequest
+import com.teamacodechallenge7.data.model.*
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -21,6 +18,10 @@ interface ApiService {
 
     @POST("/api/v1/auth/register")
     fun signUp(@Body requestRegister: SignUpRequest): Single<SignUpMsg>
+
+    @POST("/api/v1/battle")
+    fun postBattle(@Header("Authorization") authorization: String,@Body postBattleRequest: PostBattleRequest): Single<PostBattleMsg>
+
 //
 //    @GET("/api/v1/auth/me")
 //    fun me(@Header("Authorization") authorization: String): Single<MeMsg>

@@ -20,4 +20,5 @@
     <color name="ColorBgBlue">#495A6A</color>
     <color name="transparent">#00000000</color>
     <color name="colorBgOrange">#EBA776</color>
+    <color name="colorBgVS">#EEA677</color>
 </resources>
