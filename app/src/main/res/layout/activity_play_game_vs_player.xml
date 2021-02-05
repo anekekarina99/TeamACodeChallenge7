@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.teamacodechallenge7.ui.playgamevsplayer.PlayGameVsPlayerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ColorBgPlay"
+        tools:context=".ui.gamePlay.VsPlayerActivity">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="18dp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/comic"
+            android:gravity="center"
+            android:text="@={viewModel.username}"
+            android:textColor="@color/colorWhiteFont"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_back" />
+
+        <TextView
+            android:id="@+id/tv_skor"
+            android:layout_width="117dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_but_orange"
+            android:fontFamily="@font/comic"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/ColorBlackFont"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_username" />
+
+        <ImageView
+            android:id="@+id/iv_batu"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_box_white_round"
+            android:src="@drawable/ic_batu_kiri"
+            android:tag="batu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_skor" />
+
+        <ImageView
+            android:id="@+id/iv_gunting"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_box_white_round"
+            android:src="@drawable/ic_gunting_kiri"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_batu" />
+
+        <ImageView
+            android:id="@+id/iv_kertas"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_box_white_round"
+            android:src="@drawable/ic_kertas_kiri"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_gunting" />
+
+        <TextView
+            android:id="@+id/tv_teman"
+            android:layout_width="117dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="32dp"
+            android:gravity="center"
+            android:text="@={viewModel.teman}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_back" />
+
+        <TextView
+            android:id="@+id/tv_skor_lawan"
+            android:layout_width="117dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/bg_but_orange"
+            android:fontFamily="@font/comic"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/ColorBlackFont"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_username" />
+
+        <ImageView
+            android:id="@+id/iv_batu_lawan"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/bg_box_white_round"
+            android:src="@drawable/ic_batu_kanan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_skor_lawan" />
+
+        <ImageView
+            android:id="@+id/iv_gunting_lawan"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/bg_box_white_round"
+            android:src="@drawable/ic_gunting_kanan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_batu" />
+
+        <ImageView
+            android:id="@+id/iv_kertas_lawan"
+            android:layout_width="113dp"
+            android:layout_height="113dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/bg_box_white_round"
+            android:src="@drawable/ic_kertas_kanan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_gunting" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_but_cream"
+            android:fontFamily="@font/comic"
+            android:gravity="center"
+            android:text="VS"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhiteFont"
+            android:textSize="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_kertas" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
