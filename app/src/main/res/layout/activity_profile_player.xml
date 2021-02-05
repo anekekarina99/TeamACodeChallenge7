@@ -46,7 +46,7 @@
 
             <TextView
                 android:id="@+id/tvName"
-                android:text="@string/loading"
+                android:text="@string/username"
                 android:textSize="16sp"
                 android:textColor="@color/colorBgWhite"
                 android:layout_marginTop="30dp"
@@ -56,7 +56,7 @@
 
             <TextView
                 android:id="@+id/tvEmail"
-                android:text="@string/loading"
+                android:text="@string/email"
                 android:textSize="12sp"
                 android:textColor="@color/colorBgWhite"
                 android:layout_width="wrap_content"
