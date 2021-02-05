@@ -67,6 +67,8 @@
     <string name="tvPickMode">Pick mode game play ?</string>
     <string name="btChooseMode">Choose Mode</string>
     <string name="vs">Vs</string>
+    <string name="tvDescription">Gubake is one of the Paper Scissors Rock games that is fun and can cheer up any sad heart</string>
+    <string name="createdBy">Tim A Binar Academy @ 2021</string>
 
 
 </resources>
