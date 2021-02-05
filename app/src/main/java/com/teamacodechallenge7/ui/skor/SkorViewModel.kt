@@ -26,6 +26,8 @@ class SkorViewModel(
 //    val token = pref.token
     val token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8"
 
+    var reslt = MutableLiveData<List<GetBattle.Data>>()
+
     fun listSkor(recyclerView: RecyclerView, context: Context) {
         recyclerView.layoutManager = LinearLayoutManager(
             context, LinearLayoutManager.VERTICAL, false

@@ -66,5 +66,6 @@
     <string name="loading">Loading...</string>
     <string name="tvPickMode">Pick mode game play ?</string>
     <string name="btChooseMode">Choose Mode</string>
+    <string name="vs">Vs</string>
 
 </resources>

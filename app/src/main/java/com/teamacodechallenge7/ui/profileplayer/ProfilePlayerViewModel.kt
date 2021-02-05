@@ -25,8 +25,6 @@ class ProfilePlayerViewModel(
     
     fun playerData() {
         val token = pref.token.toString()
-//            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8"
-
         disposable = service.getUsers(token)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -46,6 +44,11 @@ class ProfilePlayerViewModel(
                     it.printStackTrace()
                 })
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposable?.dispose()
     }
 
     class Factory(
