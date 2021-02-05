@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
@@ -58,5 +59,8 @@ class Skor : AppCompatActivity() {
         Log.e(tag,"fetchData")
 //        recyclerView?.let { skorViewModel.listSkor(it, this) }
         skorViewModel.listSkor(recyclerView, this)
+        recyclerView.layoutManager = LinearLayoutManager(
+            this, LinearLayoutManager.VERTICAL, false
+        )
     }
 }
