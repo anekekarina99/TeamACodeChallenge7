@@ -18,9 +18,15 @@ interface ApiService {
     @POST("/api/v1/auth/login")
     fun loginAction(@Body requestLogin: LoginRequest): Single<LoginMsg>
 
-    
+
     @POST("/api/v1/auth/register")
-    fun regis(@Body requestRegister: SignUpRequest): Single<SignUpMsg>
+    fun signUp(@Body requestRegister: SignUpRequest): Single<SignUpMsg>
+//
+//    @GET("/api/v1/auth/me")
+//    fun me(@Header("Authorization") authorization: String): Single<MeMsg>
+//
+//    @PUT("/api/v1/users")
+//    fun me(@Header("Authorization") authorization: String): Single<MeMsg>
 
     @GET("/api/v1/battle")
     fun getBattle(

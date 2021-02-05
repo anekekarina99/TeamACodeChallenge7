@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 import com.teamacodechallenge7.R
+import com.teamacodechallenge7.ui.loginPage.LoginAct
 
 class LandingPageActivity : AppCompatActivity() {
     private var name: String = ""
@@ -28,6 +29,7 @@ class LandingPageActivity : AppCompatActivity() {
                 viewpager2.currentItem = viewpager2.currentItem.plus(1)
             }
             else{
+                startActivity(Intent(this, LoginAct::class.java))
             }
         }
     }
