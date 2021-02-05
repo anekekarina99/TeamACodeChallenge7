@@ -9,6 +9,7 @@ import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiService
 import com.teamacodechallenge7.data.model.LoginRequest
 import com.teamacodechallenge7.utils.getServiceErrorMsg
+import com.teamacodechallenge7.utils.refreshToken
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -58,9 +59,10 @@ class LoginViewModel(private val service: ApiService) : ViewModel() {
                             SharedPref.id = it.data.id
                             SharedPref.email = it.data.email
                             SharedPref.username = it.data.username
-                            SharedPref.token = it.data.token
+                            SharedPref.token = ("Bearer"+" "+it.data.token)
                             SharedPref.password = password
                             SharedPref.isLogin = true
+                            refreshToken()
                             resultLogin.value = false
                         }, {
                             val msg = it.getServiceErrorMsg()

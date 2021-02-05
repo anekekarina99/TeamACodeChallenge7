@@ -28,7 +28,7 @@ class MainMenuViewModel(private val service: ApiService) : ViewModel() {
     fun email():LiveData<String> = email
     fun getUser() {
        val  token= SharedPref.token.toString()
-        disposable = service.getUsers("Bearer $token")
+        disposable = service.getUsers(token)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
