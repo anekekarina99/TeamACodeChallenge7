@@ -14,8 +14,12 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
-        <activity android:name=".ui.playgamevsplayer.PlayGameVsPlayer"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.playgamevscomputer.PlayGameVsComputer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.playgamevsplayer.PlayGameVsPlayer"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.splashScreen.SplashScreenActivity"
             android:screenOrientation="portrait">
