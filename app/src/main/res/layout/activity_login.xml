@@ -30,9 +30,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="600dp"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="95dp"
-                    android:layout_marginEnd="32dp"
                     android:layout_marginBottom="55dp"
                     android:background="@drawable/bg_box_white_round"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -113,8 +111,8 @@
                             android:id="@+id/etPassword"
                             android:layout_width="265dp"
                             android:layout_height="51dp"
-                            android:inputType="textPassword"
                             android:background="@drawable/bg_et_signinup"
+                            android:inputType="textPassword"
                             android:padding="12dp"
                             android:text="@={viewModel.password}" />
                     </com.google.android.material.textfield.TextInputLayout>
