@@ -19,9 +19,6 @@ class SplashScreenActivity : AppCompatActivity(), SplashScreenNavigator {
         val ivSplashScreen1 by lazy {this.findViewById<ImageView>(R.id.ivSplashScreen1)}
         splashScreenViewModel = ViewModelProvider(this, defaultViewModelProviderFactory)[SplashScreenViewModel::class.java]
         splashScreenViewModel.navigator = this
-        Glide.with(this)
-            .load("https://i.ibb.co/HC5ZPgD/splash-screen1.png")
-            .into(ivSplashScreen1)
         splashScreenViewModel.checkIsLogin()
     }
 

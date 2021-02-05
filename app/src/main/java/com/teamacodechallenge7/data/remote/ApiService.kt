@@ -21,7 +21,7 @@ interface ApiService {
 
     
     @POST("/api/v1/auth/register")
-    fun regis(@Body requestRegister: SignUpRequest): Single<SignUpMsg>
+    fun signUp(@Body requestRegister: SignUpRequest): Single<SignUpMsg>
 //
 //    @GET("/api/v1/auth/me")
 //    fun me(@Header("Authorization") authorization: String): Single<MeMsg>
