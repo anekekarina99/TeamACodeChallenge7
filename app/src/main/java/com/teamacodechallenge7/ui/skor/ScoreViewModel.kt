@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.model.GetBattle
-import com.teamacodechallenge7.data.remote.ApiModule.service
 import com.teamacodechallenge7.data.remote.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

@@ -2,9 +2,7 @@ package com.teamacodechallenge7.ui.skor
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Adapter
 import android.widget.Toast
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
