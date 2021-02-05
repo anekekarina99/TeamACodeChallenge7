@@ -11,7 +11,9 @@ import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityMainMenuBinding
 import com.teamacodechallenge7.ui.about.AboutActivity
+import com.teamacodechallenge7.ui.about.InstructionActivity
 import com.teamacodechallenge7.ui.gamehistory.GameHistoryAct
+import com.teamacodechallenge7.ui.landingPage.LandingPageActivity
 import com.teamacodechallenge7.ui.profileplayer.ProfilePlayer
 import com.teamacodechallenge7.ui.profileteman.ProfileTeman
 
@@ -61,7 +63,8 @@ class MainMenuAct : AppCompatActivity() {
             finish()
         }
         binding.tvSeeInstruction.setOnClickListener {
-
+            startActivity(Intent(this, InstructionActivity::class.java))
+            finish()
         }
         binding.btnLogout.setOnClickListener {
             SharedPref.isLogin = false
