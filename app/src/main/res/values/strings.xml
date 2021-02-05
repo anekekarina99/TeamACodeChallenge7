@@ -30,7 +30,7 @@
     <string name="alamat_email">Alamat Email :</string>
     <string name="daftar_teman">Daftar Teman</string>
     <string name="tambah_teman">tambah teman</string>
-    <string name="re_password">Re-Password</string>
+    <string name="repassword">Re-Password</string>
     <string name="email">Email</string>
     <string name="siapa_nama_temanmu_dan_emailnya">Siapa nama temanmu dan emailnya?</string>
     <string name="nama_temanmu">Nama Temanmu</string>
@@ -63,9 +63,12 @@
     <string name="tvAbout">About</string>
     <string name="tvSignOut">Signout</string>
     <string name="tvSeeInstruction">See the instruction?</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="tvPickMode">Pick mode game play ?</string>
     <string name="btChooseMode">Choose Mode</string>
     <string name="vs">Vs</string>
+    <string name="tvDescription">Gubake is one of the Paper Scissors Rock games that is fun and can cheer up any sad heart</string>
+    <string name="createdBy">Tim A Binar Academy @ 2021</string>
+
 
 </resources>

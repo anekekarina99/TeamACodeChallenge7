@@ -30,8 +30,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="600dp"
-                    android:layout_marginTop="95dp"
-                    android:layout_marginBottom="55dp"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginBottom="65dp"
                     android:background="@drawable/bg_box_white_round"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

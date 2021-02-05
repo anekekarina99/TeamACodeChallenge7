@@ -2,16 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/lParent"
     tools:context=".ui.profileplayer.ProfilePlayer">
 
     <ImageView
         android:id="@+id/ivBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_margin="32dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
@@ -24,63 +25,87 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="15dp"
-        android:backgroundTint="@color/ColorBgButGray">
+        app:cardBackgroundColor="@color/ColorBgButGray"
+        app:cardCornerRadius="20dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
             android:paddingTop="40dp"
-            android:paddingBottom="40dp"
-            android:orientation="vertical">
+            android:paddingBottom="40dp">
+
+            <ImageView
+                android:id="@+id/IvOuterPhoto"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_outer_profile"
+                android:contentDescription="@string/ivFotoUser"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:id="@+id/ivProfile"
-                android:src="@drawable/ic_people"
                 android:layout_width="200dp"
-                android:layout_height="200dp"/>
+                android:layout_height="200dp"
+                android:layout_marginTop="26dp"
+                android:src="@drawable/ic_people"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvName"
-                android:text="@string/username"
-                android:textSize="16sp"
-                android:textColor="@color/colorBgWhite"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="32dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comic"
+                android:text="@string/username"
+                android:textColor="@color/colorBgWhite"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/IvOuterPhoto"
+                app:layout_constraintStart_toStartOf="@+id/IvOuterPhoto"
+                app:layout_constraintTop_toBottomOf="@+id/IvOuterPhoto" />
 
             <TextView
                 android:id="@+id/tvEmail"
-                android:text="@string/email"
-                android:textSize="12sp"
-                android:textColor="@color/colorBgWhite"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/comic"
+                android:text="@string/email"
+                android:textColor="@color/colorBgWhite"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvName"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btEdit"
-        android:layout_width="match_parent"
+        android:layout_width="265dp"
         android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/bg_shape_back_blue"
-        app:backgroundTint="@color/ColorBgButGray"
         android:fontFamily="@font/comic"
-        android:text="@string/loading"
-        android:textSize="18sp"
+        android:text="@string/edit_profile"
+        android:textAllCaps="false"
         android:textColor="@color/colorBgWhite"
-        android:textStyle="bold" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/ColorBgButGray" />
 
 </LinearLayout>

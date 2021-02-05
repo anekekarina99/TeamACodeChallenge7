@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -17,6 +19,8 @@ class SplashScreenActivity : AppCompatActivity(), SplashScreenNavigator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         val ivSplashScreen1 by lazy {this.findViewById<ImageView>(R.id.ivSplashScreen1)}
+        val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.anim_splash_screen)
+        ivSplashScreen1.startAnimation(animation)
         splashScreenViewModel = ViewModelProvider(this, defaultViewModelProviderFactory)[SplashScreenViewModel::class.java]
         splashScreenViewModel.navigator = this
         splashScreenViewModel.checkIsLogin()

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivitySignUpBinding
+import com.teamacodechallenge7.ui.loginPage.LoginAct
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpViewModel
@@ -18,6 +19,10 @@ class SignUpActivity : AppCompatActivity() {
         val binding =
             DataBindingUtil.setContentView<ActivitySignUpBinding>(this, R.layout.activity_sign_up)
         binding.viewModel = viewModel
+        binding.icBack.setOnClickListener {
+            startActivity(Intent(this, LoginAct::class.java))
+            finish()
+        }
         binding.btnSignUp.setOnClickListener {
             binding.btnSignUp.text = ("Loading...")
             binding.btnSignUp.isEnabled = false

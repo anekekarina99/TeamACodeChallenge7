@@ -53,7 +53,7 @@ class ProfilePlayer : AppCompatActivity() {
         profilePlayerViewModel.resultUser.observe(this) {
             tvName.text = it.data.username
             tvEmail.text = it.data.email
-            btEdit.text = "Edit Profile"
+            btEdit.text = ("Edit Profile")
             Glide
                 .with(this)
                 .load(it.data.photo)
