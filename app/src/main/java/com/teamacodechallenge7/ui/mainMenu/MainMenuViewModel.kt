@@ -21,11 +21,9 @@ import io.reactivex.schedulers.Schedulers
 class MainMenuViewModel(private val service: ApiService) : ViewModel() {
     private lateinit var disposable: Disposable
     private val username = MutableLiveData<String>()
-    private val email = MutableLiveData<String>()
     private val imageResult = MutableLiveData<String>()
     fun imageResult(): LiveData<String> = imageResult
     fun username():LiveData<String> = username
-    fun email():LiveData<String> = email
     fun getUser() {
        val  token= SharedPref.token.toString()
         disposable = service.getUsers(token)
@@ -33,8 +31,7 @@ class MainMenuViewModel(private val service: ApiService) : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 imageResult.value=it.data.photo
-                username.value=it.data.username
-                email.value=it.data.email
+                username.value=("Hi, ${it.data.username}")
             }, {
                 it.printStackTrace()
             })

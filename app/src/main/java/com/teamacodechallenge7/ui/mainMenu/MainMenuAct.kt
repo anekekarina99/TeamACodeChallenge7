@@ -40,9 +40,6 @@ class MainMenuAct : AppCompatActivity() {
         viewModel.username().observe(this, {
             binding.tvNamaPanjangProfile.text = it.toString()
         })
-        viewModel.email().observe(this, {
-            binding.tvEmailMainMenuProfile.text = it.toString()
-        })
         binding.btnStart.setOnClickListener {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
             finish()
