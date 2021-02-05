@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.remote.ApiModule
-import com.teamacodechallenge7.data.repository.LoginFactory
 import com.teamacodechallenge7.databinding.ActivityLoginBinding
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 import com.teamacodechallenge7.ui.signUp.SignUpActivity

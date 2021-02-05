@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.blank.ch6_retrofit.data.model.SignUpRequest
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.remote.ApiModule
-import com.teamacodechallenge7.data.repository.SignUpFactory
 import com.teamacodechallenge7.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
