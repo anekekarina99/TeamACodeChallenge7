@@ -11,9 +11,9 @@ import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityMainMenuBinding
 import com.teamacodechallenge7.ui.about.AboutActivity
+import com.teamacodechallenge7.ui.gamehistory.GameHistoryAct
 import com.teamacodechallenge7.ui.profileplayer.ProfilePlayer
 import com.teamacodechallenge7.ui.profileteman.ProfileTeman
-import com.teamacodechallenge7.ui.skor.ScoreAct
 
 
 class MainMenuAct : AppCompatActivity() {
@@ -37,14 +37,14 @@ class MainMenuAct : AppCompatActivity() {
             }
 
         })
-       viewModel.username().observe(this,{
-            binding.tvNamaPanjangProfile.text=it.toString()
+        viewModel.username().observe(this, {
+            binding.tvNamaPanjangProfile.text = it.toString()
         })
-        viewModel.email().observe(this,{
-            binding.tvEmailMainMenuProfile.text=it.toString()
+        viewModel.email().observe(this, {
+            binding.tvEmailMainMenuProfile.text = it.toString()
         })
         binding.btnStart.setOnClickListener {
-             startActivity(Intent(this, ChooseGamePlayAct::class.java))
+            startActivity(Intent(this, ChooseGamePlayAct::class.java))
             finish()
         }
         binding.btnMyProfile.setOnClickListener {
@@ -56,7 +56,7 @@ class MainMenuAct : AppCompatActivity() {
             finish()
         }
         binding.btnMyScores.setOnClickListener {
-            startActivity(Intent(this, ScoreAct::class.java))
+            startActivity(Intent(this, GameHistoryAct::class.java))
             finish()
         }
         binding.btnAbout.setOnClickListener {
@@ -67,7 +67,7 @@ class MainMenuAct : AppCompatActivity() {
 
         }
         binding.btnLogout.setOnClickListener {
-            SharedPref.isLogin=false
+            SharedPref.isLogin = false
         }
 
     }
