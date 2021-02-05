@@ -9,12 +9,11 @@ import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
-import com.teamacodechallenge7.data.repository.MainMenuFactory
 import com.teamacodechallenge7.databinding.ActivityMainMenuBinding
 import com.teamacodechallenge7.ui.about.AboutActivity
 import com.teamacodechallenge7.ui.profileplayer.ProfilePlayer
 import com.teamacodechallenge7.ui.profileteman.ProfileTeman
-import com.teamacodechallenge7.ui.skor.Skor
+import com.teamacodechallenge7.ui.skor.ScoreAct
 
 
 class MainMenuAct : AppCompatActivity() {
@@ -57,7 +56,7 @@ class MainMenuAct : AppCompatActivity() {
             finish()
         }
         binding.btnMyScores.setOnClickListener {
-            startActivity(Intent(this, Skor::class.java))
+            startActivity(Intent(this, ScoreAct::class.java))
             finish()
         }
         binding.btnAbout.setOnClickListener {

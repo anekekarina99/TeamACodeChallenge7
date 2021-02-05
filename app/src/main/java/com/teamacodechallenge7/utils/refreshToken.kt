@@ -14,7 +14,8 @@ private lateinit var disposable: Disposable
 fun refreshToken() {
     val tag = "Handling"
     val mainHandler = Handler(Looper.getMainLooper())
-    mainHandler.post(object : Runnable {
+
+    class Runnable1 : Runnable {
         override fun run() {
             val username = SharedPref.username.toString()
             val password = SharedPref.password.toString()
@@ -32,5 +33,7 @@ fun refreshToken() {
                 }
             mainHandler.postDelayed(this, ms.toLong())
         }
-    })
+    }
+
+    mainHandler.post(Runnable1())
 }

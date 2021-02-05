@@ -14,21 +14,24 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7">
-        <activity android:name=".ui.about.InstructionActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.splashScreen.SplashScreenActivity"
-            android:screenOrientation="portrait" >
+
+        <activity
+            android:name=".ui.splashScreen.SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.landingPage.LandingPageActivity"
+        <activity
+            android:name=".ui.landingPage.LandingPageActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.signUp.NotifSignUpActivity"
+        <activity
+            android:name=".ui.signUp.NotifSignUpActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.signUp.SignUpActivity"
+        <activity
+            android:name=".ui.signUp.SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.profileplayer.EditProfilePlayer"
@@ -51,12 +54,15 @@
         <activity
             android:name=".ui.profileplayer.ProfilePlayer"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.skor.ScoreAct" />
         <activity
-            android:name=".ui.skor.Skor"
+            android:name=".ui.about.AboutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.about.AboutActivity" />
         <activity
             android:name=".ui.mainMenu.ChooseGamePlayAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.about.InstructionActivity"
             android:screenOrientation="portrait" />
     </application>
 
