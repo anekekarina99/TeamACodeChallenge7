@@ -12,5 +12,6 @@ class App: Application() {
     override fun onCreate() {
         super.onCreate()
         context = WeakReference(applicationContext)
+
     }
 }

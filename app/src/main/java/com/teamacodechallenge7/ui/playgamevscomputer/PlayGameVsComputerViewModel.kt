@@ -21,7 +21,7 @@ class PlayGameVsComputerViewModel(
     private val tag = "PlayGameVsComputer"
 
     private val token = pref.token.toString()
-    private lateinit var disposable: Disposable
+    private  var disposable: Disposable?=null
     val resultAnim = MutableLiveData<String>()
     val resultEnd = MutableLiveData<String>()
     val resultNya = MutableLiveData<String>()

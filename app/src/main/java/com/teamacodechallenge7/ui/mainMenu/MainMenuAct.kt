@@ -14,8 +14,10 @@ import com.teamacodechallenge7.ui.about.AboutActivity
 import com.teamacodechallenge7.ui.about.InstructionActivity
 import com.teamacodechallenge7.ui.gamehistory.GameHistoryAct
 import com.teamacodechallenge7.ui.landingPage.LandingPageActivity
+import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.profileplayer.ProfilePlayer
 import com.teamacodechallenge7.ui.profileteman.ProfileTeman
+import com.teamacodechallenge7.utils.refreshToken
 
 
 class MainMenuAct : AppCompatActivity() {
@@ -26,7 +28,7 @@ class MainMenuAct : AppCompatActivity() {
             this,
             R.layout.activity_main_menu
         )
-
+        refreshToken()
         val factory = MainMenuFactory(ApiModule.service)
         this.viewModel = ViewModelProvider(this, factory)[MainMenuViewModel::class.java]
         binding.viewModel = viewModel
@@ -68,6 +70,8 @@ class MainMenuAct : AppCompatActivity() {
         }
         binding.btnLogout.setOnClickListener {
             SharedPref.isLogin = false
+            startActivity(Intent(this, LoginAct::class.java))
+            finish()
         }
 
     }
