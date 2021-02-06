@@ -44,7 +44,7 @@ class PilihLawan : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         Log.e(tag,"fetchData")
         pilihLawanViewModel.showList(recyclerView, this@PilihLawan)
     }

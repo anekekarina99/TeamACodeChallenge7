@@ -14,7 +14,6 @@ class PilihLawanAdapter(
     private var listTeman: List<Teman>,
     val context: Context
 ) : RecyclerView.Adapter<PilihLawanAdapter.ViewHolder>() {
-    private val tag : String = "ProfileTeman"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_teman, parent, false)

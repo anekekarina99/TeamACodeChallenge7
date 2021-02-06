@@ -3,11 +3,8 @@ package com.teamacodechallenge7.ui.profileplayer
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -26,7 +23,6 @@ import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.File
-import java.util.*
 
 class EditProfilePlayer : AppCompatActivity() {
     private val tag: String = "EditProfilePlayer"
@@ -71,8 +67,8 @@ class EditProfilePlayer : AppCompatActivity() {
             finish()
         }
         btSave.setOnClickListener {
-            var newUsername = etUsername.text.toString()
-            var newEmail = etUsername.text.toString()
+            val newUsername = etUsername.text.toString()
+            val newEmail = etUsername.text.toString()
             if (filePath == null) {
                 Toast.makeText(this, "Pilih gambar dulu", Toast.LENGTH_SHORT).show()
             } else {
@@ -101,7 +97,7 @@ class EditProfilePlayer : AppCompatActivity() {
         }
         editProfilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            if (it.equals("Token is expired") || it.equals("Invalid Token")) {
+            if (it == "Token is expired" || it == "Invalid Token") {
                 val snackbar = Snackbar.make(
                     lParent,
                     "Waktu bermain sudah selesai, main lagi? silahkan Login",
@@ -163,7 +159,7 @@ class EditProfilePlayer : AppCompatActivity() {
                 cropImageView.setImageUriAsync(resultUri)
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error
-                Log.e(tag, "Image error")
+                Log.e(tag, "Image error$error")
             }
         }
     }
@@ -192,7 +188,7 @@ class EditProfilePlayer : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             STORAGE_AND_CAMERA_REQUEST_CODE -> {
-                if (grantResults.size > 0) {
+                if (grantResults.isNotEmpty()) {
                     val readStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
                     val cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
                     if (readStorageAccepted && cameraAccepted) {
@@ -210,7 +206,7 @@ class EditProfilePlayer : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         editProfilePlayerViewModel.playerData()
     }
 }

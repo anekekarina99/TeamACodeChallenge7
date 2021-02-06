@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 
 class PlayGameVsComputerViewModel(
     private val service: ApiService,
-    private val pref: SharedPref
+    val pref: SharedPref
 ) : ViewModel() {
 
     private val tag = "PlayGameVsComputer"
@@ -62,22 +62,22 @@ class PlayGameVsComputerViewModel(
         simpanBattle()
     }
 
-    fun simpanBattle() {
-        var postBattleRequest = PostBattleRequest("Singleplayer", resultNya.value.toString())
+    private fun simpanBattle() {
+        val postBattleRequest = PostBattleRequest("Singleplayer", resultNya.value.toString())
         disposable = service.postBattle(token, postBattleRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                it
             }, {
             })
     }
 
     override fun onCleared() {
         super.onCleared()
-        disposable?.dispose()
+        disposable.dispose()
     }
 
+    @Suppress("UNCHECKED_CAST")
     class Factory(
         private val service: ApiService,
         private val pref: SharedPref

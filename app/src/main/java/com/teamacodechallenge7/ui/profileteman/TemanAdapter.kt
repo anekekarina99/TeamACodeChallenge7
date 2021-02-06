@@ -53,7 +53,7 @@ class TemanAdapter(
             }
 
             btDeleteFriend.setOnClickListener {
-                deleteTeman(listTeman, position, holder)
+                deleteTeman(listTeman, position)
                 dialog.dismiss()
             }
             btClose.setOnClickListener {
@@ -65,7 +65,7 @@ class TemanAdapter(
 
     private fun editTeman(list: List<Teman>, position: Int) {
         GlobalScope.launch(Dispatchers.IO) {
-            val result = mDB.temanDao()?.updateTeman(list[position])
+            val result = mDB.temanDao().updateTeman(list[position])
             launch(Dispatchers.Main) {
                 if (result != 0) {
                     notifyDataSetChanged()
@@ -77,9 +77,9 @@ class TemanAdapter(
         }
     }
 
-    fun deleteTeman(list: List<Teman>, position: Int, holder: ViewHolder) {
+    private fun deleteTeman(list: List<Teman>, position: Int) {
         GlobalScope.launch(Dispatchers.IO) {
-            val result = mDB?.temanDao()?.deleteTeman(list[position])
+            val result = mDB.temanDao().deleteTeman(list[position])
             launch(Dispatchers.Main) {
                 if (result != 0) {
                     Log.e(tag,"Delete Teman")

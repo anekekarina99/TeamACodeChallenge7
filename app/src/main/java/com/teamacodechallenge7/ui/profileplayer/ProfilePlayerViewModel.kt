@@ -5,12 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.data.local.SharedPref
-import com.teamacodechallenge7.data.model.LoginRequest
 import com.teamacodechallenge7.data.model.Users
 import com.teamacodechallenge7.utils.getServiceErrorMsg
 import com.teamacodechallenge7.data.remote.ApiModule.service
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
@@ -38,7 +36,7 @@ class ProfilePlayerViewModel(
                 {
                     val msg: String = it.getServiceErrorMsg()
                     Log.e(tag, msg)
-                    if (msg.equals("Token is expired")|| msg.equals("Invalid Token") ) {
+                    if (msg == "Token is expired" || msg == "Invalid Token") {
                         resultMessage.value = msg
                     }
                     it.printStackTrace()
@@ -48,9 +46,10 @@ class ProfilePlayerViewModel(
 
     override fun onCleared() {
         super.onCleared()
-        disposable?.dispose()
+        disposable.dispose()
     }
 
+    @Suppress("UNCHECKED_CAST")
     class Factory(
         private val pref: SharedPref
     ) : ViewModelProvider.Factory {

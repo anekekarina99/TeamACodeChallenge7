@@ -15,7 +15,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
-import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
@@ -63,7 +62,7 @@ class PlayGameVsComputer : AppCompatActivity() {
 
         namaPlayer = pref.username.toString()
         findViewById<TextView>(R.id.player1).text = namaPlayer
-        findViewById<TextView>(R.id.player2).text = "Computer"
+        findViewById<TextView>(R.id.player2).text = R.string.computer.toString()
 
         reset()
         val butNya = mutableListOf(
@@ -193,7 +192,7 @@ class PlayGameVsComputer : AppCompatActivity() {
     }
 
     //Hasil dari Randomnya computer
-    fun resultEnemy(resultEnemy: String) {
+    private fun resultEnemy(resultEnemy: String) {
         when (resultEnemy) {
             "batu" -> {
                 enemyNya = buttonAll[3]
@@ -212,7 +211,7 @@ class PlayGameVsComputer : AppCompatActivity() {
         playGameVsComputerViewModel.compareData(dataPlayer1, resultEnemy)
     }
 
-    fun popWinner(resultNya: String) {
+    private fun popWinner(resultNya: String) {
         var winner = ""
         when (resultNya) {
             "Player Win" -> {
@@ -249,7 +248,7 @@ class PlayGameVsComputer : AppCompatActivity() {
                 dialogD1.dismiss()
             }
             backMenu.setOnClickListener {
-                var intent = Intent(this, ChooseGamePlayAct::class.java)
+                val intent = Intent(this, ChooseGamePlayAct::class.java)
                 startActivity(intent)
                 finish()
 
