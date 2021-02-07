@@ -30,7 +30,6 @@ class ProfilePlayerViewModel(
                 {
                     SharedPref.email = it.data.email
                     SharedPref.username = it.data.username
-                    SharedPref.url_profile = it.data.photo
                     resultUser.value = it
                 },
                 {

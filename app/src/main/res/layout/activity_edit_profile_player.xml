@@ -57,7 +57,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:contentDescription="@string/edit_profile"
-                android:src="@drawable/ic_people" />
+                android:src="@drawable/ic_user" />
 
             <ImageView
                 android:layout_width="35dp"

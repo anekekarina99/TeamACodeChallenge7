@@ -57,7 +57,7 @@ class ProfilePlayer : AppCompatActivity() {
                 .load(it.data.photo)
                 .centerCrop()
                 .circleCrop()
-                .placeholder(R.drawable.ic_people)
+                .placeholder(R.drawable.ic_user)
                 .into(ivProfile)
         }
         profilePlayerViewModel.resultMessage.observe(this) {
