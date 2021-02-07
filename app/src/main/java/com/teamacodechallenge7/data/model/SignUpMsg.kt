@@ -1,4 +1,4 @@
-package com.blank.ch6_retrofit.data.model
+package com.teamacodechallenge7.data.model
 
 
 import com.google.gson.annotations.SerializedName

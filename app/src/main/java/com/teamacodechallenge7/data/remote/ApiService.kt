@@ -1,10 +1,7 @@
 package com.teamacodechallenge7.data.remote
 
-import com.blank.ch6_retrofit.data.model.SignUpMsg
-import com.blank.ch6_retrofit.data.model.SignUpRequest
 import com.teamacodechallenge7.data.model.*
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
