@@ -9,6 +9,7 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivitySignUpBinding
 import com.teamacodechallenge7.ui.loginPage.LoginAct
+import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpViewModel
@@ -35,23 +36,29 @@ class SignUpActivity : AppCompatActivity() {
                 binding.btnSignUp.isEnabled = bool
             } else {
                 binding.btnSignUp.isEnabled = bool
-                viewModel.buttonResult().observe(this, {but ->
+                viewModel.buttonResult().observe(this, { but ->
                     binding.btnSignUp.text = but
-                    viewModel.emailResult().observe(this, {emailErr ->
+                    viewModel.emailResult().observe(this, { emailErr ->
                         binding.etEmail.error = emailErr
                     })
-                    viewModel.usernameResult().observe(this, {usernameErr ->
+                    viewModel.usernameResult().observe(this, { usernameErr ->
                         binding.etUsername.error = usernameErr
                     })
-                    viewModel.passwordResult().observe(this, {passwordErr ->
+                    viewModel.passwordResult().observe(this, { passwordErr ->
                         binding.etPassword.error = passwordErr
                     })
-                    viewModel.rePasswordResult().observe(this, {rePasswordErr ->
+                    viewModel.rePasswordResult().observe(this, { rePasswordErr ->
                         binding.etRePassword.error = rePasswordErr
                     })
                 })
             }
         })
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainMenuAct::class.java))
+        finish()
     }
 }
