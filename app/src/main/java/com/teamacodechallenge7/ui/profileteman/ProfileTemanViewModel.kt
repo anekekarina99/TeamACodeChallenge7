@@ -17,7 +17,7 @@ class ProfileTemanViewModel(
     private val pref: SharedPref
 ) : ViewModel() {
 
-    val idPlayer = pref.id
+    private val idPlayer = pref.id
     var resultName = MutableLiveData<String>()
     var resultEmail = MutableLiveData<String>()
 
@@ -58,6 +58,7 @@ class ProfileTemanViewModel(
         TemanDatabase.destroyInstance()
     }
 
+    @Suppress("UNCHECKED_CAST")
     class Factory(
         private val mDB: TemanDatabase,
         private val pref: SharedPref

@@ -114,4 +114,9 @@ class ProfileTeman : AppCompatActivity() {
         super.onDestroy()
         profileTemanViewModel.destroyDB()
     }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainMenuAct::class.java))
+        finish()
+    }
 }

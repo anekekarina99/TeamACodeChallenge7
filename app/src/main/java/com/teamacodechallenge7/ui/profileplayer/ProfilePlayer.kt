@@ -2,8 +2,6 @@ package com.teamacodechallenge7.ui.profileplayer
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +12,6 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
-import java.util.*
-import kotlin.concurrent.schedule
-import kotlin.concurrent.timerTask
 
 class ProfilePlayer : AppCompatActivity() {
     private val tag: String = "ProfilePlayer"
@@ -60,11 +55,11 @@ class ProfilePlayer : AppCompatActivity() {
                 .centerCrop()
                 .circleCrop()
                 .placeholder(R.drawable.ic_people)
-                .into(ivProfile);
+                .into(ivProfile)
         }
         profilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            if (it.equals("Token is expired") || it.equals("Invalid Token")) {
+            if (it == "Token is expired" || it == "Invalid Token") {
                 val snackbar = Snackbar.make(
                     lParent,
                     "Waktu bermain sudah selesai, main lagi? silahkan Login",
@@ -84,7 +79,12 @@ class ProfilePlayer : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         profilePlayerViewModel.playerData()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainMenuAct::class.java))
+        finish()
     }
 }

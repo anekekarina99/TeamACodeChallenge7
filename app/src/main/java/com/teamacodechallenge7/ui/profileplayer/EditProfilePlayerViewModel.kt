@@ -2,18 +2,14 @@ package com.teamacodechallenge7.ui.profileplayer
 
 import android.util.Log
 import android.util.Patterns
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.data.local.SharedPref
-import com.teamacodechallenge7.data.model.Users
 import com.teamacodechallenge7.data.remote.ApiService
-import com.teamacodechallenge7.utils.App.Companion.context
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import com.teamacodechallenge7.utils.getServiceErrorMsg
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -29,8 +25,6 @@ class EditProfilePlayerViewModel(
 ) : ViewModel() {
 
     val token = pref.token.toString()
-//        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDE1N2I0OGRiNzg0ODAwMTczZjk4YjkiLCJ1c2VybmFtZSI6ImFndW5ndyIsImVtYWlsIjoiYWd1bmd3QHlhaG9vLmNvbSIsImlhdCI6MTYxMjM1NzQxMCwiZXhwIjoxNjEyMzY0NjEwfQ.Knn2frT7Wnvldl6iNmSEI5ec3yJlO5N1h2cU-MvDdC8"
-
     private val tag: String = "EditProfilePlayer"
     private var disposable: CompositeDisposable = CompositeDisposable()
     val resultPost = MutableLiveData<Boolean>()
@@ -51,7 +45,7 @@ class EditProfilePlayerViewModel(
             resultMessage.value = "Username paling sedikit 6 huruf"
         } else if (email.isEmpty()) {
             resultMessage.value = "Email tidak boleh kosong"
-        } else if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             resultMessage.value = "Email tidak valid"
         } else {
 
@@ -79,7 +73,7 @@ class EditProfilePlayerViewModel(
                     }, {
                         val msg: String = it.getServiceErrorMsg()
                         Log.e(tag, msg)
-                        if (msg.equals("Token is expired")|| msg.equals("Invalid Token") ) {
+                        if (msg == "Token is expired" || msg == "Invalid Token") {
                             resultMessage.value = msg
                         }
                         it.printStackTrace()
@@ -91,9 +85,10 @@ class EditProfilePlayerViewModel(
 
     override fun onCleared() {
         super.onCleared()
-        disposable?.dispose()
+        disposable.dispose()
     }
 
+    @Suppress("UNCHECKED_CAST")
     class Factory(
         private val service: ApiService,
         private val pref: SharedPref
