@@ -15,10 +15,12 @@
     <color name="ColorStrokeGray">#6E7071</color>
     <color name="ColorBgPlay">#9BABB9</color>
     <color name="ColorStrokeOrange">#D6AB5C</color>
+    <color name="ColorStrokeGraySoft">#E0E0E0</color>
     <color name="ColorBgButGray">#4B5967</color>
     <color name="ColorBgButOrange">#EDC575</color>
     <color name="ColorBgBlue">#495A6A</color>
     <color name="transparent">#00000000</color>
     <color name="colorBgOrange">#EBA776</color>
     <color name="colorBgVS">#EEA677</color>
+    <color name="ColorBgRed">#E67A6C</color>
 </resources>

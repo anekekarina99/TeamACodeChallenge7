@@ -16,161 +16,164 @@
         android:background="@drawable/bg_blue"
         tools:context=".ui.loginPage.LoginAct">
 
+
         <ImageView
-            android:id="@+id/IvOuterPhoto"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/bg_outer_profile"
-            android:contentDescription="@string/ivFotoUser"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/IvPhotoUserProfile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="43dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginTop="43dp"
-            android:contentDescription="@string/ivFotoUser"
-            android:src="@drawable/ic_user"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvNamaPanjangProfile"
-            android:layout_width="295dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:fontFamily="@font/comic"
-            android:text=""
-            android:textColor="@color/colorWhiteFont"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/IvOuterPhoto"
+            android:id="@+id/ivLogoApps"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_logo_white"
+            android:contentDescription="@string/ivLogoApps"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/IvOuterPhoto"
-            app:layout_constraintTop_toTopOf="@+id/IvOuterPhoto" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+
+        <LinearLayout
+            android:id="@+id/bx_menu_2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="32dp"
-            android:background="@drawable/bg_box_white_2round"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/bg_box_white_4round"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/IvOuterPhoto"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintTop_toBottomOf="@id/ivLogoApps">
 
+            <TextView
+                android:id="@+id/tvNamaPanjangProfile"
+                android:layout_width="295dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/comic"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/ColorBgBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_but_red"
+                android:fontFamily="@font/comic"
+                android:text="@string/tvStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhiteFont"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnMyFriends"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_but_orange1"
+                android:fontFamily="@font/comic"
+                android:text="@string/tvMyFriends"
+                android:textAllCaps="false"
+                android:textColor="@color/ColorBlackFont"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnGameHistory"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_but_orange1"
+                android:fontFamily="@font/comic"
+                android:text="@string/tvGameHistory"
+                android:textAllCaps="false"
+                android:textColor="@color/ColorBlackFont"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_but_orange1"
+                android:fontFamily="@font/comic"
+                android:text="@string/tvSettings"
+                android:textAllCaps="false"
+                android:textColor="@color/ColorBlackFont"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnOut"
+                android:layout_width="265dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_but_gray1"
+                android:fontFamily="@font/comic"
+                android:text="@string/tvOut"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhiteFont"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btnStart"
-                    android:layout_width="265dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_but_orange"
-                    android:fontFamily="@font/comic"
-                    android:text="@string/tvStart"
-                    android:textAllCaps="false"
-                    android:textColor="@color/ColorBlackFont"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/btnMyProfile"
-                    android:layout_width="265dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_but_orange"
-                    android:fontFamily="@font/comic"
-                    android:text="@string/tvMyProfile"
-                    android:textAllCaps="false"
-                    android:textColor="@color/ColorBlackFont"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/btnMyFriends"
-                    android:layout_width="265dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_but_orange"
-                    android:fontFamily="@font/comic"
-                    android:text="@string/tvMyFriends"
-                    android:textAllCaps="false"
-                    android:textColor="@color/ColorBlackFont"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/btnMyScores"
-                    android:layout_width="265dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_but_orange"
-                    android:fontFamily="@font/comic"
-                    android:text="@string/tvMyScores"
-                    android:textAllCaps="false"
-                    android:textColor="@color/ColorBlackFont"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/btnAbout"
-                    android:layout_width="265dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_but_orange"
-                    android:fontFamily="@font/comic"
-                    android:text="@string/tvAbout"
-                    android:textAllCaps="false"
-                    android:textColor="@color/ColorBlackFont"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/btnLogout"
-                    android:layout_width="265dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_but_gray"
-                    android:fontFamily="@font/comic"
-                    android:text="@string/tvSignOut"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorWhiteFont"
-                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvSeeInstruction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="32dp"
                     android:fontFamily="@font/comic"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/ColorBgBlue"
                     android:text="@string/tvSeeInstruction"
-                    android:textColor="@color/ColorBlackFont"
-                    android:textSize="14sp"
-                    android:textStyle="italic" />
+                    android:layout_marginRight="8dp" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/ic_about" />
             </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/IvOuterPhoto"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="158dp"
+            android:background="@drawable/bg_outer_profile_menu"
+            android:contentDescription="@string/ivFotoUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/IvPhotoUserProfile"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/ivFotoUser"
+            android:src="@drawable/ic_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogoApps" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

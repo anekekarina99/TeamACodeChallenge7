@@ -48,29 +48,27 @@ class MainMenuAct : AppCompatActivity() {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
             finish()
         }
-        binding.btnMyProfile.setOnClickListener {
-            startActivity(Intent(this, ProfilePlayer::class.java))
-            finish()
-        }
+        /*   binding.btnMyProfile.setOnClickListener {
+               startActivity(Intent(this, ProfilePlayer::class.java))
+               finish()
+           }*/
         binding.btnMyFriends.setOnClickListener {
             startActivity(Intent(this, ProfileTeman::class.java))
             finish()
         }
-        binding.btnMyScores.setOnClickListener {
+        binding.btnGameHistory.setOnClickListener {
             startActivity(Intent(this, GameHistoryAct::class.java))
             finish()
         }
-        binding.btnAbout.setOnClickListener {
-            startActivity(Intent(this, AboutActivity::class.java))
+        binding.btnSettings.setOnClickListener {
+            startActivity(Intent(this, ProfilePlayer::class.java))
             finish()
         }
         binding.tvSeeInstruction.setOnClickListener {
             startActivity(Intent(this, InstructionActivity::class.java))
             finish()
         }
-        binding.btnLogout.setOnClickListener {
-            SharedPref.isLogin = false
-            startActivity(Intent(this, LoginAct::class.java))
+        binding.btnOut.setOnClickListener {
             finish()
         }
 
