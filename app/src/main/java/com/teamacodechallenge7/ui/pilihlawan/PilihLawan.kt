@@ -1,5 +1,6 @@
 package com.teamacodechallenge7.ui.pilihlawan
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
+import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
 class PilihLawan : AppCompatActivity() {
     private val tag : String = "PilihLawan"
@@ -32,8 +35,8 @@ class PilihLawan : AppCompatActivity() {
             this, LinearLayoutManager.VERTICAL, false
         )
         ivBack.setOnClickListener {
-//            startActivity(Intent(this, MainMenuActivity::class.java))
-//            finish()
+            startActivity(Intent(this, MainMenuAct::class.java))
+            finish()
         }
 
         fetchData()
@@ -44,7 +47,7 @@ class PilihLawan : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         Log.e(tag,"fetchData")
         pilihLawanViewModel.showList(recyclerView, this@PilihLawan)
     }
@@ -52,5 +55,10 @@ class PilihLawan : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         pilihLawanViewModel.destroyDB()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, ChooseGamePlayAct::class.java))
+        finish()
     }
 }

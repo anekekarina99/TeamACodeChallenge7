@@ -1,20 +1,13 @@
 package com.teamacodechallenge7.ui.profileplayer
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.net.toFile
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -23,10 +16,10 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.loginPage.LoginAct
+import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.File
-import java.util.*
 
 class EditProfilePlayer : AppCompatActivity() {
     private val tag: String = "EditProfilePlayer"
@@ -35,11 +28,6 @@ class EditProfilePlayer : AppCompatActivity() {
     private lateinit var cropImageView: CropImageView
     private lateinit var cvImage: CardView
     private lateinit var lParent: LinearLayout
-    private val STORAGE_AND_CAMERA_REQUEST_CODE = 100
-    private var storageAndCameraPermission = arrayOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.CAMERA
-    )
     private var filePath: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,8 +59,8 @@ class EditProfilePlayer : AppCompatActivity() {
             finish()
         }
         btSave.setOnClickListener {
-            var newUsername = etUsername.text.toString()
-            var newEmail = etUsername.text.toString()
+            val newUsername = etUsername.text.toString()
+            val newEmail = etEmail.text.toString()
             if (filePath == null) {
                 Toast.makeText(this, "Pilih gambar dulu", Toast.LENGTH_SHORT).show()
             } else {
@@ -81,27 +69,18 @@ class EditProfilePlayer : AppCompatActivity() {
                         newUsername, newEmail, it1
                     )
                 }
+                btSave.isEnabled = false
+                btSave.text = resources.getText(R.string.loading)
             }
         }
 
         rlProfile.setOnClickListener {
-            if (!checkStorageAndCameraPermission()) {
-                requestStorageAndCameraPermission()
-            } else {
                 pickImage()
-            }
         }
 
-        cvImage.setOnClickListener {
-            if (!checkStorageAndCameraPermission()) {
-                requestStorageAndCameraPermission()
-            } else {
-                pickImage()
-            }
-        }
         editProfilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            if (it.equals("Token is expired") || it.equals("Invalid Token")) {
+            if (it == "Token is expired" || it == "Invalid Token") {
                 val snackbar = Snackbar.make(
                     lParent,
                     "Waktu bermain sudah selesai, main lagi? silahkan Login",
@@ -137,6 +116,9 @@ class EditProfilePlayer : AppCompatActivity() {
                 val intent = Intent(this, ProfilePlayer::class.java)
                 startActivity(intent)
                 finish()
+            } else{
+                btSave.isEnabled = true
+                btSave.text = resources.getText(R.string.save)
             }
         }
 
@@ -146,7 +128,7 @@ class EditProfilePlayer : AppCompatActivity() {
     private fun pickImage() {
         CropImage.activity()
             .setGuidelines(CropImageView.Guidelines.ON)
-            .setAspectRatio(10,10)
+            .setAspectRatio(10, 10)
             .setScaleType(CropImageView.ScaleType.CENTER_CROP)
             .start(this)
     }
@@ -163,44 +145,7 @@ class EditProfilePlayer : AppCompatActivity() {
                 cropImageView.setImageUriAsync(resultUri)
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error
-                Log.e(tag, "Image error")
-            }
-        }
-    }
-
-    private fun checkStorageAndCameraPermission(): Boolean {
-        val result =
-            (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED)
-        val result1 = (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                == PackageManager.PERMISSION_GRANTED)
-        return result && result1
-    }
-
-    private fun requestStorageAndCameraPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            storageAndCameraPermission, STORAGE_AND_CAMERA_REQUEST_CODE
-        )
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            STORAGE_AND_CAMERA_REQUEST_CODE -> {
-                if (grantResults.size > 0) {
-                    val readStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    val cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    if (readStorageAccepted && cameraAccepted) {
-                        pickImage()
-                    } else {
-                        Toast.makeText(this, "Permissions are required!", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                Log.e(tag, "Image error$error")
             }
         }
     }
@@ -210,7 +155,12 @@ class EditProfilePlayer : AppCompatActivity() {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         editProfilePlayerViewModel.playerData()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, ProfilePlayer::class.java))
+        finish()
     }
 }

@@ -1,6 +1,7 @@
 package com.teamacodechallenge7.ui.pilihlawan
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,13 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.Teman
+import com.teamacodechallenge7.ui.playgamevsplayer.PlayGameVsPlayer
 
 
 class PilihLawanAdapter(
     private var listTeman: List<Teman>,
     val context: Context
 ) : RecyclerView.Adapter<PilihLawanAdapter.ViewHolder>() {
-    private val tag : String = "ProfileTeman"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_teman, parent, false)
@@ -28,9 +29,9 @@ class PilihLawanAdapter(
         holder.tvEmail.text = email
         holder.ivEdit.visibility = View.GONE
         holder.itemView.setOnClickListener {
-//            val intent = Intent(context, VersusPlayer::class.java)
-//            intent.putExtra("NAMA_TEMAN", nama)
-//            context.startActivity(intent)
+            val intent = Intent(context, PlayGameVsPlayer::class.java)
+            intent.putExtra("NAMA_TEMAN", nama)
+            context.startActivity(intent)
         }
     }
 
