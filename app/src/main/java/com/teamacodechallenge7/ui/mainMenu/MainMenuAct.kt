@@ -48,10 +48,6 @@ class MainMenuAct : AppCompatActivity() {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
             finish()
         }
-        /*   binding.btnMyProfile.setOnClickListener {
-               startActivity(Intent(this, ProfilePlayer::class.java))
-               finish()
-           }*/
         binding.btnMyFriends.setOnClickListener {
             startActivity(Intent(this, ProfileTeman::class.java))
             finish()

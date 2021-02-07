@@ -37,10 +37,10 @@
         android:layout_below="@+id/iv_logo"
         android:layout_above="@+id/btadd"
         app:cardCornerRadius="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/ColorBgButGray">
+        app:cardBackgroundColor="@color/ColorBgButGray">
 
         <RelativeLayout
             android:layout_width="match_parent"
