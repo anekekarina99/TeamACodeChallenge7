@@ -15,11 +15,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
-import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.SoundPlayer
 
 class PlayGameVsComputer : AppCompatActivity() {
 
@@ -50,6 +50,14 @@ class PlayGameVsComputer : AppCompatActivity() {
     private val animRand = 200L
     private var randNum = 0
 
+    //===== score counter ====
+    private lateinit var tvScorePlayer: TextView
+    private lateinit var tvScoreComputer: TextView
+    private var scorePlayer = 0
+    private var scoreComputer = 0
+
+    private lateinit var sound: SoundPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play_game_vs_computer)
@@ -63,7 +71,9 @@ class PlayGameVsComputer : AppCompatActivity() {
 
         namaPlayer = pref.username.toString()
         findViewById<TextView>(R.id.player1).text = namaPlayer
-        findViewById<TextView>(R.id.player2).text = "Computer"
+        findViewById<TextView>(R.id.player2).text = resources.getText(R.string.computer)
+        tvScorePlayer = findViewById(R.id.tvScorePlayer)
+        tvScoreComputer = findViewById(R.id.tvScoreComputer)
 
         reset()
         val butNya = mutableListOf(
@@ -114,21 +124,31 @@ class PlayGameVsComputer : AppCompatActivity() {
             onBackPressed()
             Log.i("MainGameComputer", "playernya klik keluar")
         }
+
+        sound = SoundPlayer(this)
+
+        sound.playGameSound()
+
+
         playGameVsComputerViewModel.resultAnim.observe(this) {
             randAnim(it)
+            sound.playClickSound()
         }
         playGameVsComputerViewModel.resultEnd.observe(this) {
             resultEnemy(it)
+            sound.playClickSound()
         }
         playGameVsComputerViewModel.resultNya.observe(this) {
-            popWinner (it.toString())
+            popWinner(it.toString())
         }
 
     }
 
+
     //Button di lock ketika di proses
     private fun lockButton() {
-        buttonAll.forEachIndexed{_,i-> i.isEnabled = false
+        buttonAll.forEachIndexed { _, i ->
+            i.isEnabled = false
         }
         Log.i("MainGameComputer", "Maaf tidak bisa diklik sedang proses bermain")
     }
@@ -193,7 +213,7 @@ class PlayGameVsComputer : AppCompatActivity() {
     }
 
     //Hasil dari Randomnya computer
-    fun resultEnemy(resultEnemy: String) {
+    private fun resultEnemy(resultEnemy: String) {
         when (resultEnemy) {
             "batu" -> {
                 enemyNya = buttonAll[3]
@@ -212,58 +232,67 @@ class PlayGameVsComputer : AppCompatActivity() {
         playGameVsComputerViewModel.compareData(dataPlayer1, resultEnemy)
     }
 
-    fun popWinner(resultNya: String) {
+    private fun popWinner(resultNya: String) {
         var winner = ""
         when (resultNya) {
             "Player Win" -> {
                 winner = "$namaPlayer\nMENANG!"
+                scorePlayer++
+                tvScorePlayer.text = scorePlayer.toString()
+
             }
             "Opponent Win" -> {
                 winner = "Computer\nMENANG!"
+                scoreComputer++
+                tvScoreComputer.text = scoreComputer.toString()
             }
             "Draw" -> {
                 winner = "SERI!"
             }
         }
         Log.e(tag, "Hasil: $winner")
-        Handler(Looper.getMainLooper()).postDelayed({
-            val view = LayoutInflater.from(this).inflate(R.layout.result_game_dialog, null, false)
-            val dialogBuilder = AlertDialog.Builder(this)
-            dialogBuilder.setView(view)
-            val dialogD1 = dialogBuilder.create()
-            dialogD1.setCancelable(false)
-            val animation by lazy { view.findViewById<LottieAnimationView>(R.id.lav_success) }
-            val winnerInfo by lazy { view.findViewById<TextView>(R.id.winner) }
-            val playAgain by lazy { view.findViewById<Button>(R.id.play_again) }
-            val backMenu by lazy { view.findViewById<Button>(R.id.back_menu) }
-            winnerInfo.text = winner
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                val view =
+                    LayoutInflater.from(this).inflate(R.layout.result_game_dialog, null, false)
+                val dialogBuilder = AlertDialog.Builder(this)
+                dialogBuilder.setView(view)
+                val dialogD1 = dialogBuilder.create()
+                dialogD1.setCancelable(false)
+                val animation by lazy { view.findViewById<LottieAnimationView>(R.id.lav_success) }
+                val winnerInfo by lazy { view.findViewById<TextView>(R.id.winner) }
+                val playAgain by lazy { view.findViewById<Button>(R.id.play_again) }
+                val backMenu by lazy { view.findViewById<Button>(R.id.back_menu) }
+                winnerInfo.text = winner
+                sound.playGameSound()
 
-            //View animation
+                //View animation
                 animation.speed = 0.5F
                 animation.repeatCount = 5
                 animation.repeatMode = LottieDrawable.RESTART
                 animation.playAnimation()
 
-            playAgain.setOnClickListener {
-                reset()
-                dialogD1.dismiss()
-            }
-            backMenu.setOnClickListener {
-                var intent = Intent(this, ChooseGamePlayAct::class.java)
-                startActivity(intent)
-                finish()
+                playAgain.setOnClickListener {
+                    reset()
+                    dialogD1.dismiss()
+                }
+                backMenu.setOnClickListener {
+                    val intent = Intent(this, ChooseGamePlayAct::class.java)
+                    startActivity(intent)
+                    finish()
 
-            }
-            if (!isFinishing) {
-                dialogD1.show()
-            }
-        }, 2 * randDuration
+                }
+                if (!isFinishing) {
+                    dialogD1.show()
+                }
+            }, 2 * randDuration
         )
     }
 
     override fun onBackPressed() {
-            startActivity(Intent(this, ChooseGamePlayAct::class.java))
-            finish()
+        startActivity(Intent(this, ChooseGamePlayAct::class.java))
+        finish()
     }
 
 }
+
