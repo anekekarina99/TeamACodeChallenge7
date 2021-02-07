@@ -4,10 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -15,33 +15,38 @@ import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
-import com.teamacodechallenge7.data.model.PostBattleRequest
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityPlayGameVsPlayerBinding
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.SoundPlayer
 
 class PlayGameVsPlayer : AppCompatActivity() {
     private lateinit var viewModel: PlayGameVsPlayerViewModel
+    private lateinit var sound: SoundPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val pref = SharedPref
         val factory = PlayGameVsPlayerViewModel.Factory(ApiModule.service, pref)
+        sound = SoundPlayer(this)
         viewModel = ViewModelProvider(this, factory)[PlayGameVsPlayerViewModel::class.java]
+        viewModel.teman = intent.getStringExtra("NAMA_TEMAN").toString()
         val binding =
             DataBindingUtil.setContentView<ActivityPlayGameVsPlayerBinding>(
                 this,
                 R.layout.activity_play_game_vs_player
             )
         binding.viewModel = viewModel
-        val pemain1 = mutableListOf<ImageView>(binding.ivBatu, binding.ivGunting, binding.ivKertas)
+        val pemain1 = mutableListOf<ImageView>(
+            binding.ivBatu,
+            binding.ivGunting,
+            binding.ivKertas
+        )
         val pemain2 = mutableListOf<ImageView>(
             binding.ivBatuLawan,
             binding.ivGuntingLawan,
             binding.ivKertasLawan
         )
         val pilihan = mutableListOf<String>("batu", "gunting", "kertas")
-        var player1Ready = false
-        var player2Ready = false
         var skor = 0
         var skorLawan = 0
 
@@ -50,26 +55,27 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 viewModel.pilihan = pilihan[pemain1.indexOf(it)]
                 pemain1.forEach {
                     it.isClickable = false
+                    it.visibility = View.INVISIBLE
                 }
-                player1Ready = true
+                pemain2.forEach {
+                    it.visibility = View.VISIBLE
+                }
+                it.visibility = View.VISIBLE
                 it.setBackgroundResource(R.drawable.bg_box_blue_round)
-                if (player1Ready && player2Ready) {
-                    viewModel.play()
-                }
             }
         }
 
         pemain2.forEach {
             it.setOnClickListener {
                 viewModel.pilihanLawan = pilihan[pemain2.indexOf(it)]
+                it.setBackgroundResource(R.drawable.bg_box_blue_round)
+                viewModel.play()
                 pemain2.forEach {
                     it.isClickable = false
+                    it.visibility = View.INVISIBLE
                 }
-                player2Ready = true
+                it.visibility = View.VISIBLE
                 it.setBackgroundResource(R.drawable.bg_box_blue_round)
-                if (player1Ready && player2Ready) {
-                    viewModel.play()
-                }
             }
         }
 
@@ -80,6 +86,7 @@ class PlayGameVsPlayer : AppCompatActivity() {
             dialogBuilder.setView(view)
             val dialogD1 = dialogBuilder.create()
             dialogD1.setCancelable(false)
+            sound.playGameSound()
             dialogD1.show()
             val animation by lazy { view.findViewById<LottieAnimationView>(R.id.lav_success) }
             val winnerInfo by lazy { view.findViewById<TextView>(R.id.winner) }
@@ -97,13 +104,13 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 pemain1.forEach {
                     it.isClickable = true
                     it.setBackgroundResource(R.drawable.bg_box_white_round)
+                    it.visibility = View.VISIBLE
                 }
                 pemain2.forEach {
                     it.isClickable = true
                     it.setBackgroundResource(R.drawable.bg_box_white_round)
+                    it.visibility = View.VISIBLE
                 }
-                player1Ready = false
-                player2Ready = false
                 dialogD1.dismiss()
             }
             backMenu.setOnClickListener {
@@ -126,5 +133,11 @@ class PlayGameVsPlayer : AppCompatActivity() {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, ChooseGamePlayAct::class.java))
+        finish()
     }
 }
