@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.teamacodechallenge7.data.remote.ApiService
-import com.teamacodechallenge7.model.SignUpRequest
+import com.teamacodechallenge7.data.model.SignUpRequest
 import com.teamacodechallenge7.utils.getServiceErrorMsg
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -30,6 +30,7 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
     fun buttonResult(): LiveData<String> = buttonResult
     fun passwordResult(): LiveData<String> = passwordResult
     fun resultLogin(): LiveData<Boolean> = resultSignUp
+
     fun usernameResult(): LiveData<String> = usernameResult
     fun rePasswordResult(): LiveData<String> = rePasswordResult
 
