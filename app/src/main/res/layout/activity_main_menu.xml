@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.teamacodechallenge7.ui.mainMenu.MainMenuViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_blue"
+        tools:context=".ui.loginPage.LoginAct">
+
+        <ImageView
+            android:id="@+id/IvOuterPhoto"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_outer_profile"
+            android:contentDescription="@string/ivFotoUser"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/IvPhotoUserProfile"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="43dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="43dp"
+            android:contentDescription="@string/ivFotoUser"
+            android:src="@drawable/ic_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNamaPanjangProfile"
+            android:layout_width="295dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/comic"
+            android:text=""
+            android:textColor="@color/colorWhiteFont"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/IvOuterPhoto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/IvOuterPhoto"
+            app:layout_constraintTop_toTopOf="@+id/IvOuterPhoto" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/bg_box_white_2round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/IvOuterPhoto"
+            app:layout_constraintVertical_bias="1.0">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btnStart"
+                    android:layout_width="265dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_but_orange"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvStart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ColorBlackFont"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnMyProfile"
+                    android:layout_width="265dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_but_orange"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvMyProfile"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ColorBlackFont"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnMyFriends"
+                    android:layout_width="265dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_but_orange"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvMyFriends"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ColorBlackFont"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnMyScores"
+                    android:layout_width="265dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_but_orange"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvMyScores"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ColorBlackFont"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnAbout"
+                    android:layout_width="265dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_but_orange"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvAbout"
+                    android:textAllCaps="false"
+                    android:textColor="@color/ColorBlackFont"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="265dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_but_gray"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvSignOut"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhiteFont"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvSeeInstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="32dp"
+                    android:fontFamily="@font/comic"
+                    android:text="@string/tvSeeInstruction"
+                    android:textColor="@color/ColorBlackFont"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
