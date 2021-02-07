@@ -19,13 +19,14 @@ import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import de.hdodenhof.circleimageview.CircleImageView
 import java.io.File
 
 class EditProfilePlayer : AppCompatActivity() {
     private val tag: String = "EditProfilePlayer"
     private lateinit var editProfilePlayerViewModel: EditProfilePlayerViewModel
     private lateinit var ivProfile: ImageView
-    private lateinit var cropImageView: CropImageView
+    private lateinit var cropImageView: CircleImageView
     private lateinit var cvImage: CardView
     private lateinit var lParent: LinearLayout
     private var filePath: File? = null
@@ -142,7 +143,7 @@ class EditProfilePlayer : AppCompatActivity() {
                 filePath = resultUri.toFile()
                 Log.e(tag, resultUri.toString())
                 cvImage.visibility = View.VISIBLE
-                cropImageView.setImageUriAsync(resultUri)
+                cropImageView.setImageURI(resultUri)
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error
                 Log.e(tag, "Image error$error")
