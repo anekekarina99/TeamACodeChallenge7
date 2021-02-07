@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
+import com.teamacodechallenge7.ui.about.AboutActivity
 import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
@@ -33,6 +34,8 @@ class ProfilePlayer : AppCompatActivity() {
         val ivProfile = findViewById<ImageView>(R.id.ivProfile)
         val tvName = findViewById<TextView>(R.id.tvName)
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
+        val signOut=findViewById<Button>(R.id.btSignOut)
+        val about =findViewById<TextView>(R.id.tvAbout)
 
         fetchData()
 
@@ -71,6 +74,15 @@ class ProfilePlayer : AppCompatActivity() {
                     finish()
                 }.show()
             }
+        }
+        signOut.setOnClickListener {
+            SharedPref.isLogin=false
+            startActivity(Intent(this, LoginAct::class.java))
+            finish()
+        }
+        about.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+            finish()
         }
     }
 
