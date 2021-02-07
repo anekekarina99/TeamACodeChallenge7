@@ -60,7 +60,7 @@
     <string name="tvMyProfile">My profile</string>
     <string name="tvMyFriends">My friends</string>
     <string name="tvSettings">Settings</string>
-    <string name="tvSignOut">Signout</string>
+    <string name="tvOut">Exit Game</string>
     <string name="tvSeeInstruction">See the instruction</string>
     <string name="loading">Loading…</string>
     <string name="tvPickMode">Pick mode game play ?</string>

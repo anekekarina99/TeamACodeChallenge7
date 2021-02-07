@@ -68,9 +68,7 @@ class MainMenuAct : AppCompatActivity() {
             startActivity(Intent(this, InstructionActivity::class.java))
             finish()
         }
-        binding.btnLogout.setOnClickListener {
-            SharedPref.isLogin = false
-            startActivity(Intent(this, LoginAct::class.java))
+        binding.btnOut.setOnClickListener {
             finish()
         }
 

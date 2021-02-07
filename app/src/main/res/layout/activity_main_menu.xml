@@ -109,14 +109,14 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="256dp"
+                android:id="@+id/btnOut"
+                android:layout_width="265dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_but_gray1"
                 android:fontFamily="@font/comic"
-                android:text="@string/tvSignOut"
+                android:text="@string/tvOut"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhiteFont"
                 android:textSize="18sp" />
