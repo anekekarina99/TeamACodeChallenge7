@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Kertas Gunting Batu</string>
     <string name="scissors_icon">gunting computer</string>
-    <string name="computer">CPU</string>
+    <string name="computer">computer</string>
     <string name="rock_icon">rock_icon</string>
     <string name="paper_icon">paper_icon</string>
     <string name="versus_image">versus_image</string>
@@ -72,6 +72,7 @@
     <string name="tvAbout">About</string>
     <string name="_0">0</string>
     <string name="score">score</string>
+    <string name="tvname_friend">Name Friend</string>
 
 
 </resources>

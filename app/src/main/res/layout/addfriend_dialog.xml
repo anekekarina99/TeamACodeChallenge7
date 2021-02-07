@@ -24,7 +24,7 @@
         android:layout_marginStart="32dp"
         android:fontFamily="@font/font_comic"
         android:lineSpacingExtra="-8dp"
-        android:text="Name Friend"
+        android:text="@string/tvname_friend"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_marginLeft="32dp" />
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_et_signinup"
+        android:background="@drawable/bg_et_blue"
         android:padding="15dp"
         android:textSize="20sp"
         android:inputType="textPersonName"  />
@@ -48,7 +48,7 @@
         android:layout_marginStart="32dp"
         android:fontFamily="@font/font_comic"
         android:lineSpacingExtra="-8dp"
-        android:text="Email"
+        android:text="@string/email"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_marginLeft="32dp" />
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/bg_et_signinup"
+        android:background="@drawable/bg_et_profile"
         android:padding="15dp"
         android:textSize="20sp"
         android:inputType="textEmailAddress"  />
