@@ -59,10 +59,9 @@
     <string name="tvStart">Start</string>
     <string name="tvMyProfile">My profile</string>
     <string name="tvMyFriends">My friends</string>
-    <string name="tvMyScores">My scores</string>
-    <string name="tvAbout">About</string>
+    <string name="tvSettings">Settings</string>
     <string name="tvSignOut">Signout</string>
-    <string name="tvSeeInstruction">See the instruction?</string>
+    <string name="tvSeeInstruction">See the instruction</string>
     <string name="loading">Loading…</string>
     <string name="tvPickMode">Pick mode game play ?</string>
     <string name="btChooseMode">Choose Mode</string>
