@@ -17,6 +17,9 @@
         <service
             android:name=".utils.GameMusic"
             android:enabled="true" />
+        <service
+            android:name=".utils.GamePlayMusic"
+            android:enabled="true" />
         <activity
             android:name=".ui.playgamevscomputer.PlayGameVsComputer"
             android:screenOrientation="portrait" />

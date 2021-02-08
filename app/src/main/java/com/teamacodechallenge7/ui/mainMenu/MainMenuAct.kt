@@ -44,7 +44,6 @@ class MainMenuAct : AppCompatActivity() {
         })
         binding.btnStart.setOnClickListener {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
-            stopMusic()
             finish()
         }
         binding.btnMyFriends.setOnClickListener {
@@ -76,11 +75,13 @@ class MainMenuAct : AppCompatActivity() {
         stopMusic()
         finish()
     }
-    private fun stopMusic(){
-        val stopServiceIntent = Intent(
-            this,
-            GameMusic::class.java
+
+    private fun stopMusic() {
+        stopService(
+            Intent(
+                this,
+                GameMusic::class.java
+            )
         )
-        stopService(stopServiceIntent)
     }
 }
