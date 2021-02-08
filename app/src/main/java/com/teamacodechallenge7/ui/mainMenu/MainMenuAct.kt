@@ -7,16 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.teamacodechallenge7.R
-import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityMainMenuBinding
-import com.teamacodechallenge7.ui.about.AboutActivity
 import com.teamacodechallenge7.ui.about.InstructionActivity
 import com.teamacodechallenge7.ui.gamehistory.GameHistoryAct
-import com.teamacodechallenge7.ui.landingPage.LandingPageActivity
-import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.profileplayer.ProfilePlayer
 import com.teamacodechallenge7.ui.profileteman.ProfileTeman
+import com.teamacodechallenge7.utils.GameMusic
 import com.teamacodechallenge7.utils.refreshToken
 
 
@@ -29,6 +26,7 @@ class MainMenuAct : AppCompatActivity() {
             R.layout.activity_main_menu
         )
         refreshToken()
+        startService(Intent(this, GameMusic::class.java))
         val factory = MainMenuFactory(ApiModule.service)
         this.viewModel = ViewModelProvider(this, factory)[MainMenuViewModel::class.java]
         binding.viewModel = viewModel
@@ -46,6 +44,7 @@ class MainMenuAct : AppCompatActivity() {
         })
         binding.btnStart.setOnClickListener {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
+            stopMusic()
             finish()
         }
         binding.btnMyFriends.setOnClickListener {
@@ -58,15 +57,30 @@ class MainMenuAct : AppCompatActivity() {
         }
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, ProfilePlayer::class.java))
+            onResume()
             finish()
         }
         binding.tvSeeInstruction.setOnClickListener {
             startActivity(Intent(this, InstructionActivity::class.java))
+            stopMusic()
             finish()
         }
         binding.btnOut.setOnClickListener {
+            stopMusic()
             finish()
         }
 
+    }
+
+    override fun onBackPressed() {
+        stopMusic()
+        finish()
+    }
+    private fun stopMusic(){
+        val stopServiceIntent = Intent(
+            this,
+            GameMusic::class.java
+        )
+        stopService(stopServiceIntent)
     }
 }

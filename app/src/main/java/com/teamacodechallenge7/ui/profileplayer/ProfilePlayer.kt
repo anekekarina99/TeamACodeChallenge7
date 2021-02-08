@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.teamacodechallenge7.R
@@ -13,6 +14,7 @@ import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.ui.about.AboutActivity
 import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
+import com.teamacodechallenge7.utils.GameMusic
 
 class ProfilePlayer : AppCompatActivity() {
     private val tag: String = "ProfilePlayer"
@@ -36,6 +38,7 @@ class ProfilePlayer : AppCompatActivity() {
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
         val signOut=findViewById<Button>(R.id.btSignOut)
         val about =findViewById<TextView>(R.id.tvAbout)
+        val aboutLottie = findViewById<LottieAnimationView>(R.id.lottieAbout)
 
         fetchData()
 
@@ -57,7 +60,7 @@ class ProfilePlayer : AppCompatActivity() {
                 .load(it.data.photo)
                 .centerCrop()
                 .circleCrop()
-                .placeholder(R.drawable.ic_people)
+                .placeholder(R.drawable.ic_user)
                 .into(ivProfile)
         }
         profilePlayerViewModel.resultMessage.observe(this) {
@@ -84,13 +87,16 @@ class ProfilePlayer : AppCompatActivity() {
             startActivity(Intent(this, AboutActivity::class.java))
             finish()
         }
+        aboutLottie.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+            finish()
+        }
     }
 
     override fun onResume() {
         super.onResume()
         fetchData()
     }
-
     private fun fetchData() {
         profilePlayerViewModel.playerData()
     }

@@ -19,6 +19,7 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
+import com.teamacodechallenge7.utils.GameMusic
 
 class ProfileTeman : AppCompatActivity() {
     private val tag : String = "ProfileTeman"
@@ -30,7 +31,6 @@ class ProfileTeman : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_teman)
-
         val pref = SharedPref
         val mDB: TemanDatabase = TemanDatabase.getInstance(this)!!
 

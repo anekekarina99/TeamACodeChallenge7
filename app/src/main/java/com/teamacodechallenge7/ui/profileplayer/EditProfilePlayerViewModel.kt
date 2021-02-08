@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.data.local.SharedPref
+import com.teamacodechallenge7.data.model.Users
+import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.data.remote.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import com.teamacodechallenge7.utils.getServiceErrorMsg
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -18,6 +21,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
+import java.util.regex.Pattern
 
 class EditProfilePlayerViewModel(
     private val service: ApiService,
@@ -26,35 +30,49 @@ class EditProfilePlayerViewModel(
 
     val token = pref.token.toString()
     private val tag: String = "EditProfilePlayer"
+    private val usernameRegex =
+        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$")
+    private lateinit var disposable1: Disposable
     private var disposable: CompositeDisposable = CompositeDisposable()
     val resultPost = MutableLiveData<Boolean>()
-    var resultName = MutableLiveData<String>()
-    var resultEmail = MutableLiveData<String>()
-    var resultUrlProfile = MutableLiveData<String>()
+    var resultUser = MutableLiveData<Users>()
     var resultMessage = MutableLiveData<String>()
 
     fun playerData() {
-        resultName.value = pref.username
-        resultEmail.value = pref.email
-        resultUrlProfile.value = pref.url_profile
+        val token = pref.token.toString()
+        disposable1 = ApiModule.service.getUsers(token)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    SharedPref.email = it.data.email
+                    SharedPref.username = it.data.username
+                    resultUser.value = it
+                },
+                {
+                    val msg: String = it.getServiceErrorMsg()
+                    Log.e(tag, msg)
+                    if (msg == "Token is expired" || msg == "Invalid Token") {
+                        resultMessage.value = msg
+                    }
+                    it.printStackTrace()
+                })
     }
 
     fun upload(username: String, email: String, file: File) {
         Log.e(tag, "upload?")
-        if (username.length < 6) {
-            resultMessage.value = "Username paling sedikit 6 huruf"
+        if (usernameRegex.matcher(username).matches()) {
+            resultMessage.value = "Username harus lebih dari 5 (a-z / 0-9)"
         } else if (email.isEmpty()) {
             resultMessage.value = "Email tidak boleh kosong"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             resultMessage.value = "Email tidak valid"
         } else {
-
             val filePart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "photo",
                 file.name,
                 file.asRequestBody("image/*".toMediaTypeOrNull())
             )
-
             val usernamePart: RequestBody =
                 username.toRequestBody("multipart/form-data".toMediaType())
             val emailPart: RequestBody = email.toRequestBody("multipart/form-data".toMediaType())
@@ -67,10 +85,10 @@ class EditProfilePlayerViewModel(
                         resultPost.value = true
                         pref.email = it.data.email
                         pref.username = it.data.username
-                        pref.url_profile = it.data.photo
                         Log.e(tag, "datasaved")
                         resultMessage.value = "data diperbaharui"
                     }, {
+                        resultPost.value = false
                         val msg: String = it.getServiceErrorMsg()
                         Log.e(tag, msg)
                         if (msg == "Token is expired" || msg == "Invalid Token") {
