@@ -51,16 +51,14 @@ class PlayGameVsPlayerViewModel(private val service: ApiService, pref: SharedPre
                 "Draw"
             }
         }
-        val postBattleRequest= PostBattleRequest("Multiplayer", hasil)
+        val postBattleRequest = PostBattleRequest("Multiplayer", hasil)
         disposable = service.postBattle(token, postBattleRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                it
             }, {
             })
     }
-
 
 
     @Suppress("UNCHECKED_CAST")

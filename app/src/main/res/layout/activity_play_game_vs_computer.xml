@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ColorBgPlay"
+    android:background="@drawable/bg_gray_game"
     android:orientation="vertical"
     tools:context=".ui.playgamevscomputer.PlayGameVsComputer">
 
