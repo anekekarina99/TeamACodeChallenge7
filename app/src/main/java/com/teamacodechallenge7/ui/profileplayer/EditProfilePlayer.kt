@@ -16,7 +16,6 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.loginPage.LoginAct
-import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -26,6 +25,7 @@ class EditProfilePlayer : AppCompatActivity() {
     private val tag: String = "EditProfilePlayer"
     private lateinit var editProfilePlayerViewModel: EditProfilePlayerViewModel
     private lateinit var ivProfile: ImageView
+    private lateinit var btSave: Button
     private lateinit var cropImageView: CircleImageView
     private lateinit var cvImage: CardView
     private lateinit var lParent: LinearLayout
@@ -43,7 +43,7 @@ class EditProfilePlayer : AppCompatActivity() {
         cropImageView = findViewById(R.id.cropImageView)
         cvImage = findViewById(R.id.cvImage)
         lParent = findViewById(R.id.lParent)
-        val btSave = findViewById<Button>(R.id.btSave)
+        btSave = findViewById(R.id.btSave)
         val btClose = findViewById<ImageView>(R.id.btClose)
         ivProfile = findViewById(R.id.ivProfile)
         val rlProfile = findViewById<RelativeLayout>(R.id.rlProfile)
@@ -70,13 +70,11 @@ class EditProfilePlayer : AppCompatActivity() {
                         newUsername, newEmail, it1
                     )
                 }
-                btSave.isEnabled = false
-                btSave.text = resources.getText(R.string.loading)
             }
         }
 
         rlProfile.setOnClickListener {
-                pickImage()
+            pickImage()
         }
 
         editProfilePlayerViewModel.resultMessage.observe(this) {
@@ -92,24 +90,19 @@ class EditProfilePlayer : AppCompatActivity() {
                     startActivity(Intent(this, LoginAct::class.java))
                     finish()
                 }.show()
-            } else {
-                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
             }
+            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
             Log.e(tag, it.toString())
         }
-        editProfilePlayerViewModel.resultName.observe(this) {
-            etUsername.setText(it)
-        }
-        editProfilePlayerViewModel.resultEmail.observe(this) {
-            etEmail.setText(it)
-        }
-        editProfilePlayerViewModel.resultUrlProfile.observe(this) {
+        editProfilePlayerViewModel.resultUser.observe(this) {
+            etUsername.setText(it.data.username)
+            etEmail.setText(it.data.email)
             Glide
                 .with(this)
-                .load(it)
+                .load(it.data.photo)
                 .centerCrop()
                 .circleCrop()
-                .placeholder(R.drawable.ic_people)
+                .placeholder(R.drawable.ic_user)
                 .into(ivProfile)
         }
         editProfilePlayerViewModel.resultPost.observe(this) {
@@ -117,13 +110,8 @@ class EditProfilePlayer : AppCompatActivity() {
                 val intent = Intent(this, ProfilePlayer::class.java)
                 startActivity(intent)
                 finish()
-            } else{
-                btSave.isEnabled = true
-                btSave.text = resources.getText(R.string.save)
             }
         }
-
-
     }
 
     private fun pickImage() {
