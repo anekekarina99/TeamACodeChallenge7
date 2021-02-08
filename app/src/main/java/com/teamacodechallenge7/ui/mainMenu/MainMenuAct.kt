@@ -1,7 +1,6 @@
 package com.teamacodechallenge7.ui.mainMenu
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -58,6 +57,7 @@ class MainMenuAct : AppCompatActivity() {
         }
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, ProfilePlayer::class.java))
+            onResume()
             finish()
         }
         binding.tvSeeInstruction.setOnClickListener {
