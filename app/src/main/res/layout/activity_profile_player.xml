@@ -54,11 +54,11 @@
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_marginTop="6dp"
+                android:contentDescription="@string/tvMyProfile"
                 android:src="@drawable/ic_user"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/tvMyProfile" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -92,12 +92,12 @@
 
     <Button
         android:id="@+id/btEdit"
-        android:layout_width="265dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginRight="32dp"
         android:background="@drawable/bg_shape_back_blue"
         android:fontFamily="@font/comic"
         android:text="@string/edit_profile"
@@ -109,12 +109,12 @@
 
     <Button
         android:id="@+id/btSignOut"
-        android:layout_width="265dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/bg_but_orange"
         android:fontFamily="@font/comic"
@@ -125,6 +125,7 @@
         android:textStyle="bold" />
 
     <LinearLayout
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -135,20 +136,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             android:fontFamily="@font/comic"
             android:text="@string/tvAbout"
             android:textColor="@color/ColorBlackFont"
             android:textStyle="bold" />
 
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAbout"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/ic_info" />
+            app:lottie_rawRes="@raw/ic_about" />
 
     </LinearLayout>
 

@@ -19,6 +19,7 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.GamePlayMusic
 import com.teamacodechallenge7.utils.SoundPlayer
 
 class PlayGameVsComputer : AppCompatActivity() {
@@ -61,7 +62,7 @@ class PlayGameVsComputer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play_game_vs_computer)
-
+        startService(Intent(this, GamePlayMusic::class.java))
         val pref = SharedPref
         val factory = PlayGameVsComputerViewModel.Factory(ApiModule.service, pref)
         playGameVsComputerViewModel =
@@ -233,6 +234,7 @@ class PlayGameVsComputer : AppCompatActivity() {
     }
 
     private fun popWinner(resultNya: String) {
+        stopService(Intent(this, GamePlayMusic::class.java))
         var winner = ""
         when (resultNya) {
             "Player Win" -> {
@@ -275,10 +277,12 @@ class PlayGameVsComputer : AppCompatActivity() {
                 playAgain.setOnClickListener {
                     reset()
                     dialogD1.dismiss()
+                    startService(Intent(this, GamePlayMusic::class.java))
                 }
                 backMenu.setOnClickListener {
                     val intent = Intent(this, ChooseGamePlayAct::class.java)
                     startActivity(intent)
+                    stopService(Intent(this, GamePlayMusic::class.java))
                     finish()
 
                 }
@@ -291,6 +295,7 @@ class PlayGameVsComputer : AppCompatActivity() {
 
     override fun onBackPressed() {
         startActivity(Intent(this, ChooseGamePlayAct::class.java))
+        stopService(Intent(this, GamePlayMusic::class.java))
         finish()
     }
 
