@@ -45,4 +45,9 @@ class ChooseGamePlayAct : AppCompatActivity() {
     private fun stopMusic() {
         stopService(Intent(this, GameMusic::class.java))
     }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainMenuAct::class.java))
+        finish()
+    }
 }
