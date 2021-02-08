@@ -3,6 +3,8 @@ package com.teamacodechallenge7.ui.profileplayer
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -70,6 +72,8 @@ class EditProfilePlayer : AppCompatActivity() {
                         newUsername, newEmail, it1
                     )
                 }
+                btSave.isEnabled = false
+                btSave.text = resources.getText(R.string.loading)
             }
         }
 
@@ -110,6 +114,11 @@ class EditProfilePlayer : AppCompatActivity() {
                 val intent = Intent(this, ProfilePlayer::class.java)
                 startActivity(intent)
                 finish()
+            } else {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    btSave.isEnabled = true
+                    btSave.text = resources.getText(R.string.save)
+                }, 200L)
             }
         }
     }
