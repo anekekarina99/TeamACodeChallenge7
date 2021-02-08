@@ -16,39 +16,72 @@
         android:background="@drawable/bg_blue"
         tools:context=".ui.loginPage.LoginAct">
 
-
         <ImageView
             android:id="@+id/ivLogoApps"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
             android:background="@drawable/ic_logo_white"
             android:contentDescription="@string/ivLogoApps"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <LinearLayout
             android:id="@+id/bx_menu_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="48dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_box_white_4round"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivLogoApps">
+            app:layout_constraintTop_toBottomOf="@+id/ivLogoApps">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/ivProfileApps"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/IvOuterPhoto"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:background="@drawable/bg_outer_profile_menu"
+                    android:contentDescription="@string/ivFotoUser"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/IvPhotoUserProfile"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:contentDescription="@string/ivFotoUser"
+                    android:src="@drawable/ic_user"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/tvNamaPanjangProfile"
                 android:layout_width="295dp"
                 android:layout_height="28dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/comic"
                 android:gravity="center"
                 android:text=""
@@ -134,12 +167,12 @@
                     android:id="@+id/tvSeeInstruction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/comic"
-                    android:textStyle="bold"
                     android:layout_marginEnd="8dp"
-                    android:textColor="@color/ColorBgBlue"
+                    android:layout_marginRight="8dp"
+                    android:fontFamily="@font/comic"
                     android:text="@string/tvSeeInstruction"
-                    android:layout_marginRight="8dp" />
+                    android:textColor="@color/ColorBgBlue"
+                    android:textStyle="bold" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="30dp"
@@ -150,29 +183,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/IvOuterPhoto"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="158dp"
-            android:background="@drawable/bg_outer_profile_menu"
-            android:contentDescription="@string/ivFotoUser"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/IvPhotoUserProfile"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/ivFotoUser"
-            android:src="@drawable/ic_user"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivLogoApps" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
