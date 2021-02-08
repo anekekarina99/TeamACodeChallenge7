@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ColorBgPlay"
+    android:background="@drawable/bg_gray_game"
     android:orientation="vertical"
     tools:context=".ui.playgamevscomputer.PlayGameVsComputer">
 
@@ -64,7 +64,7 @@
                 android:fontFamily="@font/comic"
                 android:singleLine="true"
                 android:textColor="@color/colorWhiteFont"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:autoSizeMaxTextSize="100sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"
@@ -197,7 +197,7 @@
                 android:fontFamily="@font/comic"
                 android:singleLine="true"
                 android:textColor="@color/colorWhiteFont"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:autoSizeMaxTextSize="100sp"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeStepGranularity="2sp"

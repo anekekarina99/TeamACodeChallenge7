@@ -22,10 +22,16 @@ class NotifSignUpActivity : AppCompatActivity() {
         }
     }
 
-    fun setupAnimation() {
+    private fun setupAnimation() {
         animation.speed = 0.5F
         animation.repeatCount = 5
         animation.repeatMode = LottieDrawable.RESTART
         animation.playAnimation()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, LoginAct::class.java))
+        finish()
     }
 }

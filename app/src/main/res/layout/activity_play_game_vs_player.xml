@@ -18,12 +18,13 @@
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="18dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="32dp"
             android:src="@drawable/ic_back_white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/back_menu" />
 
         <TextView
             android:id="@+id/tv_username"
@@ -36,9 +37,10 @@
             android:singleLine="true"
             android:text="@={viewModel.username}"
             android:textColor="@color/colorWhiteFont"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_back" />
+            app:layout_constraintTop_toBottomOf="@id/iv_back"
+            android:layout_marginStart="32dp" />
 
         <TextView
             android:id="@+id/tv_skor"
@@ -49,11 +51,12 @@
             android:background="@drawable/bg_but_orange"
             android:fontFamily="@font/comic"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/_0"
             android:textColor="@color/ColorBlackFont"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_username" />
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            android:layout_marginStart="32dp" />
 
         <ImageView
             android:id="@+id/iv_batu"
@@ -65,7 +68,9 @@
             android:src="@drawable/ic_batu_kiri"
             android:tag="batu"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_skor" />
+            app:layout_constraintTop_toBottomOf="@id/tv_skor"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/rock_icon" />
 
         <ImageView
             android:id="@+id/iv_gunting"
@@ -76,7 +81,9 @@
             android:background="@drawable/bg_box_white_round"
             android:src="@drawable/ic_gunting_kiri"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_batu" />
+            app:layout_constraintTop_toBottomOf="@id/iv_batu"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/scissors_icon" />
 
         <ImageView
             android:id="@+id/iv_kertas"
@@ -87,7 +94,9 @@
             android:background="@drawable/bg_box_white_round"
             android:src="@drawable/ic_kertas_kiri"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_gunting" />
+            app:layout_constraintTop_toBottomOf="@id/iv_gunting"
+            android:layout_marginStart="32dp"
+            android:contentDescription="@string/paper_icon" />
 
         <TextView
             android:id="@+id/tv_teman"
@@ -101,9 +110,10 @@
             android:text="@={viewModel.teman}"
             android:textColor="@color/colorWhiteFont"
 
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_back" />
+            app:layout_constraintTop_toBottomOf="@id/iv_back"
+            android:layout_marginEnd="32dp" />
 
         <TextView
             android:id="@+id/tv_skor_lawan"
@@ -114,11 +124,12 @@
             android:background="@drawable/bg_but_orange"
             android:fontFamily="@font/comic"
             android:gravity="center"
-            android:text="0"
+            android:text="@string/_0"
             android:textColor="@color/ColorBlackFont"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_username" />
+            app:layout_constraintTop_toBottomOf="@id/tv_username"
+            android:layout_marginEnd="32dp" />
 
         <ImageView
             android:id="@+id/iv_batu_lawan"
@@ -130,7 +141,9 @@
             android:src="@drawable/ic_batu_kanan"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_skor_lawan" />
+            app:layout_constraintTop_toBottomOf="@id/tv_skor_lawan"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/rock_icon" />
 
         <ImageView
             android:id="@+id/iv_gunting_lawan"
@@ -142,7 +155,9 @@
             android:src="@drawable/ic_gunting_kanan"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_batu" />
+            app:layout_constraintTop_toBottomOf="@id/iv_batu"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/scissors_icon" />
 
         <ImageView
             android:id="@+id/iv_kertas_lawan"
@@ -154,7 +169,9 @@
             android:src="@drawable/ic_kertas_kanan"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_gunting" />
+            app:layout_constraintTop_toBottomOf="@id/iv_gunting"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/paper_icon" />
 
         <TextView
             android:layout_width="180dp"
@@ -163,10 +180,10 @@
             android:background="@drawable/bg_but_cream"
             android:fontFamily="@font/comic"
             android:gravity="center"
-            android:text="VS"
+            android:text="@string/vs"
             android:textAlignment="center"
             android:textColor="@color/colorWhiteFont"
-            android:textSize="32dp"
+            android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_kertas" />

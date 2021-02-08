@@ -1,15 +1,14 @@
 package com.teamacodechallenge7.ui.signUp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivitySignUpBinding
 import com.teamacodechallenge7.ui.loginPage.LoginAct
-import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpViewModel
@@ -58,7 +57,7 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, MainMenuAct::class.java))
+        startActivity(Intent(this, LoginAct::class.java))
         finish()
     }
 }

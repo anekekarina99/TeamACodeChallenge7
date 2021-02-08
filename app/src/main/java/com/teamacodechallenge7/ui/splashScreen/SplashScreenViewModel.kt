@@ -3,7 +3,7 @@ package com.teamacodechallenge7.ui.splashScreen
 import androidx.lifecycle.ViewModel
 import com.teamacodechallenge7.data.local.SharedPref
 
-class SplashScreenViewModel(): ViewModel() {
+class SplashScreenViewModel : ViewModel() {
     var  navigator: SplashScreenNavigator? = null
 
     fun checkIsLogin() {

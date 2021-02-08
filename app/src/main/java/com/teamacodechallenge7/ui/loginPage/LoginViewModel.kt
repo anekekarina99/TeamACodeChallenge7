@@ -6,11 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.teamacodechallenge7.data.local.SharedPref
-import com.teamacodechallenge7.data.remote.ApiService
 import com.teamacodechallenge7.data.model.LoginRequest
+import com.teamacodechallenge7.data.remote.ApiService
 import com.teamacodechallenge7.utils.calendar
 import com.teamacodechallenge7.utils.getServiceErrorMsg
-import com.teamacodechallenge7.utils.refreshToken
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
