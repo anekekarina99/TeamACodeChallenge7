@@ -12,14 +12,14 @@
             android:id="@+id/ivBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
             android:contentDescription="@string/home"
             android:src="@drawable/ic_back_blue" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_margin="32dp"
             app:cardBackgroundColor="@color/ColorBgButGray"
             app:cardCornerRadius="20dp">
 

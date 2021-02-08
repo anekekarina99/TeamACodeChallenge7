@@ -80,6 +80,7 @@ class ProfilePlayer : AppCompatActivity() {
         }
         signOut.setOnClickListener {
             SharedPref.isLogin=false
+            stopService(Intent(this,GameMusic::class.java))
             startActivity(Intent(this, LoginAct::class.java))
             finish()
         }
