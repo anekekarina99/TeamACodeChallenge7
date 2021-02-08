@@ -52,6 +52,7 @@ class PlayGameVsPlayer : AppCompatActivity() {
 
         pemain1.forEach {
             it.setOnClickListener {
+                it.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.pilihan = pilihan[pemain1.indexOf(it)]
                 pemain1.forEach {
                     it.isClickable = false
@@ -60,13 +61,12 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 pemain2.forEach {
                     it.visibility = View.VISIBLE
                 }
-                it.visibility = View.VISIBLE
-                it.setBackgroundResource(R.drawable.bg_box_blue_round)
             }
         }
 
         pemain2.forEach {
             it.setOnClickListener {
+                it.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.pilihanLawan = pilihan[pemain2.indexOf(it)]
                 it.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.play()
@@ -74,8 +74,6 @@ class PlayGameVsPlayer : AppCompatActivity() {
                     it.isClickable = false
                     it.visibility = View.INVISIBLE
                 }
-                it.visibility = View.VISIBLE
-                it.setBackgroundResource(R.drawable.bg_box_blue_round)
             }
         }
 
@@ -109,7 +107,7 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 pemain2.forEach {
                     it.isClickable = true
                     it.setBackgroundResource(R.drawable.bg_box_white_round)
-                    it.visibility = View.VISIBLE
+                    it.visibility = View.INVISIBLE
                 }
                 dialogD1.dismiss()
             }
