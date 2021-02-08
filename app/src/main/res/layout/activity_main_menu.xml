@@ -186,11 +186,12 @@
                             android:textStyle="bold" />
 
                         <com.airbnb.lottie.LottieAnimationView
-                            android:layout_width="30dp"
+                            android:id="@+id/btnAnimInfo"
+                            android:layout_width="19dp"
                             android:layout_height="30dp"
                             app:lottie_autoPlay="true"
                             app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/ic_about" />
+                            app:lottie_rawRes="@raw/ic_instruction" />
                     </LinearLayout>
 
                 </LinearLayout>

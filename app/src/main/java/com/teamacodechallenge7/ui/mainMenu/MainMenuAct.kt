@@ -64,6 +64,11 @@ class MainMenuAct : AppCompatActivity() {
             stopMusic()
             finish()
         }
+        binding.btnAnimInfo.setOnClickListener {
+            startActivity(Intent(this, InstructionActivity::class.java))
+            stopMusic()
+            finish()
+        }
         binding.btnOut.setOnClickListener {
             stopMusic()
             finish()
