@@ -11,20 +11,15 @@
         android:id="@+id/ivBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_margin="32dp"
         android:contentDescription="@string/home"
         android:src="@drawable/ic_back_blue" />
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_below="@+id/ivBack"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_below="@+id/ivBack"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-10dp"
         android:layout_marginBottom="20dp"
@@ -34,13 +29,13 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/iv_logo"
         android:layout_above="@+id/btadd"
-        app:cardCornerRadius="20dp"
+        android:layout_below="@+id/iv_logo"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="@color/ColorBgButGray">
+        app:cardBackgroundColor="@color/ColorBgButGray"
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -65,7 +60,7 @@
                 android:layout_below="@id/tvDaftar"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                tools:listitem="@layout/item_teman"/>
+                tools:listitem="@layout/item_teman" />
 
 
         </RelativeLayout>
@@ -77,17 +72,17 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/bg_shape_back_blue"
-        app:backgroundTint="@color/ColorBgButGray"
         android:fontFamily="@font/comic"
         android:text="@string/tambah_teman"
-        android:textSize="18sp"
         android:textColor="@color/colorBgWhite"
-        android:textStyle="bold" />
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/ColorBgButGray" />
 
 
 </RelativeLayout>
