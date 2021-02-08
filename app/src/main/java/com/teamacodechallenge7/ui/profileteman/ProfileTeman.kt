@@ -1,7 +1,6 @@
 package com.teamacodechallenge7.ui.profileteman
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -12,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +19,6 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
-import com.teamacodechallenge7.utils.GameMusic
 
 class ProfileTeman : AppCompatActivity() {
     private val tag : String = "ProfileTeman"

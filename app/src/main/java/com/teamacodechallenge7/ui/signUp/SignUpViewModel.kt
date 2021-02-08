@@ -82,7 +82,7 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                if (it.success == true) {
+                                if (it.success) {
                                     resultSignUp.value = false
                                 }
                             }, {

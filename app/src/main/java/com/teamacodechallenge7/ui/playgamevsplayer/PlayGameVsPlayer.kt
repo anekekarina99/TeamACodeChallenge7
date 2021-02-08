@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
@@ -18,6 +17,7 @@ import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityPlayGameVsPlayerBinding
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.GamePlayMusic
 import com.teamacodechallenge7.utils.SoundPlayer
 
 class PlayGameVsPlayer : AppCompatActivity() {
@@ -36,49 +36,50 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 R.layout.activity_play_game_vs_player
             )
         binding.viewModel = viewModel
-        val pemain1 = mutableListOf<ImageView>(
+        val pemain1 = mutableListOf(
             binding.ivBatu,
             binding.ivGunting,
             binding.ivKertas
         )
-        val pemain2 = mutableListOf<ImageView>(
+        val pemain2 = mutableListOf(
             binding.ivBatuLawan,
             binding.ivGuntingLawan,
             binding.ivKertasLawan
         )
-        val pilihan = mutableListOf<String>("batu", "gunting", "kertas")
+        val pilihan = mutableListOf("batu", "gunting", "kertas")
         var skor = 0
         var skorLawan = 0
 
         pemain1.forEach {
-            it.setOnClickListener {
-                it.setBackgroundResource(R.drawable.bg_box_blue_round)
-                viewModel.pilihan = pilihan[pemain1.indexOf(it)]
-                pemain1.forEach {
-                    it.isClickable = false
-                    it.visibility = View.INVISIBLE
+            it.setOnClickListener {it1->
+                it1.setBackgroundResource(R.drawable.bg_box_blue_round)
+                viewModel.pilihan = pilihan[pemain1.indexOf(it1)]
+                pemain1.forEach {it2->
+                    it2.isClickable = false
+                    it2.visibility = View.INVISIBLE
                 }
-                pemain2.forEach {
-                    it.visibility = View.VISIBLE
+                pemain2.forEach {it3->
+                    it3.visibility = View.VISIBLE
                 }
             }
         }
 
         pemain2.forEach {
-            it.setOnClickListener {
-                it.setBackgroundResource(R.drawable.bg_box_blue_round)
+            it.setOnClickListener {it1->
+                it1.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.pilihanLawan = pilihan[pemain2.indexOf(it)]
                 it.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.play()
-                pemain2.forEach {
-                    it.isClickable = false
-                    it.visibility = View.INVISIBLE
+                pemain2.forEach {it2->
+                    it2.isClickable = false
+                    it2.visibility = View.INVISIBLE
                 }
             }
         }
 
         viewModel.result().observe(this, { result ->
             viewModel.simpanBattle()
+            stopMusic()
             val view = LayoutInflater.from(this).inflate(R.layout.result_game_dialog, null, false)
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setView(view)
@@ -99,6 +100,7 @@ class PlayGameVsPlayer : AppCompatActivity() {
             animation.playAnimation()
 
             playAgain.setOnClickListener {
+                startService(Intent(this, GamePlayMusic::class.java))
                 pemain1.forEach {
                     it.isClickable = true
                     it.setBackgroundResource(R.drawable.bg_box_white_round)
@@ -112,7 +114,8 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 dialogD1.dismiss()
             }
             backMenu.setOnClickListener {
-                var intent = Intent(this, ChooseGamePlayAct::class.java)
+                stopMusic()
+                val intent = Intent(this, ChooseGamePlayAct::class.java)
                 startActivity(intent)
                 finish()
 
@@ -129,13 +132,18 @@ class PlayGameVsPlayer : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
+            stopMusic()
             finish()
         }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
+        stopMusic()
         startActivity(Intent(this, ChooseGamePlayAct::class.java))
         finish()
+    }
+    private fun stopMusic() {
+        stopService(Intent(this, GamePlayMusic::class.java))
     }
 }

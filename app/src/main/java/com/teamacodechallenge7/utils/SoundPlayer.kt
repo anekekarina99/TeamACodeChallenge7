@@ -11,7 +11,7 @@ import com.teamacodechallenge7.R
 
 class SoundPlayer(context: Context?) {
     private var audioAttributes: AudioAttributes? = null
-    private val MAX_STREAMS = 5
+    private val maxStreams = 5
 
     companion object {
         private lateinit var soundPool: SoundPool
@@ -29,12 +29,12 @@ class SoundPlayer(context: Context?) {
                 .build()
             soundPool = SoundPool.Builder()
                 .setAudioAttributes(audioAttributes)
-                .setMaxStreams(MAX_STREAMS)
+                .setMaxStreams(maxStreams)
                 .build()
         } else {
-            soundPool = SoundPool(MAX_STREAMS, AudioManager.STREAM_MUSIC, 0)
+            soundPool = SoundPool(maxStreams, AudioManager.STREAM_MUSIC, 0)
         }
-        winSound = soundPool.load(context, R.raw.win, 1)
+        winSound = soundPool.load(context, R.raw.success, 1)
         clickSound = soundPool.load(context, R.raw.click, 1)
     }
 

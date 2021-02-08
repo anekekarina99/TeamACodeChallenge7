@@ -29,6 +29,7 @@ class PilihLawanAdapter(
         holder.tvEmail.text = email
         holder.ivEdit.visibility = View.GONE
         holder.itemView.setOnClickListener {
+
             val intent = Intent(context, PlayGameVsPlayer::class.java)
             intent.putExtra("NAMA_TEMAN", nama)
             context.startActivity(intent)

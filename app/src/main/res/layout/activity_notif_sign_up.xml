@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A4C1BB"
+    android:background="@drawable/bg_green"
     tools:context=".ui.signUp.NotifSignUpActivity">
 
     <LinearLayout
@@ -27,14 +27,13 @@
             app:lottie_rawRes="@raw/ic_success" />
 
         <TextView
-            android:id="@+id/tv_selamat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/comic"
-            android:text="Selamat!"
+            android:text="@string/tvSelamat"
             android:textColor="@color/ColorBlackFont"
-            android:textSize="24dp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
@@ -43,9 +42,9 @@
             android:layout_marginTop="18dp"
             android:fontFamily="@font/comic"
             android:gravity="center"
-            android:text="Kamu menjadi pemain dari \nGubake Game"
+            android:text="@string/tvKamuPemain"
             android:textColor="@color/ColorBlackFont"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_start"
@@ -55,7 +54,9 @@
             android:layout_marginTop="60dp"
             android:background="@drawable/bg_but_gray"
             android:fontFamily="@font/comic_san"
-            android:text="Start"
+            android:text="@string/tvStart"
+            android:textAllCaps="false"
+            android:textSize="18sp"
             android:textColor="@color/colorWhiteFont" />
 
 

@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/comic_san"
             android:text="This is instruction to play \nGubake. You can see the \ninstruction in this video \nabove"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/colorWhiteFont"
