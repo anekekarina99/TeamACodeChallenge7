@@ -50,5 +50,8 @@ class LoginAct : AppCompatActivity() {
             }
         })
     }
+    override fun onBackPressed() {
+        finish()
+    }
 
 }
