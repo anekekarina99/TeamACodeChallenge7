@@ -28,11 +28,13 @@
                 android:layout_marginBottom="32dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="600dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="96dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="65dp"
-                    android:background="@drawable/bg_box_white_round"
+                    android:background="@drawable/bg_box_white_4round"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +57,8 @@
                         android:id="@+id/tvEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="46dp"
-                        android:layout_marginLeft="46dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
                         android:layout_marginTop="38dp"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvEmail"
@@ -69,11 +71,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
-                        android:layout_width="265dp"
+                        android:layout_width="match_parent"
                         android:layout_height="51dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="46dp"
-                        android:layout_marginRight="46dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_et_signinup"
                         android:padding="12dp"
                         android:text="@={viewModel.username}"
@@ -85,8 +87,8 @@
                         android:id="@+id/tvPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="46dp"
-                        android:layout_marginLeft="46dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvPassword"
@@ -99,18 +101,18 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputLayout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="46dp"
-                        android:layout_marginRight="46dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/tvPassword"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvPassword"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etPassword"
-                            android:layout_width="265dp"
+                            android:layout_width="match_parent"
                             android:layout_height="51dp"
                             android:background="@drawable/bg_et_signinup"
                             android:inputType="textPassword"
@@ -120,9 +122,11 @@
 
                     <Button
                         android:id="@+id/bt_signIn"
-                        android:layout_width="265dp"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="45dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_gray"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvSignin"
@@ -136,9 +140,11 @@
 
                     <Button
                         android:id="@+id/bt_signUp"
-                        android:layout_width="265dp"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_orange"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvSignup"

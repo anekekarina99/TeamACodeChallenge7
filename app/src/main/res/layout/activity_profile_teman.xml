@@ -11,28 +11,17 @@
         android:id="@+id/ivBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_margin="32dp"
+        android:layout_margin="16dp"
         android:contentDescription="@string/home"
         android:src="@drawable/ic_back_blue" />
-
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/ivBack"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-10dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/logo_font"
-        android:src="@drawable/ic_logo_dark" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btadd"
-        android:layout_below="@+id/iv_logo"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_below="@+id/ivBack"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
         app:cardBackgroundColor="@color/ColorBgButGray"
         app:cardCornerRadius="20dp">
@@ -72,9 +61,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="32dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/bg_shape_back_blue"
         android:fontFamily="@font/comic"

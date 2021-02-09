@@ -1,15 +1,14 @@
 package com.teamacodechallenge7.ui.gamehistory
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityGameHistoryBinding
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
-import java.util.*
 
 private var rvMain: RecyclerView? = null
 

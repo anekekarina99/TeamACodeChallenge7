@@ -2,7 +2,6 @@ package com.teamacodechallenge7.data.model
 
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class GetBattle(
     @SerializedName("data")
