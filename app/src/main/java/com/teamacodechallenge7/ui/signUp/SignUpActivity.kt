@@ -30,21 +30,27 @@ class SignUpActivity : AppCompatActivity() {
         }
         viewModel.resultLogin().observe(this, { bool ->
             if (!bool) {
-                startActivity(Intent(this, NotifSignUpActivity::class.java))
                 finish()
+                startActivity(Intent(this, NotifSignUpActivity::class.java))
                 binding.btnSignUp.isEnabled = bool
             } else {
                 binding.btnSignUp.isEnabled = bool
                 viewModel.buttonResult().observe(this, { but ->
                     binding.btnSignUp.text = but
-                    viewModel.emailResult().observe(this, { emailErr ->
+                    viewModel.typeError().observe(this, { ErrMsg ->
                         binding.etEmail.error = emailErr
+                        binding.etUsername.error=null
+                        binding.etPassword.error=null
                     })
                     viewModel.usernameResult().observe(this, { usernameErr ->
                         binding.etUsername.error = usernameErr
+                        binding.etEmail.error=null
+                        binding.etPassword.error=null
                     })
                     viewModel.passwordResult().observe(this, { passwordErr ->
                         binding.etPassword.error = passwordErr
+                        binding.etUsername.error=null
+                        binding.etEmail.error=null
                     })
                     viewModel.rePasswordResult().observe(this, { rePasswordErr ->
                         binding.etRePassword.error = rePasswordErr

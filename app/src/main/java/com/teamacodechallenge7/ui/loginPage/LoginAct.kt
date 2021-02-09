@@ -38,11 +38,18 @@ class LoginAct : AppCompatActivity() {
                 binding.btSignIn.isEnabled=bool
                 viewModel.buttonResult().observe(this,{but->
                     binding.btSignIn.text=but
-                    viewModel.emailResult().observe(this, { emailErr ->
-                        binding.etEmail.error = emailErr
-                    })
-                    viewModel.passwordResult().observe(this, { passErr ->
-                        binding.etPassword.error = passErr
+                })
+                viewModel.errorMsg().observe(this, { errMsg ->
+                    viewModel.typeError().observe(this, { typeError ->
+                        if(typeError=="email")
+                        {
+                            binding.etEmail.error = errMsg
+                            binding.etPassword.error = null
+                        }
+                        else if (typeError=="password"){
+                            binding.etPassword.error = errMsg
+                            binding.etEmail.error = null
+                        }
                     })
                 })
 
