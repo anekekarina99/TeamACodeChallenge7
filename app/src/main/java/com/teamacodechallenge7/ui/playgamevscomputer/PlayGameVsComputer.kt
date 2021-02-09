@@ -282,6 +282,7 @@ class PlayGameVsComputer : AppCompatActivity() {
                     startService(Intent(this, GamePlayMusic::class.java))
                 }
                 backMenu.setOnClickListener {
+                    dialogD1.dismiss()
                     val intent = Intent(this, ChooseGamePlayAct::class.java)
                     startActivity(intent)
                     stopService(Intent(this, GamePlayMusic::class.java))
@@ -291,7 +292,7 @@ class PlayGameVsComputer : AppCompatActivity() {
                 if (!isFinishing) {
                     dialogD1.show()
                 }
-            }, 2 * randDuration
+            }, randDuration
         )
     }
 
