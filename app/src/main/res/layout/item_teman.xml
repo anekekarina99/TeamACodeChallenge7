@@ -23,9 +23,7 @@
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/ivEdit"
             android:fontFamily="@font/comic"
-            android:gravity="center_horizontal"
             android:text="@string/nama"
-            android:textAlignment="center"
             android:textColor="@color/ColorBlackFont"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -41,12 +39,9 @@
             android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/ivEdit"
             android:fontFamily="@font/comic"
-            android:gravity="center_horizontal"
             android:text="@string/email"
-            android:textAlignment="center"
             android:textColor="@color/ColorBlackFont"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_toStartOf="@+id/ivEdit" />
 
         <ImageView

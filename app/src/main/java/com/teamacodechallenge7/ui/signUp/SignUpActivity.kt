@@ -9,6 +9,8 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivitySignUpBinding
 import com.teamacodechallenge7.ui.loginPage.LoginAct
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpViewModel
@@ -67,6 +69,34 @@ class SignUpActivity : AppCompatActivity() {
 
             }
         })
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     override fun onBackPressed() {

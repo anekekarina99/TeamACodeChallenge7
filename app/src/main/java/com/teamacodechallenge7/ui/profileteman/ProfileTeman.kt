@@ -19,6 +19,8 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class ProfileTeman : AppCompatActivity() {
     private val tag : String = "ProfileTeman"
@@ -97,6 +99,34 @@ class ProfileTeman : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             fetchData()
         }
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     override fun onResume() {

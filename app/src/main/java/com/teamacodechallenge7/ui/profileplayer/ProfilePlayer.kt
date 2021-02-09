@@ -15,6 +15,8 @@ import com.teamacodechallenge7.ui.about.AboutActivity
 import com.teamacodechallenge7.ui.loginPage.LoginAct
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 import com.teamacodechallenge7.utils.GameMusic
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class ProfilePlayer : AppCompatActivity() {
     private val tag: String = "ProfilePlayer"
@@ -92,6 +94,34 @@ class ProfilePlayer : AppCompatActivity() {
             startActivity(Intent(this, AboutActivity::class.java))
             finish()
         }
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     override fun onResume() {
