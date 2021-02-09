@@ -1,8 +1,8 @@
 package com.teamacodechallenge7.ui.gamehistory
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +31,7 @@ class GameHistoryAct : AppCompatActivity() {
 
         rvMain = binding.recyclerView
         viewModel.resultScore.observe(this) {
-            val adapter = GameHistoryAdapter(it, this)
+            val adapter = GameHistoryAdapter(it.reversed(), this)
             rvMain?.layoutManager = LinearLayoutManager(
                 this, LinearLayoutManager.VERTICAL, false
             )

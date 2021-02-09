@@ -18,8 +18,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:scrollbars="none"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -42,10 +42,10 @@
                     android:id="@+id/bx_menu_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_box_white_4round"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -102,10 +102,12 @@
 
                     <Button
                         android:id="@+id/btnStart"
-                        android:layout_width="265dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_red"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvStart"
@@ -115,10 +117,12 @@
 
                     <Button
                         android:id="@+id/btnMyFriends"
-                        android:layout_width="265dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_orange1"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvMyFriends"
@@ -128,10 +132,12 @@
 
                     <Button
                         android:id="@+id/btnGameHistory"
-                        android:layout_width="265dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_orange1"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvGameHistory"
@@ -141,10 +147,12 @@
 
                     <Button
                         android:id="@+id/btnSettings"
-                        android:layout_width="265dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_orange1"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvSettings"
@@ -154,10 +162,12 @@
 
                     <Button
                         android:id="@+id/btnOut"
-                        android:layout_width="265dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="32dp"
                         android:background="@drawable/bg_but_gray1"
                         android:fontFamily="@font/comic"
                         android:text="@string/tvOut"

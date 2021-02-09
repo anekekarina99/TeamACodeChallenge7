@@ -50,7 +50,7 @@
     <string name="tvPickMode">Pick mode game play ?</string>
     <string name="btChooseMode">Choose Mode</string>
     <string name="vs">Vs</string>
-    <string name="tvDescription">Gubake is (Gunting Batu Kertas) is the Rock Paper Scissors game, but taken to a whole new level in terms of usage and importance in daily life. This game can play with your friends or computer. </string>
+    <string name="tvDescription">Gubake (Gunting Batu Kertas) is the Rock Paper Scissors game, but taken to a whole new level in terms of usage and importance in daily life. This game can play with your friends or computer. </string>
     <string name="createdBy">Tim A Binar Academy @ 2021</string>
     <string name="tvSignOut">Signout</string>
     <string name="tvAbout">About</string>
@@ -59,7 +59,8 @@
     <string name="tvname_friend">Name Friend</string>
     <string name="tvSelamat">Selamat!</string>
     <string name="tvKamuPemain">Kamu menjadi pemain dari \nGubake Game</string>
-    <string name="tvInstruction">This is instruction to play \nGubake. You can see the \ninstructions in this video \nabove</string>
+    <string name="tvInstruction">This is instruction to play Gubake. You can see the instructions in this video above</string>
+    <string name="date">Date</string>
 
 
 </resources>

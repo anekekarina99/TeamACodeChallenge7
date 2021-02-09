@@ -8,12 +8,14 @@
     tools:context=".ui.signUp.NotifSignUpActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_box_white_round"
+        android:background="@drawable/bg_box_white_4round"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="50dp"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +50,10 @@
 
         <Button
             android:id="@+id/btn_start"
-            android:layout_width="265dp"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="32dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
