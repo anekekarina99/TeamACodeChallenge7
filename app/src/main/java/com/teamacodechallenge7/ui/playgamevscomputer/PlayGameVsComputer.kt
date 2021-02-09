@@ -156,12 +156,14 @@ class PlayGameVsComputer : AppCompatActivity() {
 
     //unlock button semua
     private fun unlockButton() {
-        if (!buttonAll[0].isEnabled && !buttonAll[1].isEnabled && !buttonAll[2].isEnabled) {
+        if (!buttonAll[0].isEnabled && !buttonAll[1].isEnabled && !buttonAll[2].isEnabled && !buttonAll[6].isEnabled ) {
             buttonAll[0].isEnabled = true
             Log.i("MainGameComputer", "Anda memilih batu")
             buttonAll[1].isEnabled = true
             Log.i("MainGameComputer", "Anda memilih gunting")
             buttonAll[2].isEnabled = true
+            Log.i("MainGameComputer", "Anda memilih kertas")
+            buttonAll[6].isEnabled = true
             Log.i("MainGameComputer", "Anda memilih kertas")
         }
     }
