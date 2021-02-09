@@ -114,6 +114,7 @@ class PlayGameVsPlayer : AppCompatActivity() {
                 dialogD1.dismiss()
             }
             backMenu.setOnClickListener {
+                dialogD1.dismiss()
                 stopMusic()
                 val intent = Intent(this, ChooseGamePlayAct::class.java)
                 startActivity(intent)
