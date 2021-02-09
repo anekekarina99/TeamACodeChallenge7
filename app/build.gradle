@@ -91,9 +91,7 @@ dependencies {
     //library take image and cropper
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
 
-    // Koin for Android
     implementation "org.koin:koin-android:1.0.2"
-    // or Koin for view model features
     implementation "org.koin:koin-android-viewmodel:1.0.2"
 
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'

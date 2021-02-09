@@ -107,12 +107,8 @@ class MainMenuAct : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        onStop()
-        finish()
-    }
-    override fun onStop() {
-        super.onStop()
         stopMusic()
+        finish()
     }
     private fun stopMusic() {
         stopService(

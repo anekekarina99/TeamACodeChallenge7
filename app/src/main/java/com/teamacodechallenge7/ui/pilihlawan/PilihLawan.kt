@@ -92,14 +92,10 @@ class PilihLawan : AppCompatActivity() {
 
     override fun onBackPressed() {
         startActivity(Intent(this, MainMenuAct::class.java))
+        stopMusic()
         finish()
-        onStop()
     }
 
-    override fun onStop() {
-        super.onStop()
-        stopMusic()
-    }
     private fun stopMusic() {
         stopService(Intent(this, GamePlayMusic::class.java))
     }

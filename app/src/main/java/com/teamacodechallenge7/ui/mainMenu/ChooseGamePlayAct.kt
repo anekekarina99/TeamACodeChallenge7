@@ -8,7 +8,6 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.databinding.ActivityChooseGamePlayBinding
 import com.teamacodechallenge7.ui.pilihlawan.PilihLawan
 import com.teamacodechallenge7.ui.playgamevscomputer.PlayGameVsComputer
-import com.teamacodechallenge7.ui.playgamevsplayer.PlayGameVsPlayer
 import com.teamacodechallenge7.utils.GameMusic
 
 class ChooseGamePlayAct : AppCompatActivity() {
