@@ -16,6 +16,7 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.loginPage.LoginAct
+import com.teamacodechallenge7.utils.GameMusic
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import de.hdodenhof.circleimageview.CircleImageView
@@ -33,7 +34,7 @@ class EditProfilePlayer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile_player)
-
+        stopService(Intent(this,GameMusic::class.java))
         val pref = SharedPref
         val factory = EditProfilePlayerViewModel.Factory(ApiModule.service, pref)
         editProfilePlayerViewModel =
@@ -53,6 +54,7 @@ class EditProfilePlayer : AppCompatActivity() {
         btClose.setOnClickListener {
             val intent = Intent(this, ProfilePlayer::class.java)
             startActivity(intent)
+            startService(Intent(this,GameMusic::class.java))
             finish()
         }
         btSave.setOnClickListener {
@@ -77,7 +79,18 @@ class EditProfilePlayer : AppCompatActivity() {
 
         editProfilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            if (it == "Token is expired" || it == "Invalid Token") {
+            if (it=="username weak"){
+                etUsername.error="Harus lebih dari 5 (a-z / 0-9)"
+            }
+            else if(it=="email empty")
+            {
+                etUsername.error="Email kosong!"
+            }
+            else if(it=="email no valid")
+            {
+                etEmail.error="Email tidak valid!"
+            }
+            else if (it == "Token is expired" || it == "Invalid Token") {
                 val snackbar = Snackbar.make(
                     lParent,
                     "Waktu bermain sudah selesai, main lagi? silahkan Login",
@@ -88,8 +101,9 @@ class EditProfilePlayer : AppCompatActivity() {
                     startActivity(Intent(this, LoginAct::class.java))
                     finish()
                 }.show()
+                /*Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()*/
             }
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+
             Log.e(tag, it.toString())
         }
         editProfilePlayerViewModel.resultUser.observe(this) {
@@ -107,6 +121,7 @@ class EditProfilePlayer : AppCompatActivity() {
             if (it) {
                 val intent = Intent(this, ProfilePlayer::class.java)
                 startActivity(intent)
+                startService(Intent(this,GameMusic::class.java))
                 finish()
             } else {
                 Handler(Looper.getMainLooper()).postDelayed({
