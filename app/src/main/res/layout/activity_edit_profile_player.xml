@@ -46,23 +46,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_margin="32dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cvImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        app:cardCornerRadius="75dp">
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/cropImageView"
-                            android:layout_width="250dp"
-                            android:layout_height="250dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:background="@drawable/bg_profile_image" />
-                    </androidx.cardview.widget.CardView>
-
                     <ImageView
                         android:id="@+id/ivProfile"
                         android:layout_width="250dp"
@@ -71,6 +54,12 @@
                         android:layout_marginBottom="10dp"
                         android:contentDescription="@string/edit_profile"
                         android:src="@drawable/ic_user" />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cropImageView"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_profile_image" />
 
                     <ImageView
                         android:layout_width="60dp"
