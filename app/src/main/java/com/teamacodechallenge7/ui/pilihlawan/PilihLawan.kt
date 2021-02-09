@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
-import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
 import com.teamacodechallenge7.utils.GamePlayMusic
 import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
@@ -21,6 +20,7 @@ class PilihLawan : AppCompatActivity() {
     private val tag : String = "PilihLawan"
     private lateinit var pilihLawanViewModel: PilihLawanViewModel
     private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class PilihLawan : AppCompatActivity() {
         pilihLawanViewModel = ViewModelProvider(this, factory)[PilihLawanViewModel::class.java]
 
         recyclerView = findViewById(R.id.recyclerView)
-        val ivBack : ImageView = findViewById(R.id.ivBack)
+        val ivBack : ImageView = findViewById(R.id.ivBackPilih)
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
         )
@@ -91,10 +91,14 @@ class PilihLawan : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        startActivity(Intent(this, ChooseGamePlayAct::class.java))
-        stopMusic()
+        startActivity(Intent(this, MainMenuAct::class.java))
         finish()
+        onStop()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        stopMusic()
     }
     private fun stopMusic() {
         stopService(Intent(this, GamePlayMusic::class.java))

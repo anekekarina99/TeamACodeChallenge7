@@ -34,7 +34,7 @@ class ProfilePlayer : AppCompatActivity() {
 
         lParent = findViewById(R.id.lParent)
         val btEdit = findViewById<Button>(R.id.btEdit)
-        val ivBack = findViewById<ImageView>(R.id.ivBack)
+        val ivBack = findViewById<ImageView>(R.id.ivBackProfile)
         val ivProfile = findViewById<ImageView>(R.id.ivProfile)
         val tvName = findViewById<TextView>(R.id.tvName)
         val tvEmail = findViewById<TextView>(R.id.tvEmail)
@@ -45,8 +45,8 @@ class ProfilePlayer : AppCompatActivity() {
         fetchData()
 
         ivBack.setOnClickListener {
-            startActivity(Intent(this, MainMenuAct::class.java))
             finish()
+            startActivity(Intent(this, MainMenuAct::class.java))
         }
         btEdit.setOnClickListener {
             val intent = Intent(this, EditProfilePlayer::class.java)
@@ -133,6 +133,7 @@ class ProfilePlayer : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         startActivity(Intent(this, MainMenuAct::class.java))
         finish()
     }

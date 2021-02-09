@@ -39,7 +39,7 @@ class ProfileTeman : AppCompatActivity() {
         profileTemanViewModel = ViewModelProvider(this, factory)[ProfileTemanViewModel::class.java]
 
         recyclerView = findViewById(R.id.recyclerView)
-        val ivBack = findViewById<ImageView>(R.id.ivBack)
+        val ivBack = findViewById<ImageView>(R.id.ivBackTeman)
         val btadd = findViewById<Button>(R.id.btadd)
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
@@ -145,6 +145,7 @@ class ProfileTeman : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         startActivity(Intent(this, MainMenuAct::class.java))
         finish()
     }

@@ -59,7 +59,6 @@ class MainMenuAct : AppCompatActivity() {
         }
         binding.btnSettings.setOnClickListener {
             startActivity(Intent(this, ProfilePlayer::class.java))
-            onResume()
             finish()
         }
         binding.tvSeeInstruction.setOnClickListener {
@@ -107,10 +106,14 @@ class MainMenuAct : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        stopMusic()
+        super.onBackPressed()
+        onStop()
         finish()
     }
-
+    override fun onStop() {
+        super.onStop()
+        stopMusic()
+    }
     private fun stopMusic() {
         stopService(
             Intent(

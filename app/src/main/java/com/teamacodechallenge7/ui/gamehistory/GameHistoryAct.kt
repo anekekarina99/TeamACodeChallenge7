@@ -38,4 +38,9 @@ class GameHistoryAct : AppCompatActivity() {
             rvMain?.adapter = adapter
         }
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startActivity(Intent(this, MainMenuAct::class.java))
+        finish()
+    }
 }

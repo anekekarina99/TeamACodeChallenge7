@@ -8,6 +8,7 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.databinding.ActivityChooseGamePlayBinding
 import com.teamacodechallenge7.ui.pilihlawan.PilihLawan
 import com.teamacodechallenge7.ui.playgamevscomputer.PlayGameVsComputer
+import com.teamacodechallenge7.ui.playgamevsplayer.PlayGameVsPlayer
 import com.teamacodechallenge7.utils.GameMusic
 
 class ChooseGamePlayAct : AppCompatActivity() {
@@ -30,8 +31,9 @@ class ChooseGamePlayAct : AppCompatActivity() {
             finish()
         }
         binding.btBackMenu.setOnClickListener {
-            startActivity(Intent(this, MainMenuAct::class.java))
             finish()
+            startActivity(Intent(this, MainMenuAct::class.java))
+
         }
     }
 
@@ -40,6 +42,7 @@ class ChooseGamePlayAct : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         startActivity(Intent(this, MainMenuAct::class.java))
         finish()
     }
