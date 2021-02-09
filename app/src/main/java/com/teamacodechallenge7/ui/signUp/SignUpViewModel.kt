@@ -15,11 +15,18 @@ import java.util.regex.Pattern
 class SignUpViewModel(private val service: ApiService) : ViewModel() {
     private val usernameRegex =
         Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$")
+    private val passwordRegex = Pattern.compile(
+        "^"
+                + "(?=.*[0-9])" // at least 1 digit
+                + "(?=.*[a-z])"// at least 1 lower case letter
+                + "(?=.*[A-Z])"// at least 1 upper case letter
+                + "(?=.*[@#$%^&+=])"// no white spaces
+                + ".{6,}" //at least 6 characters
+                + "$"
+    )
     private var disposable: Disposable? = null
     private val errorMsg = MutableLiveData<String>()
     private val typeError = MutableLiveData<String>()
-    private val rePasswordResult = MutableLiveData<String>()
-    private val usernameResult = MutableLiveData<String>()
     private val buttonResult = MutableLiveData<String>()
     private val resultSignUp = MutableLiveData<Boolean>()
     var username: String = ""
@@ -31,9 +38,6 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
     fun typeError(): LiveData<String> = typeError
     fun resultLogin(): LiveData<Boolean> = resultSignUp
 
-    fun usernameResult(): LiveData<String> = usernameResult
-    fun rePasswordResult(): LiveData<String> = rePasswordResult
-
     fun signUp() {
         mutableListOf(username, email, password, rePassword).forEachIndexed { index, s ->
             when {
@@ -43,25 +47,25 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
                             errorMsg.value = "Username tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
-                            typeError.value="username"
+                            typeError.value = "username"
                         }
                         1 -> {
                             errorMsg.value = "Email tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
-                            typeError.value="email"
+                            typeError.value = "email"
                         }
                         2 -> {
                             errorMsg.value = "Password tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
-                            typeError.value="password"
+                            typeError.value = "password"
                         }
                         3 -> {
                             errorMsg.value = "Re-Password tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
-                            typeError.value="repassword"
+                            typeError.value = "repassword"
                         }
                     }
                 }
@@ -70,7 +74,7 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
                         errorMsg.value = "Harus lebih dari 5 (a-z / 0-9)"
                         resultSignUp.value = true
                         buttonResult.value = "Signup"
-                        typeError.value="username"
+                        typeError.value = "username"
                     }
                 }
                 index == 1 -> {
@@ -78,11 +82,17 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
                         errorMsg.value = "Email tidak valid!"
                         resultSignUp.value = true
                         buttonResult.value = "Signup"
-                        typeError.value="email"
+                        typeError.value = "email"
                     }
                 }
+
                 else -> {
-                    if (password == rePassword) {
+                    if (!passwordRegex.matcher(password).matches()) {
+                        errorMsg.value = "Password terlalu lemah"
+                        resultSignUp.value = true
+                        buttonResult.value = "Signup"
+                        typeError.value = "password"
+                    } else if (password == rePassword) {
                         val data = SignUpRequest(email, password, username)
                         disposable = service.signUp(data)
                             .subscribeOn(Schedulers.io())
@@ -98,27 +108,27 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
                                         errorMsg.value = "Username telah digunakan"
                                         resultSignUp.value = true
                                         buttonResult.value = "Signup"
-                                        typeError.value="username"
+                                        typeError.value = "username"
                                     }
                                     msg.contains("email_1 dup key") -> {
                                         errorMsg.value = "Email telah digunakan"
                                         resultSignUp.value = true
                                         buttonResult.value = "Signup"
-                                        typeError.value="email"
+                                        typeError.value = "email"
                                     }
                                     msg.contains("should only contain alphanumeric characters") -> {
                                         errorMsg.value = "Username harus berisi alphanumeric"
                                         resultSignUp.value = true
                                         buttonResult.value = "Signup"
-                                        typeError.value="password"
+                                        typeError.value = "username"
                                     }
                                 }
                             })
                     } else {
-                        rePasswordResult.value = "Re-Password berbeda dengan password"
+                        errorMsg.value = "Re-Password berbeda dengan password"
                         resultSignUp.value = true
                         buttonResult.value = "Signup"
-                        typeError.value="repassword"
+                        typeError.value = "repassword"
                     }
                 }
             }

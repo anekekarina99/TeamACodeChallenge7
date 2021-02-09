@@ -37,28 +37,36 @@ class SignUpActivity : AppCompatActivity() {
                 binding.btnSignUp.isEnabled = bool
                 viewModel.buttonResult().observe(this, { but ->
                     binding.btnSignUp.text = but
-                    viewModel.typeError().observe(this, { ErrMsg ->
-                        binding.etEmail.error = emailErr
-                        binding.etUsername.error=null
-                        binding.etPassword.error=null
+                    viewModel.errorMsg().observe(this, { errMsg ->
+                        viewModel.typeError().observe(this, { typeErr ->
+                            when (typeErr) {
+                                "email" -> {
+                                    binding.etEmail.error = errMsg
+                                    binding.etUsername.error = null
+                                    binding.etPassword.error = null
+                                }
+                                "username" -> {
+                                    binding.etUsername.error = errMsg
+                                    binding.etEmail.error = null
+                                    binding.etPassword.error = null
+                                }
+                                "password" -> {
+                                    binding.etPassword.error = errMsg
+                                    binding.etUsername.error = null
+                                    binding.etEmail.error = null
+                                }
+                                "repassword" -> {
+                                    binding.etRePassword.error = errMsg
+                                }
+                            }
+                        })
+
                     })
-                    viewModel.usernameResult().observe(this, { usernameErr ->
-                        binding.etUsername.error = usernameErr
-                        binding.etEmail.error=null
-                        binding.etPassword.error=null
-                    })
-                    viewModel.passwordResult().observe(this, { passwordErr ->
-                        binding.etPassword.error = passwordErr
-                        binding.etUsername.error=null
-                        binding.etEmail.error=null
-                    })
-                    viewModel.rePasswordResult().observe(this, { rePasswordErr ->
-                        binding.etRePassword.error = rePasswordErr
-                    })
+
                 })
+
             }
         })
-
     }
 
     override fun onBackPressed() {
