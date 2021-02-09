@@ -1,6 +1,7 @@
 package com.teamacodechallenge7.ui.gamehistory
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,11 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.model.GetBattle
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
+import com.teamacodechallenge7.utils.getStringTimeStampWithDate
 
+
+
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class GameHistoryAdapter(
     private val arrayList: List<GetBattle.Data>,
     val context: Context
@@ -34,29 +35,29 @@ class GameHistoryAdapter(
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date = arrayList[position].updatedAt
+        date.toSortedSet()
+        val resultBattle = arrayList[position].result
         val modeBattle = arrayList[position].mode
-        val result = arrayList[position].result
+        val result = arrayList[position].message
 
-    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern(
-        "yyyy-MM-dd'T'HH:mm:ss.SSSZ",
-        Locale.ENGLISH
-    )
-        val dateTime: LocalDate = LocalDate.parse(date, formatter)
 
-        val output = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
-        val formattedTime = output.format(dateTime)
-
+        when (resultBattle) {
+            "Opponent Win" -> {
+                holder.tvResult.setTextColor(Color.parseColor("#E67A6C"))
+            }
+            "Draw" -> {
+                holder.tvResult.setTextColor(Color.parseColor("#9DABB9"))
+            }
+            else -> {
+                holder.tvResult.setTextColor(Color.parseColor("#A4C1BB"))
+            }
+        }
         holder.tvMode.text = modeBattle
         holder.tvResult.text = result
-        holder.tvDate.text = formattedTime
+        holder.tvDate.text = date.getStringTimeStampWithDate()
 
-        val formatter = SimpleDateFormat("dd-M-yyyy hh:mm:ss a", Locale.ENGLISH)
-        formatter.timeZone = TimeZone.getTimeZone("America/New_York")
-
-        val dateInString = "22-01-2015 10:15:55 AM"
-        val date = formatter.parse(dateInString)
-        val formattedDateString = formatter.format(date)
     }
+
     override fun getItemCount(): Int {
         return arrayList.size
     }
