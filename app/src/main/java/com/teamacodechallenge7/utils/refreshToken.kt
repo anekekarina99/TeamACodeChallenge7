@@ -35,7 +35,7 @@ fun refreshToken() {
                         .subscribe({
                             SharedPref.token = ("Bearer" + " " + it.data.token)
                             Log.e(tag, it.data.token)
-                            Log.e(tag,"Cobaan @@@@@@@")
+                            Log.e(tag, "Cobaan @@@@@@@")
                         }) {
                             it.getServiceErrorMsg()
                             it.printStackTrace()
@@ -51,7 +51,7 @@ fun refreshToken() {
 fun calendar() {
     GlobalScope.launch(Dispatchers.IO) {
         val calendar = Calendar.getInstance()
-        calendar.add(Calendar.MINUTE, 30) // second nya diganti Hour, yg ini buat nyoba aj
+        calendar.add(Calendar.MINUTE, 30)
         val dLogin: Long = calendar.time.time
         SharedPref.datetime_login = dLogin.toString()
     }

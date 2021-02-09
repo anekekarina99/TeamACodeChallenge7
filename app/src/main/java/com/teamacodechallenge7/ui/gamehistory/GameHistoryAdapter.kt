@@ -2,12 +2,10 @@ package com.teamacodechallenge7.ui.gamehistory
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.model.GetBattle
@@ -15,7 +13,6 @@ import com.teamacodechallenge7.utils.getStringTimeStampWithDate
 
 
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class GameHistoryAdapter(
     private val arrayList: List<GetBattle.Data>,
     val context: Context
@@ -32,7 +29,6 @@ class GameHistoryAdapter(
         )
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date = arrayList[position].updatedAt
         date.toSortedSet()
@@ -52,8 +48,8 @@ class GameHistoryAdapter(
                 holder.tvResult.setTextColor(Color.parseColor("#A4C1BB"))
             }
         }
-        holder.tvMode.text = modeBattle
-        holder.tvResult.text = result
+        holder.tvMode.text =modeBattle
+        holder.tvResult.text =result
         holder.tvDate.text = date.getStringTimeStampWithDate()
 
     }
