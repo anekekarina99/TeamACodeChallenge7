@@ -19,12 +19,15 @@ import com.teamacodechallenge7.databinding.ActivityPlayGameVsPlayerBinding
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
 import com.teamacodechallenge7.utils.GamePlayMusic
 import com.teamacodechallenge7.utils.SoundPlayer
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class PlayGameVsPlayer : AppCompatActivity() {
     private lateinit var viewModel: PlayGameVsPlayerViewModel
     private lateinit var sound: SoundPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        networkMonitoring()
         val pref = SharedPref
         val factory = PlayGameVsPlayerViewModel.Factory(ApiModule.service, pref)
         sound = SoundPlayer(this)
@@ -51,26 +54,26 @@ class PlayGameVsPlayer : AppCompatActivity() {
         var skorLawan = 0
 
         pemain1.forEach {
-            it.setOnClickListener {it1->
+            it.setOnClickListener { it1 ->
                 it1.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.pilihan = pilihan[pemain1.indexOf(it1)]
-                pemain1.forEach {it2->
+                pemain1.forEach { it2 ->
                     it2.isClickable = false
                     it2.visibility = View.INVISIBLE
                 }
-                pemain2.forEach {it3->
+                pemain2.forEach { it3 ->
                     it3.visibility = View.VISIBLE
                 }
             }
         }
 
         pemain2.forEach {
-            it.setOnClickListener {it1->
+            it.setOnClickListener { it1 ->
                 it1.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.pilihanLawan = pilihan[pemain2.indexOf(it)]
                 it.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.play()
-                pemain2.forEach {it2->
+                pemain2.forEach { it2 ->
                     it2.isClickable = false
                     it2.visibility = View.INVISIBLE
                 }
@@ -138,12 +141,44 @@ class PlayGameVsPlayer : AppCompatActivity() {
         }
     }
 
+    private fun networkMonitoring() {
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         stopMusic()
         startActivity(Intent(this, ChooseGamePlayAct::class.java))
         finish()
     }
+
     private fun stopMusic() {
         stopService(Intent(this, GamePlayMusic::class.java))
     }

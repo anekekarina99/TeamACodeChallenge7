@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.teamacodechallenge7"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -90,5 +90,12 @@ dependencies {
 
     //library take image and cropper
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
+
+    implementation "org.koin:koin-android:1.0.2"
+    implementation "org.koin:koin-android-viewmodel:1.0.2"
+
+    implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+
+    implementation 'org.imaginativeworld.oopsnointernet:oopsnointernet:2.0.0'
 
 }

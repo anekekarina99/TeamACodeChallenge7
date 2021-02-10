@@ -30,8 +30,9 @@ class ChooseGamePlayAct : AppCompatActivity() {
             finish()
         }
         binding.btBackMenu.setOnClickListener {
-            startActivity(Intent(this, MainMenuAct::class.java))
             finish()
+            startActivity(Intent(this, MainMenuAct::class.java))
+
         }
     }
 
@@ -40,6 +41,7 @@ class ChooseGamePlayAct : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         startActivity(Intent(this, MainMenuAct::class.java))
         finish()
     }

@@ -21,11 +21,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/ivEdit"
             android:fontFamily="@font/comic"
-            android:gravity="center_horizontal"
             android:text="@string/nama"
-            android:textAlignment="center"
             android:textColor="@color/ColorBlackFont"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -39,14 +36,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/ivEdit"
             android:fontFamily="@font/comic"
-            android:gravity="center_horizontal"
             android:text="@string/email"
-            android:textAlignment="center"
             android:textColor="@color/ColorBlackFont"
             android:textSize="18sp"
-            android:textStyle="bold"
             android:layout_toStartOf="@+id/ivEdit" />
 
         <ImageView
@@ -54,9 +47,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
             android:contentDescription="@string/edit"
             android:src="@drawable/ic_edit"
             android:layout_marginEnd="10dp" />

@@ -21,6 +21,8 @@ import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
 import com.teamacodechallenge7.utils.GamePlayMusic
 import com.teamacodechallenge7.utils.SoundPlayer
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class PlayGameVsComputer : AppCompatActivity() {
 
@@ -61,6 +63,8 @@ class PlayGameVsComputer : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        networkMonitoring()
+
         setContentView(R.layout.activity_play_game_vs_computer)
         startService(Intent(this, GamePlayMusic::class.java))
         val pref = SharedPref
@@ -142,9 +146,38 @@ class PlayGameVsComputer : AppCompatActivity() {
         playGameVsComputerViewModel.resultNya.observe(this) {
             popWinner(it.toString())
         }
-
     }
 
+    private fun networkMonitoring(){
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
+    }
 
     //Button di lock ketika di proses
     private fun lockButton() {

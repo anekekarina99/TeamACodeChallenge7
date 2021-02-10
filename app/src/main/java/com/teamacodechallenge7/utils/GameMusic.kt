@@ -27,6 +27,7 @@ class GameMusic : Service(){
     override fun onStart(intent: Intent, startId: Int) {}
     override fun onDestroy() {
         mediaPlayer.stop()
+        mediaPlayer.reset()
         mediaPlayer.release()
     }
 

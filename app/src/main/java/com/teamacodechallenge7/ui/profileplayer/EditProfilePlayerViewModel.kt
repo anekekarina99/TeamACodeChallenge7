@@ -31,7 +31,7 @@ class EditProfilePlayerViewModel(
     val token = pref.token.toString()
     private val tag: String = "EditProfilePlayer"
     private val usernameRegex =
-        Pattern.compile("^[A-Za-z_][A-Za-z0-9_]{5,20}$")
+        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$")
     private lateinit var disposable1: Disposable
     private var disposable: CompositeDisposable = CompositeDisposable()
     val resultPost = MutableLiveData<Boolean>()
@@ -62,13 +62,13 @@ class EditProfilePlayerViewModel(
     fun upload(username: String, email: String, file: File) {
         Log.e(tag, "upload?")
         if (!usernameRegex.matcher(username).matches()) {
-            resultMessage.value = "Username harus lebih dari 5 (a-z / 0-9)"
+            resultMessage.value = "username weak"
             resultPost.value = false
         } else if (email.isEmpty()) {
-            resultMessage.value = "Email tidak boleh kosong"
+            resultMessage.value = "email empty"
             resultPost.value = false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            resultMessage.value = "Email tidak valid"
+            resultMessage.value = "email no valid"
             resultPost.value = false
         } else {
             val filePart: MultipartBody.Part = MultipartBody.Part.createFormData(

@@ -33,6 +33,7 @@ class PilihLawanAdapter(
             val intent = Intent(context, PlayGameVsPlayer::class.java)
             intent.putExtra("NAMA_TEMAN", nama)
             context.startActivity(intent)
+            (context as PilihLawan).finish()
         }
     }
 

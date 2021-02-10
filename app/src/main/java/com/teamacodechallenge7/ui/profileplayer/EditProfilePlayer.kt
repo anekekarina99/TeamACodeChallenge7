@@ -16,9 +16,12 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.loginPage.LoginAct
+import com.teamacodechallenge7.utils.GameMusic
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import de.hdodenhof.circleimageview.CircleImageView
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 import java.io.File
 
 class EditProfilePlayer : AppCompatActivity() {
@@ -33,7 +36,7 @@ class EditProfilePlayer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile_player)
-
+        stopService(Intent(this,GameMusic::class.java))
         val pref = SharedPref
         val factory = EditProfilePlayerViewModel.Factory(ApiModule.service, pref)
         editProfilePlayerViewModel =
@@ -53,6 +56,7 @@ class EditProfilePlayer : AppCompatActivity() {
         btClose.setOnClickListener {
             val intent = Intent(this, ProfilePlayer::class.java)
             startActivity(intent)
+            startService(Intent(this,GameMusic::class.java))
             finish()
         }
         btSave.setOnClickListener {
@@ -77,7 +81,18 @@ class EditProfilePlayer : AppCompatActivity() {
 
         editProfilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            if (it == "Token is expired" || it == "Invalid Token") {
+            if (it=="username weak"){
+                etUsername.error="Harus lebih dari 5 (a-z / 0-9)"
+            }
+            else if(it=="email empty")
+            {
+                etUsername.error="Email kosong!"
+            }
+            else if(it=="email no valid")
+            {
+                etEmail.error="Email tidak valid!"
+            }
+            else if (it == "Token is expired" || it == "Invalid Token") {
                 val snackbar = Snackbar.make(
                     lParent,
                     "Waktu bermain sudah selesai, main lagi? silahkan Login",
@@ -88,8 +103,9 @@ class EditProfilePlayer : AppCompatActivity() {
                     startActivity(Intent(this, LoginAct::class.java))
                     finish()
                 }.show()
+                /*Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()*/
             }
-            Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+
             Log.e(tag, it.toString())
         }
         editProfilePlayerViewModel.resultUser.observe(this) {
@@ -107,6 +123,7 @@ class EditProfilePlayer : AppCompatActivity() {
             if (it) {
                 val intent = Intent(this, ProfilePlayer::class.java)
                 startActivity(intent)
+                startService(Intent(this,GameMusic::class.java))
                 finish()
             } else {
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -115,6 +132,34 @@ class EditProfilePlayer : AppCompatActivity() {
                 }, 200L)
             }
         }
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     private fun pickImage() {
