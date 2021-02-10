@@ -21,13 +21,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_toStartOf="@+id/ivEdit"
             android:fontFamily="@font/comic"
             android:text="@string/nama"
             android:textColor="@color/ColorBlackFont"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_toStartOf="@+id/ivEdit"
-            android:layout_toLeftOf="@+id/ivEdit" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvEmail"
@@ -37,12 +36,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_toStartOf="@+id/ivEdit"
             android:fontFamily="@font/comic"
             android:text="@string/email"
             android:textColor="@color/ColorBlackFont"
-            android:textSize="18sp"
-            android:layout_toStartOf="@+id/ivEdit"
-            android:layout_toLeftOf="@+id/ivEdit" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/ivEdit"
@@ -50,11 +48,9 @@
             android:layout_height="25dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:contentDescription="@string/edit"
-            android:src="@drawable/ic_edit"
             android:layout_marginEnd="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp" />
+            android:contentDescription="@string/edit"
+            android:src="@drawable/ic_edit" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

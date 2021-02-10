@@ -88,7 +88,7 @@
                         android:text="@string/email"
                         android:textColor="@color/ColorBlackFont"
                         android:textSize="16sp"
-                        android:layout_marginLeft="32dp" />
+                        android:layout_marginEnd="32dp" />
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
