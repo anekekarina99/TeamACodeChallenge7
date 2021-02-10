@@ -11,7 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class PlayGameVsPlayerViewModel(private val service: ApiService, private val pref: SharedPref) :
+class PlayGameVsPlayerViewModel(private val service: ApiService, pref: SharedPref) :
     ViewModel() {
 
     private val token = pref.token.toString()
@@ -31,37 +31,37 @@ class PlayGameVsPlayerViewModel(private val service: ApiService, private val pre
         } else {
             if (pilihan == "gunting" && pilihanLawan == "kertas" || pilihan == "kertas" && pilihanLawan == "batu" || pilihan == "batu" && pilihanLawan == "gunting") {
                 skor = 1
-                result.value = "${username} \n WIN!"
+                result.value = "$username \n WIN!"
             } else {
                 skor = 2
-                result.value = "${teman} \n WIN!"
+                result.value = "$teman \n WIN!"
             }
         }
     }
 
     fun simpanBattle() {
-        var hasil = ""
-        if (skor == 1){
-            hasil = "Player Win"
+        val hasil: String = when (skor) {
+            1 -> {
+                "Player Win"
+            }
+            2 -> {
+                "Opponent Win"
+            }
+            else -> {
+                "Draw"
+            }
         }
-        else if(skor == 2){
-            hasil = "Opponent Win"
-        }
-        else{
-            hasil = "Draw"
-        }
-        val postBattleRequest= PostBattleRequest("Multiplayer", hasil)
+        val postBattleRequest = PostBattleRequest("Multiplayer", hasil)
         disposable = service.postBattle(token, postBattleRequest)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                it
             }, {
             })
     }
 
 
-
+    @Suppress("UNCHECKED_CAST")
     class Factory(private val service: ApiService, private val pref: SharedPref) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

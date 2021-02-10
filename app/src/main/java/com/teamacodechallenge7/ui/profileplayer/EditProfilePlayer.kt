@@ -3,11 +3,11 @@ package com.teamacodechallenge7.ui.profileplayer
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.net.toFile
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -16,47 +16,47 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.loginPage.LoginAct
-import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.GameMusic
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import de.hdodenhof.circleimageview.CircleImageView
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 import java.io.File
 
 class EditProfilePlayer : AppCompatActivity() {
     private val tag: String = "EditProfilePlayer"
     private lateinit var editProfilePlayerViewModel: EditProfilePlayerViewModel
     private lateinit var ivProfile: ImageView
+    private lateinit var btSave: Button
     private lateinit var cropImageView: CircleImageView
-    private lateinit var cvImage: CardView
     private lateinit var lParent: LinearLayout
     private var filePath: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile_player)
-
+        stopService(Intent(this,GameMusic::class.java))
         val pref = SharedPref
         val factory = EditProfilePlayerViewModel.Factory(ApiModule.service, pref)
         editProfilePlayerViewModel =
             ViewModelProvider(this, factory)[EditProfilePlayerViewModel::class.java]
 
         cropImageView = findViewById(R.id.cropImageView)
-        cvImage = findViewById(R.id.cvImage)
         lParent = findViewById(R.id.lParent)
-        val btSave = findViewById<Button>(R.id.btSave)
+        btSave = findViewById(R.id.btSave)
         val btClose = findViewById<ImageView>(R.id.btClose)
         ivProfile = findViewById(R.id.ivProfile)
         val rlProfile = findViewById<RelativeLayout>(R.id.rlProfile)
         val etUsername = findViewById<EditText>(R.id.etUsername)
         val etEmail = findViewById<EditText>(R.id.etEmail)
 
-        cvImage.visibility = View.GONE
-
         fetchData()
 
         btClose.setOnClickListener {
             val intent = Intent(this, ProfilePlayer::class.java)
             startActivity(intent)
+            startService(Intent(this,GameMusic::class.java))
             finish()
         }
         btSave.setOnClickListener {
@@ -76,12 +76,23 @@ class EditProfilePlayer : AppCompatActivity() {
         }
 
         rlProfile.setOnClickListener {
-                pickImage()
+            pickImage()
         }
 
         editProfilePlayerViewModel.resultMessage.observe(this) {
             Log.e(tag, it.toString())
-            if (it == "Token is expired" || it == "Invalid Token") {
+            if (it=="username weak"){
+                etUsername.error="Harus lebih dari 5 (a-z / 0-9)"
+            }
+            else if(it=="email empty")
+            {
+                etUsername.error="Email kosong!"
+            }
+            else if(it=="email no valid")
+            {
+                etEmail.error="Email tidak valid!"
+            }
+            else if (it == "Token is expired" || it == "Invalid Token") {
                 val snackbar = Snackbar.make(
                     lParent,
                     "Waktu bermain sudah selesai, main lagi? silahkan Login",
@@ -92,38 +103,63 @@ class EditProfilePlayer : AppCompatActivity() {
                     startActivity(Intent(this, LoginAct::class.java))
                     finish()
                 }.show()
-            } else {
-                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                /*Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()*/
             }
+
             Log.e(tag, it.toString())
         }
-        editProfilePlayerViewModel.resultName.observe(this) {
-            etUsername.setText(it)
-        }
-        editProfilePlayerViewModel.resultEmail.observe(this) {
-            etEmail.setText(it)
-        }
-        editProfilePlayerViewModel.resultUrlProfile.observe(this) {
+        editProfilePlayerViewModel.resultUser.observe(this) {
+            etUsername.setText(it.data.username)
+            etEmail.setText(it.data.email)
             Glide
                 .with(this)
-                .load(it)
+                .load(it.data.photo)
                 .centerCrop()
                 .circleCrop()
-                .placeholder(R.drawable.ic_people)
+                .placeholder(R.drawable.ic_user)
                 .into(ivProfile)
         }
         editProfilePlayerViewModel.resultPost.observe(this) {
             if (it) {
                 val intent = Intent(this, ProfilePlayer::class.java)
                 startActivity(intent)
+                startService(Intent(this,GameMusic::class.java))
                 finish()
-            } else{
-                btSave.isEnabled = true
-                btSave.text = resources.getText(R.string.save)
+            } else {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    btSave.isEnabled = true
+                    btSave.text = resources.getText(R.string.save)
+                }, 200L)
             }
         }
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
 
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
 
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     private fun pickImage() {
@@ -142,7 +178,6 @@ class EditProfilePlayer : AppCompatActivity() {
                 val resultUri: Uri = result.uri
                 filePath = resultUri.toFile()
                 Log.e(tag, resultUri.toString())
-                cvImage.visibility = View.VISIBLE
                 cropImageView.setImageURI(resultUri)
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 val error = result.error

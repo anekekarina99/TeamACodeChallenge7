@@ -4,10 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -15,71 +14,81 @@ import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieDrawable
 import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
-import com.teamacodechallenge7.data.model.PostBattleRequest
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.databinding.ActivityPlayGameVsPlayerBinding
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.GamePlayMusic
+import com.teamacodechallenge7.utils.SoundPlayer
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class PlayGameVsPlayer : AppCompatActivity() {
     private lateinit var viewModel: PlayGameVsPlayerViewModel
+    private lateinit var sound: SoundPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        networkMonitoring()
         val pref = SharedPref
         val factory = PlayGameVsPlayerViewModel.Factory(ApiModule.service, pref)
+        sound = SoundPlayer(this)
         viewModel = ViewModelProvider(this, factory)[PlayGameVsPlayerViewModel::class.java]
+        viewModel.teman = intent.getStringExtra("NAMA_TEMAN").toString()
         val binding =
             DataBindingUtil.setContentView<ActivityPlayGameVsPlayerBinding>(
                 this,
                 R.layout.activity_play_game_vs_player
             )
         binding.viewModel = viewModel
-        val pemain1 = mutableListOf<ImageView>(binding.ivBatu, binding.ivGunting, binding.ivKertas)
-        val pemain2 = mutableListOf<ImageView>(
+        val pemain1 = mutableListOf(
+            binding.ivBatu,
+            binding.ivGunting,
+            binding.ivKertas
+        )
+        val pemain2 = mutableListOf(
             binding.ivBatuLawan,
             binding.ivGuntingLawan,
             binding.ivKertasLawan
         )
-        val pilihan = mutableListOf<String>("batu", "gunting", "kertas")
-        var player1Ready = false
-        var player2Ready = false
+        val pilihan = mutableListOf("batu", "gunting", "kertas")
         var skor = 0
         var skorLawan = 0
 
         pemain1.forEach {
-            it.setOnClickListener {
-                viewModel.pilihan = pilihan[pemain1.indexOf(it)]
-                pemain1.forEach {
-                    it.isClickable = false
+            it.setOnClickListener { it1 ->
+                it1.setBackgroundResource(R.drawable.bg_box_blue_round)
+                viewModel.pilihan = pilihan[pemain1.indexOf(it1)]
+                pemain1.forEach { it2 ->
+                    it2.isClickable = false
+                    it2.visibility = View.INVISIBLE
                 }
-                player1Ready = true
-                it.setBackgroundResource(R.drawable.bg_box_blue_round)
-                if (player1Ready && player2Ready) {
-                    viewModel.play()
+                pemain2.forEach { it3 ->
+                    it3.visibility = View.VISIBLE
                 }
             }
         }
 
         pemain2.forEach {
-            it.setOnClickListener {
+            it.setOnClickListener { it1 ->
+                it1.setBackgroundResource(R.drawable.bg_box_blue_round)
                 viewModel.pilihanLawan = pilihan[pemain2.indexOf(it)]
-                pemain2.forEach {
-                    it.isClickable = false
-                }
-                player2Ready = true
                 it.setBackgroundResource(R.drawable.bg_box_blue_round)
-                if (player1Ready && player2Ready) {
-                    viewModel.play()
+                viewModel.play()
+                pemain2.forEach { it2 ->
+                    it2.isClickable = false
+                    it2.visibility = View.INVISIBLE
                 }
             }
         }
 
         viewModel.result().observe(this, { result ->
             viewModel.simpanBattle()
+            stopMusic()
             val view = LayoutInflater.from(this).inflate(R.layout.result_game_dialog, null, false)
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setView(view)
             val dialogD1 = dialogBuilder.create()
             dialogD1.setCancelable(false)
+            sound.playGameSound()
             dialogD1.show()
             val animation by lazy { view.findViewById<LottieAnimationView>(R.id.lav_success) }
             val winnerInfo by lazy { view.findViewById<TextView>(R.id.winner) }
@@ -94,20 +103,23 @@ class PlayGameVsPlayer : AppCompatActivity() {
             animation.playAnimation()
 
             playAgain.setOnClickListener {
+                startService(Intent(this, GamePlayMusic::class.java))
                 pemain1.forEach {
                     it.isClickable = true
                     it.setBackgroundResource(R.drawable.bg_box_white_round)
+                    it.visibility = View.VISIBLE
                 }
                 pemain2.forEach {
                     it.isClickable = true
                     it.setBackgroundResource(R.drawable.bg_box_white_round)
+                    it.visibility = View.INVISIBLE
                 }
-                player1Ready = false
-                player2Ready = false
                 dialogD1.dismiss()
             }
             backMenu.setOnClickListener {
-                var intent = Intent(this, ChooseGamePlayAct::class.java)
+                dialogD1.dismiss()
+                stopMusic()
+                val intent = Intent(this, ChooseGamePlayAct::class.java)
                 startActivity(intent)
                 finish()
 
@@ -124,7 +136,50 @@ class PlayGameVsPlayer : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             startActivity(Intent(this, ChooseGamePlayAct::class.java))
+            stopMusic()
             finish()
         }
+    }
+
+    private fun networkMonitoring() {
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        stopMusic()
+        startActivity(Intent(this, ChooseGamePlayAct::class.java))
+        finish()
+    }
+
+    private fun stopMusic() {
+        stopService(Intent(this, GamePlayMusic::class.java))
     }
 }

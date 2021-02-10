@@ -1,7 +1,6 @@
 package com.teamacodechallenge7.ui.profileteman
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -12,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +19,8 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.database.TemanDatabase
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.ui.mainMenu.MainMenuAct
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class ProfileTeman : AppCompatActivity() {
     private val tag : String = "ProfileTeman"
@@ -30,7 +32,6 @@ class ProfileTeman : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_teman)
-
         val pref = SharedPref
         val mDB: TemanDatabase = TemanDatabase.getInstance(this)!!
 
@@ -38,7 +39,7 @@ class ProfileTeman : AppCompatActivity() {
         profileTemanViewModel = ViewModelProvider(this, factory)[ProfileTemanViewModel::class.java]
 
         recyclerView = findViewById(R.id.recyclerView)
-        val ivBack = findViewById<ImageView>(R.id.ivBack)
+        val ivBack = findViewById<ImageView>(R.id.ivBackTeman)
         val btadd = findViewById<Button>(R.id.btadd)
         recyclerView.layoutManager = LinearLayoutManager(
             this, LinearLayoutManager.VERTICAL, false
@@ -98,6 +99,34 @@ class ProfileTeman : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
             fetchData()
         }
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     override fun onResume() {
@@ -116,6 +145,7 @@ class ProfileTeman : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         startActivity(Intent(this, MainMenuAct::class.java))
         finish()
     }

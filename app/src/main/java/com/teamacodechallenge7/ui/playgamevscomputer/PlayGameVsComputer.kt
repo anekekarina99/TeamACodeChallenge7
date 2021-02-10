@@ -19,7 +19,10 @@ import com.teamacodechallenge7.R
 import com.teamacodechallenge7.data.local.SharedPref
 import com.teamacodechallenge7.data.remote.ApiModule
 import com.teamacodechallenge7.ui.mainMenu.ChooseGamePlayAct
+import com.teamacodechallenge7.utils.GamePlayMusic
 import com.teamacodechallenge7.utils.SoundPlayer
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.pendulum.NoInternetDialogPendulum
 
 class PlayGameVsComputer : AppCompatActivity() {
 
@@ -60,8 +63,10 @@ class PlayGameVsComputer : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_play_game_vs_computer)
+        networkMonitoring()
 
+        setContentView(R.layout.activity_play_game_vs_computer)
+        startService(Intent(this, GamePlayMusic::class.java))
         val pref = SharedPref
         val factory = PlayGameVsComputerViewModel.Factory(ApiModule.service, pref)
         playGameVsComputerViewModel =
@@ -141,9 +146,38 @@ class PlayGameVsComputer : AppCompatActivity() {
         playGameVsComputerViewModel.resultNya.observe(this) {
             popWinner(it.toString())
         }
-
     }
 
+    private fun networkMonitoring(){
+        //NetworkMonitor
+        NoInternetDialogPendulum.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback { // Optional
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+                        // ...
+                    }
+                }
+
+                cancelable = false // Optional
+                noInternetConnectionTitle = "No Internet" // Optional
+                noInternetConnectionMessage =
+                    "Check your Internet connection and try again." // Optional
+                showInternetOnButtons = true // Optional
+                pleaseTurnOnText = "Please turn on" // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "You have turned on the airplane mode." // Optional
+                pleaseTurnOffText = "Please turn off" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
+    }
 
     //Button di lock ketika di proses
     private fun lockButton() {
@@ -155,12 +189,14 @@ class PlayGameVsComputer : AppCompatActivity() {
 
     //unlock button semua
     private fun unlockButton() {
-        if (!buttonAll[0].isEnabled && !buttonAll[1].isEnabled && !buttonAll[2].isEnabled) {
+        if (!buttonAll[0].isEnabled && !buttonAll[1].isEnabled && !buttonAll[2].isEnabled && !buttonAll[6].isEnabled ) {
             buttonAll[0].isEnabled = true
             Log.i("MainGameComputer", "Anda memilih batu")
             buttonAll[1].isEnabled = true
             Log.i("MainGameComputer", "Anda memilih gunting")
             buttonAll[2].isEnabled = true
+            Log.i("MainGameComputer", "Anda memilih kertas")
+            buttonAll[6].isEnabled = true
             Log.i("MainGameComputer", "Anda memilih kertas")
         }
     }
@@ -233,6 +269,7 @@ class PlayGameVsComputer : AppCompatActivity() {
     }
 
     private fun popWinner(resultNya: String) {
+        stopService(Intent(this, GamePlayMusic::class.java))
         var winner = ""
         when (resultNya) {
             "Player Win" -> {
@@ -275,22 +312,26 @@ class PlayGameVsComputer : AppCompatActivity() {
                 playAgain.setOnClickListener {
                     reset()
                     dialogD1.dismiss()
+                    startService(Intent(this, GamePlayMusic::class.java))
                 }
                 backMenu.setOnClickListener {
+                    dialogD1.dismiss()
                     val intent = Intent(this, ChooseGamePlayAct::class.java)
                     startActivity(intent)
+                    stopService(Intent(this, GamePlayMusic::class.java))
                     finish()
 
                 }
                 if (!isFinishing) {
                     dialogD1.show()
                 }
-            }, 2 * randDuration
+            }, randDuration
         )
     }
 
     override fun onBackPressed() {
         startActivity(Intent(this, ChooseGamePlayAct::class.java))
+        stopService(Intent(this, GamePlayMusic::class.java))
         finish()
     }
 

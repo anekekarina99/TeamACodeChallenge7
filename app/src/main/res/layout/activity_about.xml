@@ -12,7 +12,7 @@
             android:id="@+id/iv_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="32dp"
+            android:layout_margin="16dp"
             android:src="@drawable/ic_back_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,10 +31,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_but_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,28 +55,29 @@
 
                 <ImageView
                     android:id="@+id/ivPlayPlayer"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
                     android:src="@drawable/ic_bt_play_other"
-                    android:contentDescription="@string/playervsplayer" />
+                    android:contentDescription="@string/playervsplayer"
+                    android:layout_marginStart="8dp" />
 
                 <ImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:src="@drawable/ic_bt_play_computer"
-                    android:contentDescription="@string/playervscpu" />
+                    android:contentDescription="@string/playervscpu"
+                    android:layout_marginEnd="8dp" />
             </LinearLayout>
+
 
             <TextView
                 android:id="@+id/tv_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:fontFamily="@font/comic"
                 android:gravity="center"
@@ -83,9 +85,9 @@
                 android:textColor="@color/colorWhiteFont"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <TextView
                 android:id="@+id/textView"

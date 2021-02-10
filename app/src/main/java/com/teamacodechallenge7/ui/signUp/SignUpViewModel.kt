@@ -14,25 +14,29 @@ import java.util.regex.Pattern
 
 class SignUpViewModel(private val service: ApiService) : ViewModel() {
     private val usernameRegex =
-        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$")
+        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![@#\$%^&+=_.])\$")
+    private val passwordRegex = Pattern.compile(
+        "^"
+                + "(?=.*[0-9])" // at least 1 digit
+                + "(?=.*[a-z])"// at least 1 lower case letter
+                + "(?=.*[A-Z])"// at least 1 upper case letter
+                + "(?=.*[@#$%^&+=_.])"// no white spaces
+                + ".{6,}" //at least 6 characters
+                + "$"
+    )
     private var disposable: Disposable? = null
-    private val emailResult = MutableLiveData<String>()
-    private val passwordResult = MutableLiveData<String>()
-    private val rePasswordResult = MutableLiveData<String>()
-    private val usernameResult = MutableLiveData<String>()
+    private val errorMsg = MutableLiveData<String>()
+    private val typeError = MutableLiveData<String>()
     private val buttonResult = MutableLiveData<String>()
     private val resultSignUp = MutableLiveData<Boolean>()
     var username: String = ""
     var password: String = ""
     var email: String = ""
     var rePassword: String = ""
-    fun emailResult(): LiveData<String> = emailResult
+    fun errorMsg(): LiveData<String> = errorMsg
     fun buttonResult(): LiveData<String> = buttonResult
-    fun passwordResult(): LiveData<String> = passwordResult
+    fun typeError(): LiveData<String> = typeError
     fun resultLogin(): LiveData<Boolean> = resultSignUp
-
-    fun usernameResult(): LiveData<String> = usernameResult
-    fun rePasswordResult(): LiveData<String> = rePasswordResult
 
     fun signUp() {
         mutableListOf(username, email, password, rePassword).forEachIndexed { index, s ->
@@ -40,70 +44,91 @@ class SignUpViewModel(private val service: ApiService) : ViewModel() {
                 s.isEmpty() -> {
                     when (index) {
                         0 -> {
-                            usernameResult.value = "Email tidak boleh kosong!"
+                            errorMsg.value = "Username tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
+                            typeError.value = "username"
                         }
                         1 -> {
-                            emailResult.value = "Email tidak boleh kosong!"
+                            errorMsg.value = "Email tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
+                            typeError.value = "email"
                         }
                         2 -> {
-                            passwordResult.value = "Password tidak boleh kosong!"
+                            errorMsg.value = "Password tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
+                            typeError.value = "password"
                         }
                         3 -> {
-                            rePasswordResult.value = "Re-Password tidak boleh kosong!"
+                            errorMsg.value = "Re-Password tidak boleh kosong!"
                             resultSignUp.value = true
                             buttonResult.value = "Signup"
+                            typeError.value = "repassword"
                         }
                     }
                 }
                 index == 0 -> {
                     if (!usernameRegex.matcher(username).matches()) {
-                        usernameResult.value = "Harus lebih dari 5 (a-z / 0-9)"
+                        errorMsg.value = "Harus lebih dari 5 (a-z / 0-9)"
                         resultSignUp.value = true
                         buttonResult.value = "Signup"
+                        typeError.value = "username"
                     }
                 }
                 index == 1 -> {
                     if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                        emailResult.value = "Email tidak valid!"
+                        errorMsg.value = "Email tidak valid!"
                         resultSignUp.value = true
                         buttonResult.value = "Signup"
+                        typeError.value = "email"
                     }
                 }
+
                 else -> {
-                    if (password == rePassword) {
+                    if (!passwordRegex.matcher(password).matches()) {
+                        errorMsg.value = "Password terlalu lemah"
+                        resultSignUp.value = true
+                        buttonResult.value = "Signup"
+                        typeError.value = "password"
+                    } else if (password == rePassword) {
                         val data = SignUpRequest(email, password, username)
                         disposable = service.signUp(data)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                if (it.success == true) {
+                                if (it.success) {
                                     resultSignUp.value = false
                                 }
                             }, {
                                 val msg = it.getServiceErrorMsg()
                                 when {
                                     msg.contains("username_1 dup key") -> {
-                                        usernameResult.value = "Username telah digunakan"
+                                        errorMsg.value = "Username telah digunakan"
                                         resultSignUp.value = true
                                         buttonResult.value = "Signup"
+                                        typeError.value = "username"
                                     }
                                     msg.contains("email_1 dup key") -> {
-                                        emailResult.value = "Email telah digunakan"
+                                        errorMsg.value = "Email telah digunakan"
                                         resultSignUp.value = true
                                         buttonResult.value = "Signup"
+                                        typeError.value = "email"
+                                    }
+                                    msg.contains("should only contain alphanumeric characters") -> {
+                                        errorMsg.value = "Username harus berisi alphanumeric"
+                                        resultSignUp.value = true
+                                        buttonResult.value = "Signup"
+                                        typeError.value = "username"
                                     }
                                 }
                             })
                     } else {
-                        rePasswordResult.value = "Re-Password berbeda dengan password"
+                        errorMsg.value = "Re-Password berbeda dengan password"
                         resultSignUp.value = true
                         buttonResult.value = "Signup"
+                        typeError.value = "repassword"
                     }
                 }
             }
