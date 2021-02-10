@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_logo_apps_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamACodeChallenge7"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:allowBackup="true">
         <service
             android:name=".utils.GameMusic"
             android:enabled="true" />
