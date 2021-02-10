@@ -69,7 +69,9 @@
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="-8dp"
                         android:contentDescription="@string/edit_profile"
-                        android:src="@drawable/ic_but_plus" />
+                        android:src="@drawable/ic_but_plus"
+                        android:layout_alignRight="@+id/ivProfile"
+                        android:layout_marginRight="24dp" />
 
 
                 </RelativeLayout>
@@ -101,8 +103,7 @@
                         android:background="@drawable/bg_et_profile"
                         android:hint="@string/username"
                         android:inputType="textPersonName"
-                        android:padding="15dp"
-                        android:textSize="20sp" />
+                        android:padding="15dp" />
 
                     <TextView
                         android:layout_width="200dp"
@@ -122,8 +123,7 @@
                         android:background="@drawable/bg_et_profile"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
-                        android:padding="15dp"
-                        android:textSize="20sp" />
+                        android:padding="15dp"/>
 
                     <Button
                         android:id="@+id/btSave"

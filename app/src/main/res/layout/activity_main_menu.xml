@@ -193,7 +193,8 @@
                             android:fontFamily="@font/comic"
                             android:text="@string/tvSeeInstruction"
                             android:textColor="@color/ColorBgBlue"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:layout_marginRight="8dp" />
 
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/btnAnimInfo"

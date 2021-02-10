@@ -51,7 +51,8 @@
                     app:autoSizeStepGranularity="2sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_back" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_back"
+                    android:layout_marginLeft="48dp" />
 
                 <TextView
                     android:id="@+id/tv_skor"
@@ -66,7 +67,8 @@
                     android:textColor="@color/ColorBlackFont"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_username" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_username"
+                    android:layout_marginLeft="48dp" />
 
                 <ImageView
                     android:id="@+id/iv_batu"
@@ -79,7 +81,8 @@
                     android:src="@drawable/ic_batu_kiri"
                     android:tag="batu"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_skor" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_skor"
+                    android:layout_marginLeft="48dp" />
 
                 <ImageView
                     android:id="@+id/iv_gunting"
@@ -91,7 +94,8 @@
                     android:contentDescription="@string/scissors_icon"
                     android:src="@drawable/ic_gunting_kiri"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_batu" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_batu"
+                    android:layout_marginLeft="48dp" />
 
                 <ImageView
                     android:id="@+id/iv_kertas"
@@ -103,7 +107,8 @@
                     android:contentDescription="@string/paper_icon"
                     android:src="@drawable/ic_kertas_kiri"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_gunting" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_gunting"
+                    android:layout_marginLeft="48dp" />
 
                 <TextView
                     android:id="@+id/tv_teman"
@@ -122,7 +127,8 @@
                     app:autoSizeStepGranularity="2sp"
                     app:autoSizeTextType="uniform"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_back" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_back"
+                    android:layout_marginRight="48dp" />
 
                 <TextView
                     android:id="@+id/tv_skor_lawan"
@@ -137,7 +143,8 @@
                     android:textColor="@color/ColorBlackFont"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_username" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_username"
+                    android:layout_marginRight="48dp" />
 
                 <ImageView
                     android:id="@+id/iv_batu_lawan"
@@ -150,7 +157,8 @@
                     android:src="@drawable/ic_batu_kanan"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_skor_lawan" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_skor_lawan"
+                    android:layout_marginRight="48dp" />
 
                 <ImageView
                     android:id="@+id/iv_gunting_lawan"
@@ -163,7 +171,8 @@
                     android:src="@drawable/ic_gunting_kanan"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_batu" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_batu"
+                    android:layout_marginRight="48dp" />
 
                 <ImageView
                     android:id="@+id/iv_kertas_lawan"
@@ -176,7 +185,8 @@
                     android:src="@drawable/ic_kertas_kanan"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/iv_gunting" />
+                    app:layout_constraintTop_toBottomOf="@id/iv_gunting"
+                    android:layout_marginRight="48dp" />
 
                 <TextView
                     android:layout_width="180dp"

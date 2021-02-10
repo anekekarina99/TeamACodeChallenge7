@@ -140,7 +140,8 @@
             android:fontFamily="@font/comic"
             android:text="@string/tvAbout"
             android:textColor="@color/ColorBlackFont"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginRight="4dp" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAbout"
@@ -150,7 +151,8 @@
             android:layout_marginStart="4dp"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/ic_about" />
+            app:lottie_rawRes="@raw/ic_about"
+            android:layout_marginLeft="4dp" />
 
     </LinearLayout>
 
