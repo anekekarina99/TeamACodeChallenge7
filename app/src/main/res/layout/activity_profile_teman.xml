@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_white"
+    tools:context=".ui.profileteman.ProfileTeman">
+
+    <ImageView
+        android:id="@+id/ivBackTeman"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/home"
+        android:src="@drawable/ic_back_blue" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btadd"
+        android:layout_below="@+id/ivBackTeman"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/ColorBgButGray"
+        app:cardCornerRadius="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvDaftar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/comic"
+                android:text="@string/daftar_teman"
+                android:textColor="@color/colorBgWhite"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDaftar"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                tools:listitem="@layout/item_teman" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btadd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/bg_shape_back_blue"
+        android:fontFamily="@font/comic"
+        android:text="@string/tambah_teman"
+        android:textColor="@color/colorBgWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/ColorBgButGray" />
+
+
+</RelativeLayout>
