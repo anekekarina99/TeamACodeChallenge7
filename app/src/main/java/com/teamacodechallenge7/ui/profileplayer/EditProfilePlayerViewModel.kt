@@ -31,7 +31,7 @@ class EditProfilePlayerViewModel(
     val token = pref.token.toString()
     private val tag: String = "EditProfilePlayer"
     private val usernameRegex =
-        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$")
+        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![@#\$%^&+=_.])\$")
     private lateinit var disposable1: Disposable
     private var disposable: CompositeDisposable = CompositeDisposable()
     val resultPost = MutableLiveData<Boolean>()
