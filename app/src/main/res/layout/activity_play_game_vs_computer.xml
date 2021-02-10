@@ -28,7 +28,8 @@
                 android:background="@drawable/ic_back_white"
                 android:contentDescription="@string/string_close"
                 tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="27dp" />
+                tools:layout_editor_absoluteX="27dp"
+                android:layout_marginLeft="16dp" />
 
 
             <LinearLayout

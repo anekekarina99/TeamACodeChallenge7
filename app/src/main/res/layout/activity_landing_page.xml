@@ -61,7 +61,8 @@
             android:textColor="@color/colorBgWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
+            app:layout_constraintTop_toBottomOf="@+id/dots_indicator"
+            android:layout_marginRight="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
