@@ -14,13 +14,13 @@ import java.util.regex.Pattern
 
 class SignUpViewModel(private val service: ApiService) : ViewModel() {
     private val usernameRegex =
-        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\$")
+        Pattern.compile("^(?=.{6,20}\$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![@#\$%^&+=_.])\$")
     private val passwordRegex = Pattern.compile(
         "^"
                 + "(?=.*[0-9])" // at least 1 digit
                 + "(?=.*[a-z])"// at least 1 lower case letter
                 + "(?=.*[A-Z])"// at least 1 upper case letter
-                + "(?=.*[@#$%^&+=])"// no white spaces
+                + "(?=.*[@#$%^&+=_.])"// no white spaces
                 + ".{6,}" //at least 6 characters
                 + "$"
     )
