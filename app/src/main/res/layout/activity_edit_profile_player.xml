@@ -70,8 +70,7 @@
                         android:layout_marginBottom="-8dp"
                         android:contentDescription="@string/edit_profile"
                         android:src="@drawable/ic_but_plus"
-                        android:layout_alignRight="@+id/ivProfile"
-                        android:layout_marginRight="24dp" />
+                        android:layout_marginStart="24dp" />
 
 
                 </RelativeLayout>

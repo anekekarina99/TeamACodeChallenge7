@@ -25,7 +25,7 @@
         android:text="@string/tvname_friend"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginEnd="16dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etNama"
@@ -50,7 +50,7 @@
         android:text="@string/email"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:layout_marginLeft="16dp" />
+        android:layout_marginEnd="16dp" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etEmail"
